@@ -1,6 +1,6 @@
 import handleInput
 from GameBoard import GameBoard
-from simpleAI1 import AI1
+from GoRules import GoRuleChecker
 from Go import Go
 import json
 
@@ -12,12 +12,19 @@ class Referee:
         self.playerOneStone = "B"
         self.playerTwo = None
         self.playerTwoStone = "W"
+        self.ruleChecker = GoRuleChecker()
+        self.board = GameBoard()
 
     def assignPlayerOne(self,string):
         self.playerOne = string
 
-    def assignPlayertwo(self,string):
+    def assignPlayerTwo(self,string):
         self.playerTwo = string
+
+    def handleMoves(self, listOfMoves):
+        moveHistory = []
+        
+
 
 
 
