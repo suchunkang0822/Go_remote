@@ -3,6 +3,7 @@ from GameBoard import GameBoard
 from GoRules import GoRuleChecker
 from Go import Go
 from Point import Point
+import copy
 import json
 
 
@@ -16,11 +17,14 @@ class Referee:
         self.playerTwoStone = "W"
 
         # emptyBoard initialized to start the Go Instance and Board History
-        self.board = GameBoard()
+        # self.board = GameBoard()
+        self.board = [[" " for col in range(19)] for row in range(19)]
 
         # initializing game
-        self.Go = Go(self.board._board)
-        self.boardHistory = [self.board._board]
+        # self.Go = Go(self.board._board)
+        self.Go = Go(self.board)
+        # self.boardHistory = [self.board._board]
+        self.boardHistory = []
         
 
     def assignPlayerOne(self,string):
@@ -31,41 +35,57 @@ class Referee:
 
     def handleMoves(self, listOfMoves):
         results = []
-        results.append(self.boardHistory)
-        
+        self.boardHistory.append(copy.deepcopy(self.board))
         for i, move in enumerate(listOfMoves):
-            
-            print('board history', self.boardHistory)
-            
-         
-            color = (self.playerOneStone if i%2==0 else self.playerTwoStone)
-           
-            # if move == "pass":
-            #     self.updateHistory(self.boardHistory[0])
-            # else:
-    
-            point = "pass"
-            if move != "pass":
+            results.append(copy.deepcopy(self.boardHistory))
+            player_color, opponent_color = self.whose_turn(i)
+            if move == "pass":
+                try:
+                    self.updateHistory(self.boardHistory[0])
+                    two_passes = self.Go.ruleChecker.checkGameOver(self.boardHistory)
+                except ValueError:
+                    results.append(self.whose_the_winner(self.boardHistory[0]))
+            else:
                 point = Point(move)
-            tempHistory = self.boardHistory
-            madeMove = self.Go.makeMove(point, color ,tempHistory)
-            
-            print(madeMove)
-            if madeMove:
-                results.append(self.boardHistory)
-                # print('after board history', self.boardHistory)
-                self.updateHistory(self.Go.getBoard())
-                print('currboard: ', self.Go.getBoard())
-                print('results: ', results)
-                
-                
 
+
+                madeMove = self.Go.makeMove(point, player_color, self.boardHistory)
+                print('madeMove',madeMove)
+                if madeMove:
+                    self.updateHistory(copy.deepcopy(self.Go.getBoard()))
+                else:
+                    results.append(self.get_player_name(opponent_color))
+                    return results
         return results
     
     def updateHistory(self, board):   
         self.boardHistory.insert(0, board)
         if len(self.boardHistory) > 3:
             self.boardHistory.pop()
+
+    def whose_turn(self, number):
+        if number % 2 == 0:
+            return self.playerOneStone, self.playerTwoStone
+        else:
+            return self.playerTwoStone, self.playerOneStone
+
+    def get_player_name(self,stone):
+        if stone == "B":
+            return [self.playerOne]
+        else:
+            return [self.playerTwo]
+
+    def whose_the_winner(self,board):
+        board_obj = GameBoard(board)
+        score = board_obj.getScore()
+        black_score, white_score = score["B"], score["W"]
+        if black_score > white_score:
+            return [self.playerOne]
+        elif white_score > black_score:
+            return [self.playerTwo]
+        else:
+            return sorted([self.playerOne,self.playerTwo])
+
 
 
 

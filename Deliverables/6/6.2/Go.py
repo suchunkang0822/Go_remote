@@ -1,5 +1,6 @@
 from GameBoard import GameBoard
 from GoRules import GoRuleChecker
+import copy
 import handleInput
 
 
@@ -41,17 +42,26 @@ class Go:
 
     def removeAllNecessary(self, location, color):
         neighbors = location.getNeighborPositions()
-
+        counter = 0
         for neighbor in neighbors:
+            counter += 1
+
             if self.board.locationContains(location) == color:
                 connected, _ = self.board.findAllConnectedNodes(neighbor)
                 if self.board.canBeReached(neighbor, " "):
                     # has a liberty
                     pass
                 else:
+                    print(counter)
+                    print("heyyyyyyyyyyyyyyyyyyyyyyyy")
                     for node in connected:
-                        # print(connected)
+                        print('node',node)
+                        # print(self.board._board)
                         self.board.removePiece(color, node)
+                        # print("a",a)
+                        print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        print(self.board._)
+                        print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
                     # remove all stones returned from canBeReached
 
     def getFormattedLocation(self, locationString):

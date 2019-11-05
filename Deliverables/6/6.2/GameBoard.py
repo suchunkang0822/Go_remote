@@ -146,7 +146,10 @@ class GameBoard:
             return "I am just a board! I cannot remove what is not there!"
         else:
             self._insertAtAdjustedIndices(location, self.EMPTY)
-            return self._board
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            print(self._board)
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
+            return copy.deepcopy(self._board)
 
     def calculatePoints(self):
         allPoints = [[], []]

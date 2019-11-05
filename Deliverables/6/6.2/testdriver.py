@@ -24,7 +24,9 @@ def testOnInputs():
 
         
 
-    print(json.dumps(output))
+    # print(json.dumps(output))
+
+    print('\n'.join(map(str, output)))
     return json.dumps(output)
 
 
