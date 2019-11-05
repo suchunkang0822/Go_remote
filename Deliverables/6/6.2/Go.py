@@ -28,6 +28,9 @@ class Go:
             raise ValueError
         self.removeAllNecessary(location, "B") if color == "W" else self.removeAllNecessary(location, "W")
         self.removeAllNecessary(location, color)
+    
+    def getBoard(self):
+        return self.board._board
 
 
     def getBoardSize(self):

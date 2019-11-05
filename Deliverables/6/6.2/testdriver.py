@@ -18,7 +18,8 @@ def testOnInputs():
         ref.assignPlayerTwo(inputs[1])
         output.append(ref.playerTwoStone)
     
-    # results = ref.handleMoves(inputs[2:])
+    results = ref.handleMoves(inputs[2:])
+    output += results
 
 
         
