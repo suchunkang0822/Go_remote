@@ -31,9 +31,11 @@ class Referee:
 
     def handleMoves(self, listOfMoves):
         results = []
+        results.append(self.boardHistory)
         
         for i, move in enumerate(listOfMoves):
-            print('board history: ', self.boardHistory)
+            
+            print('board history', self.boardHistory)
             
          
             color = (self.playerOneStone if i%2==0 else self.playerTwoStone)
@@ -45,12 +47,18 @@ class Referee:
             point = "pass"
             if move != "pass":
                 point = Point(move)
+            tempHistory = self.boardHistory
+            madeMove = self.Go.makeMove(point, color ,tempHistory)
             
-            madeMove = self.Go.makeMove(point, color ,self.boardHistory)
+            print(madeMove)
             if madeMove:
-                
-                self.updateHistory(self.Go.getBoard())
                 results.append(self.boardHistory)
+                # print('after board history', self.boardHistory)
+                self.updateHistory(self.Go.getBoard())
+                print('currboard: ', self.Go.getBoard())
+                print('results: ', results)
+                
+                
 
         return results
     
