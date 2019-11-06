@@ -13,6 +13,7 @@ class Go:
         try:
             self.ruleChecker.checkBoardValidity(boards, color)
         except ValueError:
+            print('dafuq')
             return "This history makes no sense!"
 
         try:

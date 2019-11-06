@@ -142,7 +142,7 @@ class GoRuleChecker:
         elif len(boards) == 2:
             if GameBoard(boards[1]).getScore()["B"] != 0 or GameBoard(boards[1]).getScore()["W"] != 0:
                 raise ValueError("Need more moves")
-            if GameBoard(boards[0]).getScore()["B"] != 1 or GameBoard(boards[0]).getScore()["W"] != 0:
+            if GameBoard(boards[0]).getScore()["B"] > 1 or GameBoard(boards[0]).getScore()["W"] != 0:
                 raise ValueError("Wrong initial move")
             if player != "W":
                 raise ValueError("Wrong player value")
