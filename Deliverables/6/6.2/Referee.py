@@ -50,7 +50,6 @@ class Referee:
 
 
                 madeMove = self.Go.makeMove(point, player_color, self.boardHistory)
-                print('madeMove',madeMove)
                 if madeMove:
                     self.updateHistory(copy.deepcopy(self.Go.getBoard()))
                 else:
