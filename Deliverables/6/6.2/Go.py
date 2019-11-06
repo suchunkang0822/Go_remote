@@ -57,8 +57,8 @@ class Go:
                     for node in connected:
                         print('node',node)
                         # print(self.board._board)
-                        self.board.removePiece(color, node)
-                        # print("a",a)
+                        # self.board.removePiece(color, node)
+                        self.board._board[node.x][node.y] = " "
                         print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
                         print(self.board._)
                         print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
