@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="testdriver.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="testdriver.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testdriver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+            <state relative-caret-position="348">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -74,7 +74,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -140,12 +140,12 @@
       <list>
         <option value="$PROJECT_DIR$/test1" />
         <option value="$PROJECT_DIR$/run" />
-        <option value="$PROJECT_DIR$/testdriver.py" />
         <option value="$PROJECT_DIR$/GameBoard.py" />
         <option value="$PROJECT_DIR$/Go.py" />
         <option value="$PROJECT_DIR$/GoRules.py" />
         <option value="$PROJECT_DIR$/Referee.py" />
         <option value="$PROJECT_DIR$/test" />
+        <option value="$PROJECT_DIR$/testdriver.py" />
       </list>
     </option>
   </component>
@@ -730,16 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testdriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Go.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -785,6 +775,16 @@
         <state relative-caret-position="270">
           <caret line="18" column="6" lean-forward="false" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testdriver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
