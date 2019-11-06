@@ -1,5 +1,6 @@
 from GameBoard import GameBoard
-# from Go import Go
+import copy
+import Go
 
 
 class GoRuleChecker:
@@ -19,6 +20,7 @@ class GoRuleChecker:
         self.firstMove(color, boards)
         # self.checkBoards(boards)
         # print(len(boards))
+
         self.checkRule7A(color, location, boards[0])
         # self.checkRule8(color, location, boards)
         self.checkRule8Again(color, location, boards)
@@ -27,8 +29,10 @@ class GoRuleChecker:
         # check that move does not result in repeat
         # check that move does not cause removal of own stones
 
+
     def checkOneMove(self, color, location, board):
         self.checkRule7A(color, location, board)
+
 
     def checkBoards(self, boards):
         if len(boards) != 3:

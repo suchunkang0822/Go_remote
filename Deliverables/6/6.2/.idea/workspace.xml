@@ -17,8 +17,8 @@
       <file leaf-file-name="testdriver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testdriver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="513">
+              <caret line="38" column="11" lean-forward="false" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="11" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -29,9 +29,11 @@
       <file leaf-file-name="GoRules.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GoRules.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-357">
+              <caret line="136" column="15" lean-forward="false" selection-start-line="136" selection-start-column="10" selection-end-line="136" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,18 +41,20 @@
       <file leaf-file-name="Go.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Go.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="43" column="51" lean-forward="false" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
-              <folding />
+            <state relative-caret-position="201">
+              <caret line="55" column="31" lean-forward="false" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameBoard.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameBoard.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameBoard.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="201">
-              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="150" selection-end-column="54" />
+              <caret line="92" column="19" lean-forward="false" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="19" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -58,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Referee.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="201">
+              <caret line="94" column="39" lean-forward="false" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -73,8 +77,8 @@
       <file leaf-file-name="test" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="135">
+              <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -113,12 +117,20 @@
       <find>try</find>
       <find>score</find>
       <find>getAllcap</find>
-      <find>remove</find>
       <find>ko</find>
       <find>rulecheck</find>
       <find>locationcontains</find>
       <find>point</find>
+      <find>AAAAAAA</find>
+      <find>removeal</find>
+      <find>neighbors</find>
+      <find>removeall</find>
       <find>results</find>
+      <find>remove</find>
+      <find>Gorules</find>
+      <find>neighbor</find>
+      <find>GoRules</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -126,11 +138,12 @@
       <list>
         <option value="$PROJECT_DIR$/test1" />
         <option value="$PROJECT_DIR$/run" />
-        <option value="$PROJECT_DIR$/testdriver.py" />
         <option value="$PROJECT_DIR$/Go.py" />
-        <option value="$PROJECT_DIR$/Referee.py" />
-        <option value="$PROJECT_DIR$/test" />
         <option value="$PROJECT_DIR$/GameBoard.py" />
+        <option value="$PROJECT_DIR$/test" />
+        <option value="$PROJECT_DIR$/Referee.py" />
+        <option value="$PROJECT_DIR$/GoRules.py" />
+        <option value="$PROJECT_DIR$/testdriver.py" />
       </list>
     </option>
   </component>
@@ -141,8 +154,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="46" />
-    <option name="y" value="42" />
+    <option name="x" value="30" />
+    <option name="y" value="23" />
     <option name="width" value="1189" />
     <option name="height" value="772" />
   </component>
@@ -253,7 +266,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="46" y="42" width="1189" height="772" extended-state="0" />
+    <frame x="30" y="23" width="1189" height="772" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -261,7 +275,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25370532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25370532" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -362,7 +376,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -380,7 +396,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -478,7 +496,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="34" lean-forward="false" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -486,7 +506,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="55" column="63" lean-forward="true" selection-start-line="55" selection-start-column="63" selection-end-line="55" selection-end-column="63" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -514,7 +536,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -532,7 +556,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -616,7 +642,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -634,7 +662,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -690,40 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testdriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GoRules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Go.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="43" column="51" lean-forward="false" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Point.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -732,12 +728,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Referee.py">
+    <entry file="file://$PROJECT_DIR$/test">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testdriver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="38" column="11" lean-forward="false" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="11" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GoRules.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="136" column="15" lean-forward="false" selection-start-line="136" selection-start-column="10" selection-end-line="136" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Go.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="55" column="31" lean-forward="false" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -745,9 +769,19 @@
     <entry file="file://$PROJECT_DIR$/GameBoard.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="150" selection-end-column="54" />
+          <caret line="92" column="19" lean-forward="false" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="19" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="94" column="39" lean-forward="false" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

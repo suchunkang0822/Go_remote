@@ -1,8 +1,8 @@
 import handleInput
 from GameBoard import GameBoard
-from GoRules import GoRuleChecker
-from Go import Go
+# from GoRules import GoRuleChecker
 from Point import Point
+from Go import *
 import copy
 import json
 
@@ -47,10 +47,9 @@ class Referee:
                     results.append(self.whose_the_winner(self.boardHistory[0]))
             else:
                 point = Point(move)
-
-
                 madeMove = self.Go.makeMove(point, player_color, self.boardHistory)
-                if madeMove:
+                is_ko = self.check_ko(player_color,point,self.boardHistory)
+                if madeMove and not is_ko:
                     self.updateHistory(copy.deepcopy(self.Go.getBoard()))
                 else:
                     results.append(self.get_player_name(opponent_color))
@@ -85,8 +84,20 @@ class Referee:
         else:
             return sorted([self.playerOne,self.playerTwo])
 
-
-
+    def check_ko(self,color,location,boards):
+        if len(boards) == 3:
+            board1,board2,board3 = boards[2],boards[1],boards[0]
+            temp_board = copy.deepcopy(boards[0])
+            temp_board = GameBoard(temp_board).insertPiece(location,color)
+            temp_board = Go(temp_board)
+            temp_board.removeAllNecessary(location,color)
+            temp_board = temp_board.board._board
+            if board1 == board3 or temp_board == board2:
+                return True
+            else:
+                return False
+        else:
+            return False
 
 
 
