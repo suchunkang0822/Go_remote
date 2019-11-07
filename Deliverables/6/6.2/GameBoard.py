@@ -189,6 +189,13 @@ class GameBoard:
 
     def _getAtAdjustedIndices(self, point):
         # print(self._board)
+        try:
+            self._board[point.x][point.y]
+        except IndexError:
+            print('point',point)
+            print('indices',point.x,point.y)
+            print('board length width',len(self._board),len(self._board[0]))
+            print(self._board)
         return self._board[point.x][point.y]
 
     def checkForValidColor(self, color):

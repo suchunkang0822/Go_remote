@@ -42,11 +42,12 @@ class Referee:
             if move == "pass":
                 try:
                     self.updateHistory(self.boardHistory[0])
-                    self.is_valid_pass(self.boardHistory, i)
+                    self.is_valid_pass(self.boardHistory,move,i)
                 except ValueError:
-                    # print('im innnnnnnnnn')
                     results.append(self.whose_the_winner(self.boardHistory[0]))
-            else:
+                    return results
+                continue
+            elif move != "pass":
                 point = Point(move)
                 madeMove = self.Go.makeMove(point, player_color, self.boardHistory)
                 is_ko = self.check_ko(player_color,point,self.boardHistory)
@@ -100,8 +101,8 @@ class Referee:
         else:
             return False
 
-    def is_valid_pass(self,boards,nth_turn):
-        if len(boards) == 3 and nth_turn > 3:
+    def is_valid_pass(self,boards,move,nth_turn):
+        if len(boards) >= 2 and nth_turn >= 2 or (move == "pass"):
             self.Go.ruleChecker.checkGameOver(self.boardHistory)
 
 

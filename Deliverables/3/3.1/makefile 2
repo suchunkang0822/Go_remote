@@ -1,0 +1,1 @@
+rulename: run; chmod +x ./run;

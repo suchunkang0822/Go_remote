@@ -26,6 +26,7 @@ class Go:
 
     def move(self, location, color, board):
         if self.board.insertPiece(location, color) == "This seat is taken!":
+            print('tell me why aint nothing but a heart ache')
             raise ValueError
         self.removeAllNecessary(location, "B") if color == "W" else self.removeAllNecessary(location, "W")
         self.removeAllNecessary(location, color)
@@ -61,6 +62,7 @@ class Go:
                         # print(self.board._)
                         # print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
                     # remove all stones returned from canBeReached
+
 
     def getFormattedLocation(self, locationString):
         try:
