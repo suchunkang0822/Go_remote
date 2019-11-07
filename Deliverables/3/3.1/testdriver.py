@@ -14,14 +14,14 @@ def testOnInputs():
             result = handleInput.handleStatement(board, commands)
             answers.append(result)
     result = json.dumps(answers)
-    print(result)
+    return result
     # return json.dumps(answers)
 
 
 #result = handleInput.testOnInputs()
 
 if __name__ == "__main__":
-    testOnInputs()
+    print(testOnInputs())
 
 
 
