@@ -13,9 +13,9 @@ def testOnInputs():
         for commands in tests[1::]:
             result = handleInput.handleStatement(board, commands)
             answers.append(result)
-
-    print(json.dumps(answers))
-    return json.dumps(answers)
+    result = json.dumps(answers)
+    print(result)
+    # return json.dumps(answers)
 
 
 #result = handleInput.testOnInputs()
