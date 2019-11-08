@@ -219,7 +219,6 @@ class BoardFrontEnd:
         pass
 
     def extract_coordinate(self,board,command_or_query):
-        print('command query', command_or_query)
         board_obj = Board(board)
         if command_or_query[0] in ("occupied?","reachable?"):
             return board_obj.point_parser(command_or_query[1])
