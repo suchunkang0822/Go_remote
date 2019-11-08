@@ -250,8 +250,7 @@ class BoardFrontEnd:
             # if command_or_query[0] not in self.query and command_or_query not in self.command:
             if command_or_query[0] not in ("occupied?","occupies?","reachable?","place","remove", "get-points"):
                 raise TypeError("Please type valid query or command")
-            go_board = Board(board)
-            row, col = self.extract_coordinate(command_or_query)
+            row, col = self.extract_coordinate(board, command_or_query)
             # if command_or_query[0] == "occupied?":
             #     result.append(go_board.is_occupied(row,col))
             # elif command_or_query[0] == "occupies?":
