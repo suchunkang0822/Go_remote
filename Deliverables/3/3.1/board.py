@@ -222,9 +222,14 @@ class BoardFrontEnd:
         board_obj = Board(board)
         if command_or_query[0] == "occupied?":
             row, col = board_obj.point_parser(command_or_query[1])
-        elif command_or_query[0] in ("place", "remove", "get-points", "occupies?", "reachable?"):
+            return row, col
+        elif command_or_query[0] in ("place", "remove", "occupies?", "reachable?"):
             row, col = board_obj.point_parser(command_or_query[2])
-        return row,col
+            return row, col
+        else:
+            return None,None 
+
+
 
     def answer_command_query(self, board, command_or_query, row, col):
         board_obj = Board(board)
