@@ -131,7 +131,7 @@ class Board(Interface):
     #         else:
     #             return False
 
-    def is_reachable(self,row,col,maybe_stone):
+    def is_reachable(self,maybe_stone,row,col):
         coordinate_stone = self.board[row][col]
         if coordinate_stone == maybe_stone:
             return True
@@ -219,15 +219,14 @@ class BoardFrontEnd:
         pass
 
     def extract_coordinate(self,board,command_or_query):
+        print('command query', command_or_query)
         board_obj = Board(board)
-        if command_or_query[0] == "occupied?":
-            row, col = board_obj.point_parser(command_or_query[1])
-            return row, col
-        elif command_or_query[0] in ("place", "remove", "occupies?", "reachable?"):
-            row, col = board_obj.point_parser(command_or_query[2])
-            return row, col
+        if command_or_query[0] in ("occupied?","reachable?"):
+            return board_obj.point_parser(command_or_query[1])
+        elif command_or_query[0] in ("place", "remove", "occupies?"):
+            return board_obj.point_parser(command_or_query[2])
         else:
-            return None,None 
+            return None,None
 
 
 
@@ -238,7 +237,7 @@ class BoardFrontEnd:
         elif command_or_query[0] == "occupies?":
             return board_obj.occupies(command_or_query[1], row, col)
         elif command_or_query[0] == "reachable?":
-            return board_obj.is_reachable(command_or_query[1], row, col)
+            return board_obj.is_reachable(command_or_query[2], row, col)
         elif command_or_query[0] == "place":
             return board_obj.place(command_or_query[1], row, col)
         elif command_or_query[0] == "remove":
