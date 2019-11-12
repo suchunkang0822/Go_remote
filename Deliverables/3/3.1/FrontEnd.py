@@ -17,10 +17,6 @@ class FrontEnd(ABC):
             json_string += line
         return json_string
 
-    # inspired by
-    # https://stackoverflow.com/questions/27907633/multiple-json-objects-in-one-file-extract-by-python
-    # decoder for stacked json obj
-
     def parser(self,document, pos=0, decoder=JSONDecoder()):
         NOT_WHITESPACE = re.compile(r'[^\s]')
 

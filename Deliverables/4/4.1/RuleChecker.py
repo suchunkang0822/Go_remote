@@ -1,6 +1,5 @@
-from board import *
+from Go_board import *
 from FrontEnd import *
-from BackEnd import *
 import json
 import abc
 
@@ -58,7 +57,6 @@ class RuleChecker(Interface):
 
     def third_check_stone(self,stone):
         if not (isinstance(stone,str) and stone in ("B","W")):
-            # raise TypeError("stone should either be \"B\" or \"W\"")
             return False
 
 
@@ -192,19 +190,17 @@ class Play:
         else:
             return False
 
-
-
-
-
-    def check_consecutive_passes(self,boards):
-        if len(boards) == 3 and (boards[0] == boards[1] and boards[1] == boards[2]): return True
-
-    def place_stone(self,stone,board,row,col):
+    @staticmethod
+    def check_consecutive_passes(boards):
+        if len(boards) == 3 and (boards[0] == boards[1] and boards[1] == boards[2]):
+            return True
+    @staticmethod
+    def place_stone(stone,board,row,col):
         copy = [row.copy() for row in board]
         copy[row][col] = stone
         return copy
 
-    def bulk_place_stone(self,stone,board,list_coord):
+    def bulk_place_stone(self,board,stone,list_coord):
         for coord in list_coord:
             board[coord[0]][coord[1]] = stone
         return board

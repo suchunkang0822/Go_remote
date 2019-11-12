@@ -7,73 +7,70 @@ class Interface(abc.ABC):
     def __init__(self):
         pass
 
-    @abstractmethod
-    def is_occupied(self,point):
-        pass
-    @abstractmethod
-    def occupies(self,point,stone):
-        pass
-    @abstractmethod
-    def is_reachable(self,point,maybestone):
-        pass
-    @abstractmethod
-    def place(self,point,stone):
-        pass
-    @abstractmethod
-    def remove(self,stone,point):
-        pass
-    @abstractmethod
-    def get_points(self,maybestone):
-        pass
+    # @abstractmethod
+    # def is_occupied(self,point):
+    #     pass
+    # @abstractmethod
+    # def occupies(self,point,stone):
+    #     pass
+    # @abstractmethod
+    # def is_reachable(self,point,maybestone):
+    #     pass
+    # @abstractmethod
+    # def place(self,point,stone):
+    #     pass
+    # @abstractmethod
+    # def remove(self,stone,point):
+    #     pass
+    # @abstractmethod
+    # def get_points(self,maybestone):
+    #     pass
 
 
-class Board(Interface):
+class Go_Board(Interface):
+    Board_Size = 19
+    Maybe_Stone = ["B", "W", " "]
+    Stone = ["B", "W"]
 
     def __init__(self,board):
         super().__init__()
-        self.maybe_stone = ["B", "W", " "]
-        self.board = self.board_checker_set(board)
-        self.neighbors = [self.get_valid_neighbors([i,j]) for i in range(19) for j in range(19)]
+        self.board = self.board_checker(board)
+        self.neighbors = [self.get_valid_neighbors([i,j]) for i in range(self.Board_Size) for j in range(self.Board_Size)]
 
     def point_parser(self,point):
         coordinate = re.findall(r'\d+',point)
         coordinate = list(map(lambda x: int(x)-1,coordinate))
-        coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
+        # coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
         if len(coordinate) != 2 or not isinstance(point,str):
-            raise TypeError("There should only be two numbers in the format of \"int-int\"")
+            raise TypeError("There should only be two numbers in the format of int-int")
         else:
-            return coordinate
+            return coordinate[1], coordinate[0]
 
     def stone_checker(self,stone):
-        # print("this is stone")
-        # print(stone)
-        if stone not in ("B", "W"):
-            raise TypeError("stone must be either \"B\" or \"W\"")
+        if stone not in self.Stone:
+            raise TypeError("stone must be either B or W")
 
     def maybe_stone_checker(self,maybe_stone):
-        if maybe_stone not in ("B", "W"," "):
+        if maybe_stone not in self.Maybe_Stone:
             raise TypeError("element other than maybe_stone detected")
 
-    def board_checker_set(self,board):
+    def board_checker(self,board):
         if not(len(board) == 19 and len(board[0]) == 19):
             raise TypeError("board must be list of 19 by 19 ")
         for i,row in enumerate(board):
             for j,element in enumerate(row):
-                # if element not in self.maybe_stone:
                 self.maybe_stone_checker(element)
         return board
 
-    def is_occupied(self,point):
-        coordinate = self.point_parser(point)
-        if self.board[coordinate[0]][coordinate[1]] in ("B", "W"):
+    def is_occupied(self,row,col):
+        if self.board[row][col] in self.Stone:
             return True
         else:
             return False
 
-    def occupies(self,stone,point):
+    def occupies(self,stone,row,col):
         self.stone_checker(stone)
-        coordinate = self.point_parser(point)
-        if self.board[coordinate[0]][coordinate[1]] == stone:
+        if self.board[row][col] == stone:
             return True
         else:
             return False
@@ -108,46 +105,41 @@ class Board(Interface):
 
         return chain, reached, reached_coord
 
-    def is_reachable(self,point,maybe_stone):
-        coordinate = self.point_parser(point)
-        coordinate_stone = self.board[coordinate[0]][coordinate[1]]
+    def is_reachable(self,maybe_stone,row,col):
+        coordinate_stone = self.board[row][col]
         if coordinate_stone == maybe_stone:
             return True
         else:
-            _, reached, _ = self.chain_and_reached(coordinate[0],coordinate[1])
+            _, reached, _ = self.chain_and_reached(row,col)
             if maybe_stone in reached:
                 return True
             else:
                 return False
 
-
-
-    def place(self,stone,point):
+    def place(self,stone,row,col):
         self.stone_checker(stone)
-        coordinate = self.point_parser(point)
-        if self.board[coordinate[0]][coordinate[1]] == " ":
-            self.board[coordinate[0]][coordinate[1]] = stone
-            return self.board
-        else:
-            return 'This seat is taken!'
-
-    def place_row_col(self,stone,row,col):
-        self.stone_checker(stone)
-        # coordinate = self.point_parser(point)
         if self.board[row][col] == " ":
             self.board[row][col] = stone
             return self.board
         else:
             return 'This seat is taken!'
 
-    def remove(self,stone,point):
+    def place_row_col(self,stone,row,col):
         self.stone_checker(stone)
-        coordinate = self.point_parser(point)
-        if self.board[coordinate[0]][coordinate[1]] == stone:
-            self.board[coordinate[0]][coordinate[1]] = " "
+        if self.board[row][col] == " ":
+            self.board[row][col] = stone
+            return self.board
+        else:
+            return 'This seat is taken!'
+
+    def remove(self,stone,row,col):
+        self.stone_checker(stone)
+        if self.board[row][col] == stone:
+            self.board[row][col] = " "
             return self.board
         else:
             return "I am just a board! I cannot remove what is not there!"
+
 
     def coordinate_to_point(self,coordinate):
         return str(coordinate[1]+1)+"-"+str(coordinate[0]+1)
@@ -172,31 +164,45 @@ class Board(Interface):
 
 
 class BoardFrontEnd:
+    Query = ("occupied?","occupies?","reachable?")
+    Command = ("place", "remove", "get-points")
+
     def __init__(self):
-        self.query = ("occupied?","occupies?","reachable?")
-        self.command = ("place", "remove", "get-points")
+        pass
+
+    def extract_coordinate(self,board,command_or_query):
+        board_obj = Go_Board(board)
+        if command_or_query[0] in ("occupied?","reachable?"):
+            return board_obj.point_parser(command_or_query[1])
+        elif command_or_query[0] in ("place","remove", "occupies?"):
+            return board_obj.point_parser(command_or_query[2])
+        else:
+            return None,None
+
+    def answer_command_query(self, board, command_or_query, row, col):
+        board_obj = Go_Board(board)
+        if command_or_query[0] == "occupied?":
+            return board_obj.is_occupied(row, col)
+        elif command_or_query[0] == "occupies?":
+            return board_obj.occupies(command_or_query[1], row, col)
+        elif command_or_query[0] == "reachable?":
+            return board_obj.is_reachable(command_or_query[2], row, col)
+        elif command_or_query[0] == "place":
+            return board_obj.place(command_or_query[1], row, col)
+        elif command_or_query[0] == "remove":
+            return board_obj.remove(command_or_query[1], row, col)
+        elif command_or_query[0] == "get-points":
+            return board_obj.get_points(command_or_query[1])
+
     def question(self,list_of_list):
         result = []
         for index,el_list in enumerate(list_of_list):
             board = el_list[0]
             command_or_query = el_list[1]
-            # if command_or_query[0] not in self.query and command_or_query not in self.command:
             if command_or_query[0] not in ("occupied?","occupies?","reachable?","place","remove", "get-points"):
                 raise TypeError("Please type valid query or command")
-            go_board = Board(board)
-
-            if command_or_query[0] == "occupied?":
-                result.append(go_board.is_occupied(command_or_query[1]))
-            elif command_or_query[0] == "occupies?":
-                result.append(go_board.occupies(command_or_query[1],command_or_query[2]))
-            elif command_or_query[0] == "reachable?":
-                result.append(go_board.is_reachable(command_or_query[1],command_or_query[2]))
-            elif command_or_query[0] == "place":
-                result.append(go_board.place(command_or_query[1],command_or_query[2]))
-            elif command_or_query[0] == "remove":
-                result.append(go_board.remove(command_or_query[1],command_or_query[2]))
-            elif command_or_query[0] == "get-points":
-                result.append(go_board.get_points(command_or_query[1]))
+            row, col = self.extract_coordinate(board, command_or_query)
+            result.append(self.answer_command_query(board,command_or_query,row,col))
         return json.dumps(result)
 
 
@@ -205,7 +211,7 @@ def parser_xy(point):
     coordinate = list(map(lambda x: int(x) - 1, coordinate))
     coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
     if len(coordinate) != 2 or not isinstance(point, str):
-        raise TypeError("There should only be two numbers in the format of \"int-int\"")
+        raise TypeError("There should only be two numbers in the format of int-int")
     else:
         return coordinate[0], coordinate[1]
 
@@ -224,7 +230,7 @@ def coord_checker(row, col):
 
 def stone_checker(stone):
     if stone not in ("B", "W"):
-        raise TypeError("stone must be either \"B\" or \"W\"")
+        raise TypeError("stone must be either B or W")
 
 
 
@@ -233,7 +239,7 @@ if __name__ == '__main__':
     json_string = f.input_receiver()
     json_list = list(f.parser(json_string))
 
-    go_board = BoardFrontEnd()
+    go_board = Go_Board()
 
     print(go_board.question(json_list))
 
