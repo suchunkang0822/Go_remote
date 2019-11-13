@@ -1,5 +1,0 @@
-#!/bin/bash
-
-python3 ./test.py
-other_tests/input1Out < ./run < other_tests/input1
-./run < other_tests/input4

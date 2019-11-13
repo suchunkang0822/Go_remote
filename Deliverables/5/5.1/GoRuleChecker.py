@@ -1,4 +1,4 @@
-from Go_board import *
+from Go_Board import *
 from FrontEnd import *
 import json
 import abc
@@ -79,7 +79,7 @@ class GoRuleChecker(Go_Board, Interface):
 
     ############ Rule 4
     @staticmethod
-    def check_liberties(board,stone):
+    def check_liberties(board, stone):
         opponent = "W" if stone == "B" else "B"
         go_board_obj = Go_Board(board)
         list_of_stone_coord = go_board_obj.get_coord(board, stone)
@@ -104,7 +104,7 @@ class GoRuleChecker(Go_Board, Interface):
 
     ############ Rule 6
 
-    def sixth_resolve_history(self,player,row,col):
+    def sixth_resolve_history(self, player, row=None, col=None):
         try:
             self.check_turn(player)
             if len(self.board_history) == 1:
@@ -115,8 +115,12 @@ class GoRuleChecker(Go_Board, Interface):
                     return True
             else:
                 print('im in history three')
-                if self.if_history_three(player,row,col):
-                    return True
+                if isinstance(row,int) and isinstance(col,int):
+                    if self.if_history_three(player,row,col):
+                        return True
+                else:
+                    if self.if_history_three(player):
+                        return True
         except Exception:
             print('im inside')
             return False
@@ -142,7 +146,7 @@ class GoRuleChecker(Go_Board, Interface):
             raise Exception('Board history of length two should have board1 empty')
 
 
-    def if_history_three(self,stone,row,col):
+    def if_history_three(self,stone,row=None,col=None):
         w2, b2 = self.stone_counter(self.board2)
         w3, b3 = self.stone_counter(self.board3)
         try:
@@ -175,24 +179,28 @@ class GoRuleChecker(Go_Board, Interface):
                         # return False
                         raise Exception
             else:
-                print('most outer else inside history three')
-                self.check_illegal_moves(stone,row,col)
+                if isinstance(row,int) and isinstance(col,int):
+                    print('most outer else inside history three')
+                    self.check_illegal_moves(stone,row,col)
+                else:
+                    self.check_illegal_moves(stone)
         except Exception:
             print('except exception of history 3')
             raise Exception('Board history of length three invalid')
         else:
             return True
 
-    def check_illegal_moves(self,player,row,col):
+    def check_illegal_moves(self,player,row=None,col=None):
         try:
             print('inside check illegal 1')
+            if isinstance(row,int) and isinstance(col,int):
+                self.check_suicide(player, row, col)
+                print('inside check illegal 2')
+                self.check_ko(player, row, col)
+                print('inside check illegal 3')
             self.check_consecutive_passes()
-            print('inside check illegal 2')
-            self.check_should_remove()
-            print('inside check illegal 3')
-            self.check_suicide(player,row,col)
             print('inside check illegal 4')
-            self.check_ko(player,row,col)
+            self.check_should_remove()
             print('inside check illegal 5')
             self.check_board_difference(self.board1,self.board2)
             print('inside check illegal 6')
@@ -225,11 +233,9 @@ class GoRuleChecker(Go_Board, Interface):
 
     def check_should_remove(self):
         for i,board in enumerate(self.board_history):
-            print('hi ho')
             if not (self.check_liberties(board,"B") and self.check_liberties(board,"W")):
                 print('should remove')
                 raise Exception('zero liberty stone present')
-        print('ay yo')
 
     def check_ko(self,stone,row,col):
         what_if_board = Go_Board(self.board3).place(stone,row,col)
@@ -280,7 +286,8 @@ class GoRuleChecker(Go_Board, Interface):
             if not diffMStones2_1 :
                 return True
             else:
-                if "W" not in diffMStones2_1 or "B" not in diffMStones2_1:
+                if not ("W" in diffMStones2_1 or "B" in diffMStones2_1):
+                    print('check board diff 3')
                     raise Exception('list of difference should either be empty or have a stone in it')
 
 

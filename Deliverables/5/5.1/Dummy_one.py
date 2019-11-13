@@ -25,37 +25,30 @@ class Player(GoRuleChecker,Interface):
 
     def make_a_move(self,boards):
         ref = GoRuleChecker(boards)
+        recent_board = self.determine_latest_board(ref)
         boards_correct = ref.sixth_resolve_history(self.stone)
-        print('board_correct',boards_correct)
         if boards_correct:
-            empty_coord = ref.get_coord(self.board3," ")
+            empty_coord = ref.get_coord(recent_board, " ")
             empty_coord = sorted(empty_coord, key=lambda x: x[1])
             while empty_coord:
                 current_coord = empty_coord.pop(0)
                 row, col = current_coord[0], current_coord[1]
-                # what_if_board = Go_Board(self.board3).place(self.stone,row,col)
-                # what_if_board_obj = Go_Board(what_if_board)
-        #         suicide = play.is_suicide(board,self.stone,row,col)
-        #         double_turn, is_ko = False, False
-        #         if len(boards) == 3:
-        #             board1,board2, board3 = boards[2], boards[1], boards[0]
-        #             _, list_maybe_stones2_3 = board_difference(board2, board3)
-        #             _, list_maybe_stones3_4 = board_difference(board3, what_if_board)
-        #             double_turn = is_double_turn(list_maybe_stones2_3,list_maybe_stones3_4)
-        #             is_ko = play.check_for_ko(self.stone,boards,row,col)
-        #         chain, reached, reached_coord = board4_obj.chain_and_reached(row, col)
-        #         if not suicide and not double_turn and not is_ko:
-        #             return str(col+1)+"-"+str(row+1)
-        #         else:
-        #             empty_coord = [x for x in empty_coord if x not in chain]
-        # else:
-        #     return "This history makes no sense!"
+                what_if_board = Go_Board(recent_board).place(self.stone,row,col)
+                # chain, _, _ = Go_Board(what_if_board).chain_and_reached(row,col)
                 if ref.sixth_resolve_history(self.stone, row, col):
                     return str(col+1)+"-"+str(row+1)
-                else:
-                    empty_coord = [x for x in empty_coord if x not in chain]
+                # else:
+                #     empty_coord = [x for x in empty_coord if x not in chain]
         else:
             return "This history makes no sense!"
+
+    def determine_latest_board(self,GoRuleChecker_obj):
+        if GoRuleChecker_obj.board3:
+            return GoRuleChecker_obj.board3
+        elif GoRuleChecker_obj.board2:
+            return GoRuleChecker_obj.board2
+        else:
+            return GoRuleChecker_obj.board1
 
 
 def driver():
