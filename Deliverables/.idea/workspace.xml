@@ -14,10 +14,22 @@
       <file leaf-file-name="Dummy_one.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/5/5.1/Dummy_one.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+            <state relative-caret-position="679">
+              <caret line="47" column="38" lean-forward="true" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoRuleChecker.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/5/5.1/GoRuleChecker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="125" column="24" lean-forward="true" selection-start-line="125" selection-start-column="24" selection-end-line="125" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -26,8 +38,8 @@
       <file leaf-file-name="GoRuleChecker.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/7/7.1/GoRuleChecker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="110" column="21" lean-forward="true" selection-start-line="110" selection-start-column="21" selection-end-line="110" selection-end-column="21" />
+            <state relative-caret-position="-2052">
+              <caret line="203" column="18" lean-forward="false" selection-start-line="203" selection-start-column="13" selection-end-line="203" selection-end-column="18" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -47,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="makefile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="makefile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/5/5.1/makefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -88,8 +100,9 @@
       <find>chain</find>
       <find>#print</find>
       <find>row and col</find>
-      <find>print</find>
       <find>reached</find>
+      <find>print</find>
+      <find>isinst</find>
     </findStrings>
     <replaceStrings>
       <replace>print</replace>
@@ -109,8 +122,8 @@
         <option value="$PROJECT_DIR$/5/5.1/RuleChecker.py" />
         <option value="$PROJECT_DIR$/5/5.1/scratch" />
         <option value="$PROJECT_DIR$/5/5.1/Dummy_one.py" />
-        <option value="$PROJECT_DIR$/5/5.1/GoRuleChecker.py" />
         <option value="$PROJECT_DIR$/7/7.1/GoRuleChecker.py" />
+        <option value="$PROJECT_DIR$/5/5.1/GoRuleChecker.py" />
       </list>
     </option>
   </component>
@@ -409,44 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.1/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.1/GoRuleChecker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="216" column="30" lean-forward="true" selection-start-line="216" selection-start-column="30" selection-end-line="216" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.1/Dummy_one.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/7/7.1/GoRuleChecker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="110" column="21" lean-forward="true" selection-start-line="110" selection-start-column="21" selection-end-line="110" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/5/5.1/Go_Board.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
@@ -457,11 +432,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.1/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/5/5.1/makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.1/Dummy_one.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="47" column="38" lean-forward="true" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/7/7.1/GoRuleChecker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2052">
+          <caret line="203" column="18" lean-forward="false" selection-start-line="203" selection-start-column="13" selection-end-line="203" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.1/GoRuleChecker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="125" column="24" lean-forward="true" selection-start-line="125" selection-start-column="24" selection-end-line="125" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
