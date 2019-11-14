@@ -219,7 +219,6 @@ class GoRuleChecker(Go_Board, Interface):
 
 
     def check_suicide(self,stone,row,col):
-        # #print('row col',row,col)
         what_if_board = Go_Board(self.board3).place(stone,row,col)
         board_obj = Go_Board(what_if_board)
         chain, reached, reached_coord = board_obj.chain_and_reached(row, col)
@@ -252,10 +251,7 @@ class GoRuleChecker(Go_Board, Interface):
         elif isinstance(row,int) and isinstance(col,int):
             what_if_board = Go_Board(self.board3).place(stone, row, col)
             if what_if_board != 'This seat is taken!':
-                #print('dafuq')
                 what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
-                #print('what idf board')
-                #print(what_if_board)
                 if self.board2 == what_if_board:
 
                     #print('check ko1')
@@ -314,26 +310,43 @@ class GoRuleChecker(Go_Board, Interface):
             else:
                 player = [x for x in diffMStones2_1 if x != " "][0]
                 player_coord = list_coord[diffMStones2_1.index(player)]
-                # opponent = "B" if player == "W" else "W"
+                player_row,player_col = player_coord[0], player_coord[1]
+                #print('player and its coord',player,player_coord)
+                #print('diff mstones',diffMStones2_1)
+                #print('list coord',list_coord)
+                opponent = "B" if player == "W" else "W"
                 if "B" in diffMStones2_1 or "W" in diffMStones2_1:
                     empty_space_list = [coord for i, coord in enumerate(list_coord) if diffMStones2_1[i] == " "]
-                    # while empty_space_list:
-                    current_coord = empty_space_list.pop(0)
-                    chain, reached, reach_coord = Go_Board(board1).chain_and_reached(current_coord[0],current_coord[1])
-                    if reached.count(" ") == 1:
-                        if (player in reached) and (player_coord == reach_coord[reached.index(" ")]):
-                            return True
+                    #print('empty space corrd',empty_space_list)
+                    while empty_space_list:
+                        current_coord = empty_space_list.pop(0)
+                        chain, reached, reach_coord = Go_Board(board1).chain_and_reached(current_coord[0],current_coord[1])
+                        #print('reached from prev board',reached)
+                        if reached.count(" ") == 1:
+                            correct_board_2 = Go_Board(board1).place(player,player_row,player_col)
+                            correct_board_2 = self.board_after_remove_captured_stone(correct_board_2,player,player_row,player_col)
+                            #print('player and opp',player,opponent)
+                            #print('im in')
+                            #print('correct board 2')
+                            #print(correct_board_2)
+                            if board2 == correct_board_2:
+                                return True
+                            else:
+                                #print('check board diff 3')
+                                raise Exception('This Illegal board difference')
+                            # if (player in reached) and (player_coord == reach_coord[reached.index(" ")]):
+                            #     return True
+                            # else:
+                            #     #print('check board diff 2')
+                            #     raise Exception('This coordinate should not be empty')
                         else:
-                            #print('check board diff 2')
-                            raise Exception('This coordinate should not be empty')
-                    else:
-                        #print('check board diff 3')
-                        raise Exception('opposing stones should not have been removed')
+                            #print('check board diff 4')
+                            raise Exception('opposing stones should not have been removed')
 
                 else:
                     return True
         else:
-            if not diffMStones2_1 :
+            if not diffMStones2_1:
                 return True
             else:
                 if not ("W" in diffMStones2_1 or "B" in diffMStones2_1):
