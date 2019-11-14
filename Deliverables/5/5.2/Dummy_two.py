@@ -66,8 +66,9 @@ class Player(GoRuleChecker,Interface):
             for i,liberties in enumerate(set_of_liberties):
                 if len(liberties) == 1:
                     liberties_one.append(liberties[0])
-            liberties_one = sorted(liberties_one, key=lambda x: x[1])
-            return str(liberties_one[0][1] + 1) + "-" + str(liberties_one[0][0] + 1)
+            if liberties_one:
+                liberties_one = sorted(liberties_one, key=lambda x: x[1])
+                return str(liberties_one[0][1] + 1) + "-" + str(liberties_one[0][0] + 1)
         # else:
         #     while set_of_liberties:
         #         current_liberties = set_of_liberties.pop(0)
