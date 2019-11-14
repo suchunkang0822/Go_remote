@@ -128,14 +128,18 @@ class Go_Board(Interface):
         else:
             return 'This seat is taken!'
 
-    def remove(self,stone,row,col):
+    def remove(self,stone,row,col,in_place = None):
         self.stone_checker(stone)
-        if self.board[row][col] == stone:
-            copy = [row.copy() for row in self.board]
-            copy[row][col] = " "
-            return copy
+        if in_place:
+            self.board[row][col] = " "
         else:
-            return "I am just a board! I cannot remove what is not there!"
+            if self.board[row][col] == stone:
+                copy = [row.copy() for row in self.board]
+                copy[row][col] = " "
+                return copy
+            else:
+                return "I am just a board! I cannot remove what is not there!"
+
 
     @staticmethod
     def coordinate_to_point(self,coordinate):

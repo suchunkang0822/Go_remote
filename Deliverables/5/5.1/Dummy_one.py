@@ -33,12 +33,14 @@ class Player(GoRuleChecker,Interface):
             while empty_coord:
                 current_coord = empty_coord.pop(0)
                 row, col = current_coord[0], current_coord[1]
-                what_if_board = Go_Board(recent_board).place(self.stone,row,col)
-                # chain, _, _ = Go_Board(what_if_board).chain_and_reached(row,col)
                 if ref.sixth_resolve_history(self.stone, row, col):
                     return str(col+1)+"-"+str(row+1)
-                # else:
-                #     empty_coord = [x for x in empty_coord if x not in chain]
+                try:
+                    ref.check_suicide(self.stone,row,col)
+                    ref.check_ko(self.stone,row,col)
+                except Exception:
+                    continue
+            return "pass"
         else:
             return "This history makes no sense!"
 
