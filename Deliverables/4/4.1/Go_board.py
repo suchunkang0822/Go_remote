@@ -128,14 +128,18 @@ class Go_Board(Interface):
         else:
             return 'This seat is taken!'
 
-    def remove(self,stone,row,col):
+    def remove(self,stone,row,col,in_place = None):
         self.stone_checker(stone)
-        if self.board[row][col] == stone:
-            copy = [row.copy() for row in self.board]
-            copy[row][col] = " "
-            return copy
+        if in_place:
+            self.board[row][col] = " "
         else:
-            return "I am just a board! I cannot remove what is not there!"
+            if self.board[row][col] == stone:
+                copy = [row.copy() for row in self.board]
+                copy[row][col] = " "
+                return copy
+            else:
+                return "I am just a board! I cannot remove what is not there!"
+
 
     @staticmethod
     def coordinate_to_point(self,coordinate):
@@ -208,38 +212,12 @@ class BoardFrontEnd:
         return json.dumps(result)
 
 
-# def parser_xy(point):
-#     coordinate = re.findall(r'\d+', point)
-#     coordinate = list(map(lambda x: int(x) - 1, coordinate))
-#     coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
-#     if len(coordinate) != 2 or not isinstance(point, str):
-#         raise TypeError("There should only be two numbers in the format of int-int")
-#     else:
-#         return coordinate[0], coordinate[1]
-#
-#
-# def is_occupied(board,row,col):
-#     if board[row][col] in ("B", "W"):
-#         return True
-#     else:
-#         return False
-#
-#
-
-#
-#
-# def stone_checker(stone):
-#     if stone not in ("B", "W"):
-#         raise TypeError("stone must be either B or W")
-
-
-
 if __name__ == '__main__':
     f = FrontEnd()
     json_string = f.input_receiver()
     json_list = list(f.parser(json_string))
 
-    go_board = Go_Board()
+    go_board = BoardFrontEnd()
 
     print(go_board.question(json_list))
 

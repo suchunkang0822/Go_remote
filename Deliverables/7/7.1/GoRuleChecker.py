@@ -114,7 +114,6 @@ class GoRuleChecker(Go_Board, Interface):
                 if self.if_history_two():
                     return True
             else:
-                #print('im in history three')
                 if isinstance(row,int) and isinstance(col,int):
                     if self.if_history_three(player,row,col):
                         return True
@@ -122,8 +121,8 @@ class GoRuleChecker(Go_Board, Interface):
                     if self.if_history_three(player):
                         return True
         except Exception:
-            #print('im inside')
             return False
+
 
 
 
@@ -145,7 +144,6 @@ class GoRuleChecker(Go_Board, Interface):
         else:
             raise Exception('Board history of length two should have board1 empty')
 
-
     def if_history_three(self,stone,row=None,col=None):
         w2, b2 = self.stone_counter(self.board2)
         w3, b3 = self.stone_counter(self.board3)
@@ -156,7 +154,6 @@ class GoRuleChecker(Go_Board, Interface):
                         if (w3 == 1 and b3 == 1) or (w3 == 0 and b3 ==1):
                             return True
                         else:
-                            # return False
                             raise Exception
                     else:
                         if w3 == 1 and b3 == 0:
@@ -170,45 +167,35 @@ class GoRuleChecker(Go_Board, Interface):
                             if w2_coord == w3_coord:
                                 return True
                             else:
-                                # return False
                                 raise Exception
                         else:
-                            # return False
                             raise Exception
                     else:
-                        # return False
                         raise Exception
             else:
                 if isinstance(row,int) and isinstance(col,int):
-                    #print('most outer else inside history three')
-                    self.check_illegal_moves(stone,row,col)
+                    if self.check_illegal_moves(stone,row,col):
+                        return True
                 else:
-                    self.check_illegal_moves(stone)
+                    if self.check_illegal_moves(stone):
+                        return True
         except Exception:
-            #print('except exception of history 3')
             raise Exception('Board history of length three invalid')
-        else:
-            return True
 
     def check_illegal_moves(self,player,row=None,col=None):
         try:
-            #print('inside check illegal 1')
             if isinstance(row,int) and isinstance(col,int):
                 self.check_suicide(player, row, col)
-                #print('inside check illegal 2')
                 self.check_ko(player, row, col)
-                #print('inside check illegal 3')
+            self.check_ko(player)
             self.check_consecutive_passes()
-            #print('inside check illegal 4')
             self.check_should_remove()
-            #print('inside check illegal 5')
             self.check_board_difference(self.board1,self.board2)
-            #print('inside check illegal 6')
             self.check_board_difference(self.board2,self.board3)
         except Exception:
-            #print('except inside check illegal moves')
             raise Exception('There is a problem in the board history')
-
+        else:
+            return True
 
     def check_suicide(self,stone,row,col):
         what_if_board = Go_Board(self.board3).place(stone,row,col)
@@ -218,34 +205,54 @@ class GoRuleChecker(Go_Board, Interface):
             while reached_coord:
                 opp = reached_coord.pop(0)
                 chain_opp, reached_opp, _ = board_obj.chain_and_reached(opp[0],opp[1])
-                if " " in reached_opp:
-                    #print('check suicide')
-                    raise Exception('This move is suicidal')
-                reached = [x for x in reached if x not in chain_opp]
-            return True
+                if " " not in reached_opp:
+                    return True
+                else:
+                    continue
+            raise Exception('This move is suicidal')
         else:
             return True
 
     def check_consecutive_passes(self):
         if self.board1 == self.board2 and self.board2 == self.board3:
-            #print('consecutive pass')
             raise Exception('consecutive passes detected')
 
     def check_should_remove(self):
         for i,board in enumerate(self.board_history):
             if not (self.check_liberties(board,"B") and self.check_liberties(board,"W")):
-                #print('should remove')
                 raise Exception('zero liberty stone present')
 
-    def check_ko(self,stone,row,col):
-        what_if_board = Go_Board(self.board3).place(stone,row,col)
-        if what_if_board != 'This seat is taken!':
-            if self.board1 == self.board3 or self.board2 == what_if_board:
-                #print('check ko1')
-                raise Exception('Ko detected')
+    def check_ko(self,stone,row=None,col=None):
+        if self.board1 == self.board3:
+            raise Exception('Ko detected')
+        elif isinstance(row,int) and isinstance(col,int):
+            what_if_board = Go_Board(self.board3).place(stone, row, col)
+            if what_if_board != 'This seat is taken!':
+                what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
+                if self.board2 == what_if_board:
+                    raise Exception('Ko detected')
+                else:
+                    return True
+            else:
+                raise Exception('coordinate occupied')
         else:
-            #print('check ko2')
-            raise Exception('Invalid move. The coordinate is occupied')
+            return True
+
+    @staticmethod
+    def board_after_remove_captured_stone(what_if_board,player,row,col):
+        opponent = "B" if player == "W" else "W"
+        board_obj = Go_Board(what_if_board)
+        neighbor_list = board_obj.get_valid_neighbors([row,col])
+        neighbor_list = sorted(neighbor_list, key=lambda x: x[1])
+        while neighbor_list:
+            current_coord = neighbor_list.pop(0)
+            neighbor_row,neighbor_col = current_coord[0], current_coord[1]
+            chain,reached,reached_coord = board_obj.chain_and_reached(neighbor_row,neighbor_col)
+            if (" " not in reached) and (opponent not in reached):
+                for i,coord in enumerate(chain):
+                    board_obj.remove(opponent,coord[0],coord[1],"in_place")
+        return board_obj.board
+
 
 
     @staticmethod
@@ -261,44 +268,47 @@ class GoRuleChecker(Go_Board, Interface):
 
     def check_board_difference(self,board1,board2):
         list_coord, _, diffMStones2_1 = self.board_difference(board1,board2)
-        board_obj = Go_Board(board2)
         if len(diffMStones2_1) > 1:
             w2_1,b2_1 = diffMStones2_1.count("W"), diffMStones2_1.count("B")
             if w2_1 + b2_1 > 1:
-                #print('check board diff 1')
                 raise Exception('more than one stone placed per turn')
             else:
                 player = [x for x in diffMStones2_1 if x != " "][0]
-                opponent = "B" if player == "W" else "W"
+                player_coord = list_coord[diffMStones2_1.index(player)]
+                player_row,player_col = player_coord[0], player_coord[1]
                 if "B" in diffMStones2_1 or "W" in diffMStones2_1:
                     empty_space_list = [coord for i, coord in enumerate(list_coord) if diffMStones2_1[i] == " "]
                     while empty_space_list:
                         current_coord = empty_space_list.pop(0)
-                        chain, reached, _ = board_obj.chain_and_reached(current_coord[0], current_coord[1])
-                        if opponent in reached:
-                            #print('check board diff 2')
-                            raise Exception('This coordinate should not be empty')
+                        chain, reached, reach_coord = Go_Board(board1).chain_and_reached(current_coord[0],current_coord[1])
+                        if reached.count(" ") == 1:
+                            correct_board_2 = Go_Board(board1).place(player,player_row,player_col)
+                            correct_board_2 = self.board_after_remove_captured_stone(correct_board_2,player,player_row,player_col)
+                            if board2 == correct_board_2:
+                                return True
+                            else:
+                                raise Exception('This Illegal board difference')
                         else:
-                            empty_space_list = [x for x in empty_space_list if x not in chain]
+                            raise Exception('opposing stones should not have been removed')
+
                 else:
                     return True
         else:
-            if not diffMStones2_1 :
+            if not diffMStones2_1:
                 return True
             else:
                 if not ("W" in diffMStones2_1 or "B" in diffMStones2_1):
-                    #print('check board diff 3')
                     raise Exception('list of difference should either be empty or have a stone in it')
+                else:
+                    return True
 
 
     def check_turn(self,player):
         if len(self.board_history) == 1:
             if player != "B":
-                #print('check turn 1')
                 raise Exception
         elif len(self.board_history) == 2:
             if player != "W":
-                #print('check turn 2')
                 raise Exception
         else:
             if self.fifth_is_empty(self.board1) and self.fifth_is_empty(self.board2):
@@ -310,24 +320,14 @@ class GoRuleChecker(Go_Board, Interface):
                 player_at_board1 = self.check_turn_helper(diffMStones2_1)
             try:
                 if player == "B":
-                    #print('diffMStones3_2',diffMStones3_2)
-                    #print('player at board2',player_at_board2)
-                    #print('diffMStones2_1', diffMStones2_1)
-                    #print('player at board1', player_at_board1)
                     if player_at_board2 == "B" or player_at_board1 == "W":
-                        #print('check turn 3')
                         raise Exception
                 else:
-                    #print('diffMStones3_2',diffMStones3_2)
-                    #print('player at board2',player_at_board2)
-                    #print('diffMStones2_1', diffMStones2_1)
-                    #print('player at board1', player_at_board1)
                     if player_at_board2 == "W" or player_at_board1 == "B":
-                        #print('check turn 4')
                         raise Exception
             except Exception:
-                #print('check turn inside')
                 raise Exception('Incorrect turn')
+
 
     @staticmethod
     def check_turn_helper(diffMStones):

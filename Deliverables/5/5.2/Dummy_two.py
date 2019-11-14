@@ -1,5 +1,4 @@
-from RuleChecker import *
-from Board import *
+from GoRuleChecker import *
 from FrontEnd import *
 from BackEnd import *
 import abc
@@ -10,10 +9,10 @@ class Interface(abc.ABC):
         pass
 
 
-class Player(Interface):
+class Player(GoRuleChecker,Interface):
     def __init__(self):
         super().__init__()
-        self.stone = ""
+        self.player_stone = ""
 
     @staticmethod
     def register(string):
@@ -21,35 +20,58 @@ class Player(Interface):
             return "no name"
 
     def receive_stone(self,stone):
-        self.stone = stone
+        self.player_stone = stone
 
     def make_a_move(self,boards):
-        play = Play()
-        boards_correct = play.check_boards_history(self.stone,boards)
+        ref = GoRuleChecker(boards)
+        recent_board = self.determine_latest_board(ref)
+        boards_correct = ref.sixth_resolve_history(self.player_stone)
         if boards_correct:
-            board = boards[0]
-            empty_coord = list_of_coord(board," ")
-            empty_coord = sorted(empty_coord, key=lambda x: x[1])
-            while empty_coord:
-                current_coord = empty_coord.pop(0)
-                row, col = current_coord[0], current_coord[1]
-                what_if_board = play.place_stone(self.stone,board,row,col)
-                board4_obj = Board(what_if_board)
-                suicide = play.is_suicide(board,self.stone,row,col)
-                double_turn, is_ko = False, False
-                if len(boards) == 3:
-                    board1,board2, board3 = boards[2], boards[1], boards[0]
-                    _, list_maybe_stones2_3 = board_difference(board2, board3)
-                    _, list_maybe_stones3_4 = board_difference(board3, what_if_board)
-                    double_turn = is_double_turn(list_maybe_stones2_3,list_maybe_stones3_4)
-                    is_ko = play.check_for_ko(self.stone,boards,row,col)
-                chain, reached, reached_coord = board4_obj.chain_and_reached(row, col)
-                if not suicide and not double_turn and not is_ko:
-                    return str(col+1)+"-"+str(row+1)
-                else:
-                    empty_coord = [x for x in empty_coord if x not in chain]
+            capture = self.n_depth_capture(boards,1)
+            if capture:
+                return capture
+            else:
+                empty_coord = ref.get_coord(recent_board, " ")
+                empty_coord = sorted(empty_coord, key=lambda x: x[1])
+                while empty_coord:
+                    current_coord = empty_coord.pop(0)
+                    row, col = current_coord[0], current_coord[1]
+                    if ref.sixth_resolve_history(self.player_stone, row, col):
+                        return str(col+1)+"-"+str(row+1)
+                    try:
+                        ref.check_suicide(self.player_stone,row,col)
+                        ref.check_ko(self.player_stone,row,col)
+                    except Exception:
+                        continue
+                return "pass"
         else:
             return "This history makes no sense!"
+
+    @staticmethod
+    def determine_latest_board(GoRuleChecker_obj):
+        if GoRuleChecker_obj.board3:
+            return GoRuleChecker_obj.board3
+        elif GoRuleChecker_obj.board2:
+            return GoRuleChecker_obj.board2
+        else:
+            return GoRuleChecker_obj.board1
+
+    def n_depth_capture(self,boards,n = 1):
+        opponent = "B" if self.player_stone == "W" else "W"
+        ref = GoRuleChecker(boards)
+        latest_board = self.determine_latest_board(ref)
+        set_of_liberties = ref.check_liberties(latest_board,opponent,"coord")
+        while set_of_liberties:
+            current_liberties = set_of_liberties.pop(0)
+            if n == 1:
+                if len(current_liberties) == n:
+                    return str(current_liberties[0][1]+1)+"-"+str(current_liberties[0][0]+1)
+            # else:
+            #     if len(current_liberties) == n:
+
+
+
+
 
 
 def driver():
