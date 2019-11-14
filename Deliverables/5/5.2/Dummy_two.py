@@ -61,13 +61,16 @@ class Player(GoRuleChecker,Interface):
         ref = GoRuleChecker(boards)
         latest_board = self.determine_latest_board(ref)
         set_of_liberties = ref.check_liberties(latest_board,opponent,"coord")
-        while set_of_liberties:
-            current_liberties = set_of_liberties.pop(0)
-            if n == 1:
-                if len(current_liberties) == n:
-                    return str(current_liberties[0][1]+1)+"-"+str(current_liberties[0][0]+1)
-            # else:
-            #     if len(current_liberties) == n:
+        if n == 1:
+            liberties_one = []
+            for i,liberties in enumerate(set_of_liberties):
+                if len(liberties) == 1:
+                    liberties_one.append(liberties[0])
+            liberties_one = sorted(liberties_one, key=lambda x: x[1])
+            return str(liberties_one[0][1] + 1) + "-" + str(liberties_one[0][0] + 1)
+        # else:
+        #     while set_of_liberties:
+        #         current_liberties = set_of_liberties.pop(0)
 
 
 
