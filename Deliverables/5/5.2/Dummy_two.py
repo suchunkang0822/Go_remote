@@ -68,7 +68,8 @@ class Player(GoRuleChecker,Interface):
                     liberties_one.append(liberties[0])
             if liberties_one:
                 liberties_one = sorted(liberties_one, key=lambda x: x[1])
-                return str(liberties_one[0][1] + 1) + "-" + str(liberties_one[0][0] + 1)
+                if ref.sixth_resolve_history(self.player_stone, liberties_one[0][0], liberties_one[0][1]):
+                    return str(liberties_one[0][1] + 1) + "-" + str(liberties_one[0][0] + 1)
         # else:
         #     while set_of_liberties:
         #         current_liberties = set_of_liberties.pop(0)
