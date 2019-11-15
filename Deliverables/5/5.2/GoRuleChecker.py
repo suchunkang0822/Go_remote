@@ -78,19 +78,6 @@ class GoRuleChecker(Go_Board, Interface):
     # third_check_stones is a match case with
 
     ############ Rule 4
-    # @staticmethod
-    # def check_liberties(board, stone):
-    #     opponent = "W" if stone == "B" else "B"
-    #     go_board_obj = Go_Board(board)
-    #     list_of_stone_coord = go_board_obj.get_coord(board, stone)
-    #     while list_of_stone_coord:
-    #         coord = list_of_stone_coord.pop(0)
-    #         chain, reached, _ = go_board_obj.chain_and_reached(coord[0], coord[1])
-    #         if " " not in reached and opponent in reached:
-    #                 return False
-    #         else:
-    #             list_of_stone_coord = [x for x in list_of_stone_coord if x not in chain]
-    #     return True
 
     @staticmethod
     def check_liberties(board, stone, output=None):
