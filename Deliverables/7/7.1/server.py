@@ -1,9 +1,6 @@
 import socket
-from FrontEnd import *
-import GoRuleChecker
-import Go_Board
 from Player_two import *
-import json
+
 
 HOST = '127.0.0.1'
 PORT = 8888
