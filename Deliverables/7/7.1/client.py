@@ -22,7 +22,7 @@ class Client:
             s.connect((HOST, PORT))
             s.sendall(FrontEnd().input_receiver().encode())
             data = self.receive_all(s)
-            return data.decode()
+            return json.dumps(data.decode())
             # print('Received', repr(data))
             # print(data.decode())
 

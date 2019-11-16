@@ -22,7 +22,7 @@ class Server(Player_two):
             request =b""
             conn,addr = s.accept()
             with conn:
-                print('Connected by',addr)
+                # print('Connected by',addr)
                 while True:
                     data = conn.recv(1024)
                     request += data
