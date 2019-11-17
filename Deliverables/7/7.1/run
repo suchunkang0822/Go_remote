@@ -1,2 +1,2 @@
 #!/bin/bash
-cat - | ./runs & sleep 1 && ./runc
+python3 client.py & python3 server.py
