@@ -7,13 +7,6 @@ class Client:
         self.HOST = host
         self.PORT = port
 
-    def json_validator(data):
-        try:
-            json.loads(data)
-            return True
-        except ValueError as error:
-            print("invalid json: %s" % error)
-            return False
 
     @staticmethod
     def receive_all(s):

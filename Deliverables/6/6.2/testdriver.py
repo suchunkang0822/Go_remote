@@ -9,8 +9,6 @@ def testOnInputs():
     inputs = handleInput.getInput()
     output = []
     ref = Referee()
-    # playerOne = inputs.pop(0)
-    # playerTwo = inputs.pop(0)
     if isinstance(inputs[0],str):
         ref.assignPlayerOne(inputs[0])
         output.append(ref.playerOneStone)
@@ -25,8 +23,6 @@ def testOnInputs():
         
 
     print(json.dumps(output))
-
-    # print('\n'.join(map(str, output)))
     return json.dumps(output)
 
 
