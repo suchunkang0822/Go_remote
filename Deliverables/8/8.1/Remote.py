@@ -4,7 +4,7 @@ import json
 
 class Remote:
     def __init__(self,host,port):
-        self. Host, self. Port, _ = self.fetch_config()
+        self.Host, self.Port, _ = self.fetch_config()
 
     def fetch_config(self):
         json_string = FrontEnd().input_receiver('go.config')
