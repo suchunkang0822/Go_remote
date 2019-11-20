@@ -16,21 +16,22 @@ class Server(Player_two):
             s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             s.bind((HOST,PORT))
             s.listen()
-            request =b""
+            # request =b""
             conn,addr = s.accept()
-            with conn:
+            # with conn:
                 # print('Connected by',addr)
-                while True:
-                    data = conn.recv(1024)
-                    request += data
-                    if len(data) < 1024:
-                        break
-
-                decoded_data = request.decode('utf-8')
-                json_list = list(FrontEnd().parser(decoded_data))
-                result = self.driver(json_list)
-                conn.sendall(result.encode())
-                s.close()
+                # while True:
+                #     data = conn.recv(1024)
+                #     request += data
+                #     if len(data) < 1024:
+                #         break
+            print('Connected by', addr)
+            data = conn.recv(6000)
+            decoded_data = data.decode('utf-8')
+            json_list = list(FrontEnd().parser(decoded_data))
+            result = self.driver(json_list)
+            conn.sendall(result.encode())
+            s.close()
 
 
 if __name__ == '__main__':
