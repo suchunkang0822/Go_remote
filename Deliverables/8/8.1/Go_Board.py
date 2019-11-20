@@ -58,7 +58,7 @@ class Go_Board(Interface):
             raise TypeError("element other than maybe_stone detected")
 
     def board_checker(self,board):
-        if not(len(board) == 19 and len(board[0]) == 19):
+        if not(len(board) == self.Board_Size and len(board[0]) == self.Board_Size):
             raise TypeError("board must be list of 19 by 19 ")
         for i,row in enumerate(board):
             for j,element in enumerate(row):

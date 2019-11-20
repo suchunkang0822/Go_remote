@@ -12,16 +12,8 @@ class Referee:
         self.playerTwoStone = "W"
         self.boardSize = Go_Board().Board_Size
         self.board = [[" " for col in range(self.boardSize)] for row in range(self.boardSize)]
-
-        # initializing game
-        # self.Go = Go(self.board._board)
         self.Go_Board = Go_Board(self.board)
-        # self.boardHistory = [self.board._board]
         self.boardHistory = []
-
-
-
-
 
     def assignPlayerOne(self, string):
         self.playerOne = string
@@ -94,4 +86,6 @@ class Referee:
                     results.append(self.get_player_name(opponent_color))
                     return results
         return results
+
+
 

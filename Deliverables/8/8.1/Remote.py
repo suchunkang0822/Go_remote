@@ -1,24 +1,41 @@
 from FrontEnd import *
 import socket
 import json
+import random
 
 class Remote:
-    def __init__(self,host,port):
-        self.Host, self.Port, _ = self.fetch_config()
+    Board_size = 9
 
-    def fetch_config(self):
-        json_string = FrontEnd().input_receiver('go.config')
-        python_obj = json.loads(json_string)
-        return python_obj["IP"], python_obj["port"], python_obj["default"]
-
-    def connect(self):
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((self.Host, self.Port))
-            s.sendall(FrontEnd().input_receiver().encode())
-            # data = self.receive_all(s)
-            data = s.recv(6000)
-            return data.decode()
+    def __init__(self):
+        self.player_stone = ""
 
 
+    def random_coord(self):
+        row = random.randrange(1,self.Board_size)
+        col = random.randrange(1,self.Board_size)
+        return row,col
 
-if __name__ == "__main__":
+    @staticmethod
+    def register():
+        return json.dumps("register")
+
+
+    def receive_stone(self,stone):
+        self.player_stone = stone
+        return json.dumps(["receive-stones",stone])
+
+    def make_move(self,boards):
+        row,col = self.random_coord()
+        while boards[0][row][col] != " ":
+            row,col = self.random_coord()
+        boards[0][row][col] = self.player_stone
+        return json.dumps(["make-a-move",boards])
+
+    def strategy_one(self):
+        self.register()
+        self.receive_stone("B")
+
+
+
+# if __name__ == "__main__":
+#     pass

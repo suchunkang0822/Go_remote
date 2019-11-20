@@ -1,52 +1,51 @@
 from FrontEnd import FrontEnd
-from Remote import Remote
+from Remote import *
 import socket
+import json
 
 
-class PlayerProxy:
-    def __init__(self, Player):
+class PlayerProxy(object):
+    def __init__(self, Remote):
+        self._wrapped = Remote
+        self.HOST, self.PORT, _ = self.fetch_config()
         self.registered = None
         self.received = None
-        self.player = Player
+        # self.player = Player
         # self.player = Remote() TODO: should we use ths implementation
 
-    def receive_data(self):
-        with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as s:
-            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            s.bind((self.player.Host,self.player.Port))
-            s.listen()
-            request =b""
-            conn,addr = s.accept()
-            with conn:
-                # print('Connected by',addr)
-                # while True:
-                data = conn.recv(6000)
-                    # request += data
-                    # if len(data) < 1024:
-                    #     break
+    def fetch_config(self):
+        json_string = FrontEnd().input_receiver('go.config')
+        python_obj = json.loads(json_string)
+        return python_obj["IP"], python_obj["port"], python_obj["default-player"]
 
-            decoded_data = request.decode('utf-8')
-            json_command = list(FrontEnd().parser(decoded_data))
-            # result = self.driver(json_list)
-            # conn.sendall(result.encode())
-            s.close()
-            if !self.verify_command(json_command):
-                return False
-            
-            return json_command
-                
-    
-    def verify_command(self, command):
-        if command == "register":
-            self.registered = True 
-            return True
-        elif command == "receive-stones":
-            if self.registered == True:
+    def connect(self,data):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.connect((self.Host, self.Port))
+            s.sendall(json.dumps(data).encode())
+            data = s.recv(6000)
+            return data.decode()
+
+    def verify_protocol(self, command):
+        if len(command) == 1 and command[0] == "register":
+            if not self.registered:
+                self.registered = True
+            else:
+                return "GO has gone crazy!"
+        elif len(command) == 2 and command[0] == "receive-stones":
+            if self.registered and (not self.received):
                 self.received = True
-                return True
+            else:
+                return "GO has gone crazy!"
         else:
-            if self.registered == True and self.received == True:
-               return True
+            if not(self.registered and self.received):
+                return "GO has gone crazy!"
 
-        return False
 
+if __name__ == '__main__':
+    remote_player = PlayerProxy(Remote())
+    remote_player.verify_protocol(remote_player._wrapped.register())
+    remote_player.connect()
+    while True:
+        remote_player.verify_protocol(remote_player._wrapped.register())
+
+    PlayerProxy(Remote()).connect()

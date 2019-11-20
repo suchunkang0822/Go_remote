@@ -2,44 +2,63 @@ from Referee import Referee
 import socket
 import json
 from FrontEnd import FrontEnd
-import importlib.util
+from importlib.machinery import SourceFileLoader
 from PlayerProxy import PlayerProxy
 from Remote import Remote
+import sys
 
 class Admin:
     def __init__(self):
         self.ref = Referee()
-        self.HOST, self.POST, self.DEFPATH = self.fetch_config()
-        self.remoteName, self.defaultName = "remote", "default"
-        self.remotePlayer, self.defaultPlayer = self.setup_players()
-        # spec = importlib.util.spec_from_file_location("Default", "self.DEFPATH")
-        # temp = importlib.util.module_from_spec(spec)
-        # spec.loader.exec_module(temp)
-        # foo.MyClass()
+        self.HOST, self.PORT, self.DEFPATH = self.fetch_config()
+        self.default_player = SourceFileLoader("Default", self.DEFPATH).load_module().Default()
+        # self.remoteName, self.defaultName = "remote", "default"
+        # self.remotePlayer, self.defaultPlayer = self.setup_players()
 
     def fetch_config(self):
         json_string = FrontEnd().input_receiver('go.config')
         python_obj = json.loads(json_string)
-        return python_obj["IP"], python_obj["port"], python_obj["default"]
+        return python_obj["IP"], python_obj["port"], python_obj["default-player"]
 
-    def setup_players(self):
-        remote = Remote()
-        remoteProxy = PlayerProxy(remote)
-        default = None
-        # TODO default player logic
+    def receive_data(self):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            s.bind((self.HOST, self.PORT))
+            s.listen()
+            conn, addr = s.accept()
+            # with conn:
+            #     while True:
+            #         data = conn.recv(6000)
+            #         if len(data) < 6000:
+            #             break
+            data = conn.recv(6000)
+            decoded_data = data.decode('utf-8')
+            json_list = list(FrontEnd().parser(decoded_data))
+            return json_list
 
-        return remoteProxy, default
+    def setup_default_player(self):
+        player_module = SourceFileLoader("Default", self.DEFPATH).load_module()
+        default_player = player_module.Default()
+        return default_player
+
+
+
+
+    # def setup_players(self):
+    #     remote = Remote()
+    #     remoteProxy = PlayerProxy(remote)
+    #     default = None
+    #     # TODO default player logic
+    #
+    #     return remoteProxy, default
     
     def play_game(self):
+        data = self.receive_data()
+
+
+
         # initialize connection
 
-
-        
-        
-
-
-
-# starts server and accepts connection from remote
-# creates proxy????
-# loads local player from config
-#
+if __name__ == "__main__":
+    Admin().receive_data()
