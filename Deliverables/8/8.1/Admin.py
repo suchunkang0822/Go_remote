@@ -1,40 +1,41 @@
 from Referee import Referee
 import socket
+import json
+from FrontEnd import FrontEnd
 import importlib.util
+from PlayerProxy import PlayerProxy
+from Remote import Remote
 
 class Admin:
     def __init__(self):
         self.ref = Referee()
         self.HOST, self.POST, self.DEFPATH = self.fetch_config()
-        spec = importlib.util.spec_from_file_location("Default", "self.DEFPATH")
-
-
+        self.remoteName, self.defaultName = "remote", "default"
+        self.remotePlayer, self.defaultPlayer = self.setup_players()
+        # spec = importlib.util.spec_from_file_location("Default", "self.DEFPATH")
+        # temp = importlib.util.module_from_spec(spec)
+        # spec.loader.exec_module(temp)
+        # foo.MyClass()
 
     def fetch_config(self):
         json_string = FrontEnd().input_receiver('go.config')
         python_obj = json.loads(json_string)
         return python_obj["IP"], python_obj["port"], python_obj["default"]
 
-    def receive_data(self):
-        with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as s:
-            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            s.bind((HOST,PORT))
-            s.listen()
-            request =b""
-            conn,addr = s.accept()
-            with conn:
-                # print('Connected by',addr)
-                while True:
-                    data = conn.recv(1024)
-                    request += data
-                    if len(data) < 1024:
-                        break
+    def setup_players(self):
+        remote = Remote()
+        remoteProxy = PlayerProxy(remote)
+        default = None
+        # TODO default player logic
 
-                decoded_data = request.decode('utf-8')
-                json_list = list(FrontEnd().parser(decoded_data))
-                result = self.driver(json_list)
-                conn.sendall(result.encode())
-                s.close()
+        return remoteProxy, default
+    
+    def play_game(self):
+        # initialize connection
+
+
+        
+        
 
 
 
