@@ -10,6 +10,8 @@ class Admin:
     def __init__(self):
         self.ref = Referee()
         self.HOST, self.POST, self.DEFPATH = self.fetch_config()
+        self.remoteName, self.defaultName = "remote", "default"
+        self.remotePlayer, self.defaultPlayer = self.setup_players()
         # spec = importlib.util.spec_from_file_location("Default", "self.DEFPATH")
         # temp = importlib.util.module_from_spec(spec)
         # spec.loader.exec_module(temp)
@@ -23,6 +25,15 @@ class Admin:
     def setup_players(self):
         remote = Remote()
         remoteProxy = PlayerProxy(remote)
+        default = None
+        # TODO default player logic
+
+        return remoteProxy, default
+    
+    def play_game(self):
+        # initialize connection
+
+
         
         
 
