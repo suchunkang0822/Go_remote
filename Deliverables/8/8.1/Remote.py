@@ -3,7 +3,7 @@ import socket
 import json
 import random
 
-class Remote:
+class Player:
     Board_size = 9
 
     def __init__(self):
