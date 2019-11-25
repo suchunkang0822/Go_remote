@@ -7,8 +7,10 @@ import copy
 class Referee:
     def __init__(self):
         self.playerOne = None
+        self.playerOneName = None
         self.playerOneStone = "B"
         self.playerTwo = None
+        self.playerTwoName = None
         self.playerTwoStone = "W"
         self.boardSize = Go_Board().Board_Size
         self.board = [[" " for col in range(self.boardSize)] for row in range(self.boardSize)]
@@ -18,27 +20,34 @@ class Referee:
     
     def play_game(self, player1, player2):
         try:
+            self.playerOne = player1
+            self.playerTwo = player2
             self.assignPlayerOne(player1.register())
             self.assignPlayerTwo(player2.register())
             player1.receive_stone(self.playerOneStone)
             player2.receive_stone(self.playerTwoStone)
-        
-            while True:
-                move1 = player1.make_move(self.boardHistory)
-                res1 = self.handleMoves([move1])
-                move2 = player2.make_move()
-        
+            self.current = player1
         except e:
+            print(e)
+            return 
             
+        while True:
+            move = self.current.make_move(self.boardHistory)
+            self.handleMove(move, )
+            self.switch_player(player1, player2)
             
-
-            
-
+    
+    def switch_player(self):
+        if self.current == self.playerOne:
+            self.current = self.playerTwo
+        elif self.current == self.playerTwo:
+            self.current = self.playerOne
+        
     def assignPlayerOne(self, string):
-        self.playerOne = string
+        self.playerOneName = string
 
     def assignPlayerTwo(self, string):
-        self.playerTwo = string
+        self.playerTwoName = string
 
     def updateHistory(self, board):
         self.boardHistory.insert(0, board)
