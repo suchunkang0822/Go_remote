@@ -14,6 +14,25 @@ class Referee:
         self.board = [[" " for col in range(self.boardSize)] for row in range(self.boardSize)]
         self.Go_Board = Go_Board(self.board)
         self.boardHistory = []
+        self.current = None
+    
+    def play_game(self, player1, player2):
+        try:
+            self.assignPlayerOne(player1.register())
+            self.assignPlayerTwo(player2.register())
+            player1.receive_stone(self.playerOneStone)
+            player2.receive_stone(self.playerTwoStone)
+        
+            while True:
+                move1 = player1.make_move(self.boardHistory)
+                res1 = self.handleMoves([move1])
+                move2 = player2.make_move()
+        
+        except e:
+            
+            
+
+            
 
     def assignPlayerOne(self, string):
         self.playerOne = string
@@ -38,7 +57,7 @@ class Referee:
         else:
             return [self.playerTwo]
 
-    def whose_the_winner(self, board):
+    def decide_winner(self, board):
         score = GoRuleChecker().check_the_score(board)
         black_score, white_score = score["B"], score["W"]
         if black_score > white_score:
@@ -62,7 +81,28 @@ class Referee:
             GoRuleChecker(boards).check_consecutive_passes()
 
 
-    def handleMoves(self, listOfMoves):
+    def get_history(self):
+        return self.boardHistory
+        
+    def handleMove(self, move, player_color):
+        self.boardHistory.append(copy.deepcopy(self.board))
+        if move == "pass":
+            try:
+                self.updateHistory(self.boardHistory[0])
+                self.is_valid_pass(self.boardHistory,move,i)
+            except Exception:
+                results.append(self.decide_winner(self.boardHistory[0]))
+                return results
+            
+        elif move != "pass":
+            row, col = Go_Board().point_parser(move)
+            madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color,row,col)
+            is_ko = self.check_ko(player_color,row,col)
+            if madeMove and not is_ko:
+                self.updateHistory(copy.deepcopy(self.Go.getBoard()))
+            else:
+
+    def handleMoves(self, listOfMoves, player_color):
         results = []
         self.boardHistory.append(copy.deepcopy(self.board))
         for i, move in enumerate(listOfMoves):
@@ -73,7 +113,7 @@ class Referee:
                     self.updateHistory(self.boardHistory[0])
                     self.is_valid_pass(self.boardHistory,move,i)
                 except Exception:
-                    results.append(self.whose_the_winner(self.boardHistory[0]))
+                    results.append(self.decide_winner(self.boardHistory[0]))
                     return results
                 continue
             elif move != "pass":
