@@ -10,7 +10,7 @@ class StateProxy:
         self.received = False
 
     def register(self):
-        if not self.registered and not self.received
+        if not self.registered and not self.received:
             self.registered = True
             return self.player.register()
         raise ValueError

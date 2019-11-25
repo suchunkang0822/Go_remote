@@ -67,4 +67,4 @@ class Admin:
         # initialize connection
 
 if __name__ == "__main__":
-    Admin().receive_data()
+    Admin().game_start()

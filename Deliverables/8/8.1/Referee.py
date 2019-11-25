@@ -17,31 +17,34 @@ class Referee:
         self.Go_Board = Go_Board(self.board)
         self.boardHistory = []
         self.current = None
+        self.turn = self.playerOneStone
     
     def play_game(self, player1, player2):
         try:
-            self.playerOne = player1
-            self.playerTwo = player2
             self.assignPlayerOne(player1.register())
             self.assignPlayerTwo(player2.register())
             player1.receive_stone(self.playerOneStone)
             player2.receive_stone(self.playerTwoStone)
+            self.playerOne = player1
+            self.playerTwo = player2
             self.current = player1
         except e:
             print(e)
             return 
-            
+
         while True:
             move = self.current.make_move(self.boardHistory)
-            self.handleMove(move, )
-            self.switch_player(player1, player2)
+            self.handleMove(move, self.turn)
+            self.switch_player()
             
     
     def switch_player(self):
         if self.current == self.playerOne:
             self.current = self.playerTwo
+            self.turn = self.playerTwoStone
         elif self.current == self.playerTwo:
             self.current = self.playerOne
+            self.turn = self.playerOneStone
         
     def assignPlayerOne(self, string):
         self.playerOneName = string
@@ -94,6 +97,7 @@ class Referee:
         return self.boardHistory
         
     def handleMove(self, move, player_color):
+        results = []
         self.boardHistory.append(copy.deepcopy(self.board))
         if move == "pass":
             try:
@@ -110,6 +114,7 @@ class Referee:
             if madeMove and not is_ko:
                 self.updateHistory(copy.deepcopy(self.Go.getBoard()))
             else:
+                return
 
     def handleMoves(self, listOfMoves, player_color):
         results = []
