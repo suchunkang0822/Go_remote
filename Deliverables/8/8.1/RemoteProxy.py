@@ -10,21 +10,21 @@ class RemoteProxy():
         self.name = None
         self.conn = conn
         
-        
-        # self.player = Remote() TODO: should we use ths implementation
+
     def register(self):
-        self.conn.send(json.dumps(["register"]))
-        name = json.loads(self.conn.recv(6000))
+        self.conn.send(json.dumps(["register"]).encode())
+        name = json.loads(self.conn.recv(6000).decode())
+        print('name',name)
         self.name = name
         return name
     
     def receive_stone(self, stone):
         self.player_stone = stone
-        self.conn.send(json.dumps(["receive-stone", stone]))
+        self.conn.send(json.dumps(["receive-stone", stone]).encode())
     
     def make_move(self, boards):
         self.conn.send(json.dumps(["make-move", boards]))
-        move = json.loads(self.conn.recv(6000))
+        move = json.loads(self.conn.recv(6000).decode())
         return move
 
     def fetch_config(self):

@@ -28,11 +28,11 @@ class Referee:
             self.playerOne = player1
             self.playerTwo = player2
             self.current = player1
-        except e:
-            print(e)
-            return 
+        except ValueError:
+            return "GO has gone crazy!"
 
         while True:
+            print('im in')
             move = self.current.make_move(self.boardHistory)
             self.handleMove(move, self.turn)
             self.switch_player()
@@ -99,47 +99,55 @@ class Referee:
     def handleMove(self, move, player_color):
         results = []
         self.boardHistory.append(copy.deepcopy(self.board))
+        opponent = "B" if player_color == "W" else "W"
         if move == "pass":
             try:
                 self.updateHistory(self.boardHistory[0])
-                self.is_valid_pass(self.boardHistory,move,i)
+                GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color)
+                # self.is_valid_pass(self.boardHistory,move,i)
             except Exception:
                 results.append(self.decide_winner(self.boardHistory[0]))
                 return results
             
         elif move != "pass":
             row, col = Go_Board().point_parser(move)
-            madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color,row,col)
-            is_ko = self.check_ko(player_color,row,col)
-            if madeMove and not is_ko:
-                self.updateHistory(copy.deepcopy(self.Go.getBoard()))
+            try:
+                rule_checker = GoRuleChecker(self.boardHistory)
+                rule_checker.sixth_resolve_history(player_color,row,col)
+            except Exception:
+                results.append(self.get_player_name(opponent))
+                return results
             else:
-                return
+                new_board = Go_Board(self.boardHistory[0]).place(row, col)
+                new_board = rule_checker.board_after_remove_captured_stone(new_board,player_color,row,col)
+                self.updateHistory(copy.deepcopy(new_board))
 
-    def handleMoves(self, listOfMoves, player_color):
-        results = []
-        self.boardHistory.append(copy.deepcopy(self.board))
-        for i, move in enumerate(listOfMoves):
-            results.append(copy.deepcopy(self.boardHistory))
-            player_color, opponent_color = self.whose_turn(i)
-            if move == "pass":
-                try:
-                    self.updateHistory(self.boardHistory[0])
-                    self.is_valid_pass(self.boardHistory,move,i)
-                except Exception:
-                    results.append(self.decide_winner(self.boardHistory[0]))
-                    return results
-                continue
-            elif move != "pass":
-                row, col = Go_Board().point_parser(move)
-                madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color,row,col)
-                is_ko = self.check_ko(player_color,row,col)
-                if madeMove and not is_ko:
-                    self.updateHistory(copy.deepcopy(self.Go.getBoard()))
-                else:
-                    results.append(self.get_player_name(opponent_color))
-                    return results
-        return results
+            return results
+
+    # def handleMoves(self, listOfMoves, player_color):
+    #     results = []
+    #     self.boardHistory.append(copy.deepcopy(self.board))
+    #     for i, move in enumerate(listOfMoves):
+    #         results.append(copy.deepcopy(self.boardHistory))
+    #         player_color, opponent_color = self.whose_turn(i)
+    #         if move == "pass":
+    #             try:
+    #                 self.updateHistory(self.boardHistory[0])
+    #                 self.is_valid_pass(self.boardHistory,move,i)
+    #             except Exception:
+    #                 results.append(self.decide_winner(self.boardHistory[0]))
+    #                 return results
+    #             continue
+    #         elif move != "pass":
+    #             row, col = Go_Board().point_parser(move)
+    #             madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color,row,col)
+    #             is_ko = self.check_ko(player_color,row,col)
+    #             if madeMove and not is_ko:
+    #                 self.updateHistory(copy.deepcopy(self.Go.getBoard()))
+    #             else:
+    #                 results.append(self.get_player_name(opponent_color))
+    #                 return results
+    #     return results
 
 
 

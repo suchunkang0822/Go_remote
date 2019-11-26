@@ -6,7 +6,7 @@ import random
 class StateProxy:
     def __init__(self, player):
         self.player = player
-        self.registered =  False
+        self.registered = False
         self.received = False
 
     def register(self):

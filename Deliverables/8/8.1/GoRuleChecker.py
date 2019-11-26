@@ -237,21 +237,38 @@ class GoRuleChecker(Go_Board, Interface):
             if not (self.check_liberties(board,"B") and self.check_liberties(board,"W")):
                 raise Exception('zero liberty stone present')
 
+    # def check_ko(self,stone,row=None,col=None):
+    #     if self.board1 == self.board3:
+    #         raise Exception('Ko detected')
+    #     elif isinstance(row,int) and isinstance(col,int):
+    #         what_if_board = Go_Board(self.board3).place(stone, row, col)
+    #         if what_if_board != 'This seat is taken!':
+    #             what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
+    #             if self.board2 == what_if_board:
+    #                 raise Exception('Ko detected')
+    #             else:
+    #                 return True
+    #         else:
+    #             raise Exception('coordinate occupied')
+    #     else:
+    #         return True
+
     def check_ko(self,stone,row=None,col=None):
-        if self.board1 == self.board3:
-            raise Exception('Ko detected')
-        elif isinstance(row,int) and isinstance(col,int):
-            what_if_board = Go_Board(self.board3).place(stone, row, col)
-            if what_if_board != 'This seat is taken!':
-                what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
-                if self.board2 == what_if_board:
-                    raise Exception('Ko detected')
+        if len(self.board_history) == 3 and not self.fifth_is_empty(self.board1):
+            if self.board1 == self.board3:
+                raise Exception('Ko detected')
+            elif isinstance(row,int) and isinstance(col,int):
+                what_if_board = Go_Board(self.board3).place(stone, row, col)
+                if what_if_board != 'This seat is taken!':
+                    what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
+                    if self.board2 == what_if_board:
+                        raise Exception('Ko detected')
+                    else:
+                        return True
                 else:
-                    return True
+                    raise Exception('coordinate occupied')
             else:
-                raise Exception('coordinate occupied')
-        else:
-            return True
+                return True
 
     @staticmethod
     def board_after_remove_captured_stone(what_if_board,player,row,col):
