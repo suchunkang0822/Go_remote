@@ -15,9 +15,9 @@ class Default(GoRuleChecker,Interface):
         self.player_stone = ""
 
     @staticmethod
-    def register(string):
-        if string == "register":
-            return "no name"
+    def register():
+        # if string == "register":
+        return "no name"
 
     def receive_stone(self,stone):
         self.player_stone = stone
@@ -27,6 +27,7 @@ class Default(GoRuleChecker,Interface):
         recent_board = self.determine_latest_board(ref)
         boards_correct = ref.sixth_resolve_history(self.player_stone)
         if boards_correct:
+            print("inside board correct of make move of default")
             capture = self.n_depth_capture(boards,1)
             if capture:
                 return capture
@@ -45,6 +46,7 @@ class Default(GoRuleChecker,Interface):
                         continue
                 return "pass"
         else:
+            print("inside history makes no sense make move of default")
             return "This history makes no sense!"
 
     @staticmethod

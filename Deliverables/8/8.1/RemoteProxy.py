@@ -3,7 +3,7 @@ import socket
 import json
 
 
-class RemoteProxy():
+class RemoteProxy:
     def __init__(self, conn):
         self.HOST, self.PORT, _ = self.fetch_config()
         self.player_stone = None
@@ -13,8 +13,7 @@ class RemoteProxy():
 
     def register(self):
         self.conn.send(json.dumps(["register"]).encode())
-        name = json.loads(self.conn.recv(6000).decode())
-        print('name',name)
+        name = json.loads(self.conn.recv(6000))
         self.name = name
         return name
     
@@ -22,9 +21,12 @@ class RemoteProxy():
         self.player_stone = stone
         self.conn.send(json.dumps(["receive-stone", stone]).encode())
     
-    def make_move(self, boards):
-        self.conn.send(json.dumps(["make-move", boards]))
-        move = json.loads(self.conn.recv(6000).decode())
+    def make_a_move(self, boards):
+        # #print('this is boards',boards)
+        # #print('encoding',json.dumps(["make-move", boards]).encode())
+        #print('sending',["make-a-move", boards])
+        self.conn.send(json.dumps(["make-a-move", boards]).encode())
+        move = json.loads(self.conn.recv(6000))
         return move
 
     def fetch_config(self):

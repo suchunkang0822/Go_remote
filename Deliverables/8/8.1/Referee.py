@@ -13,28 +13,42 @@ class Referee:
         self.playerTwoName = None
         self.playerTwoStone = "W"
         self.boardSize = Go_Board().Board_Size
-        self.board = [[" " for col in range(self.boardSize)] for row in range(self.boardSize)]
-        self.Go_Board = Go_Board(self.board)
-        self.boardHistory = []
+        # self.board = [[" " for col in range(self.boardSize)] for row in range(self.boardSize)]
+        # self.Go_Board = Go_Board(self.board)
+        self.boardHistory = [[[" " for col in range(self.boardSize)] for row in range(self.boardSize)]]
         self.current = None
         self.turn = self.playerOneStone
     
     def play_game(self, player1, player2):
         try:
-            self.assignPlayerOne(player1.register())
-            self.assignPlayerTwo(player2.register())
+            # self.assignPlayerOne(player1.register())
+            self.playerOneName = player1.register()
+            #print('end')
+            # self.assignPlayerTwo(player2.register())
+            self.playerTwoName = player2.register()
             player1.receive_stone(self.playerOneStone)
             player2.receive_stone(self.playerTwoStone)
             self.playerOne = player1
             self.playerTwo = player2
             self.current = player1
         except ValueError:
+            #print('GO has gone crazy!')
             return "GO has gone crazy!"
-
         while True:
-            print('im in')
-            move = self.current.make_move(self.boardHistory)
-            self.handleMove(move, self.turn)
+            a = self.playerOneName if self.current == player1 else self.playerTwoName
+            #print('im in with',a)
+            #print('score',GoRuleChecker().check_the_score(self.boardHistory[0]))
+            move = self.current.make_a_move(self.boardHistory)
+            #print('this is move inside play of ref',move)
+            if move == "This history makes no sense!" or move == "This seat is taken!":
+                opponent = self.playerTwoStone if self.current == player1 else self.playerOneStone
+                #print('opponent',opponent)
+                return self.get_player_name(opponent)
+            else:
+                winner = self.handleMove(move, self.turn)
+                #print('maybe here',winner)
+                if winner:
+                    return winner
             self.switch_player()
             
     
@@ -65,9 +79,9 @@ class Referee:
 
     def get_player_name(self, stone):
         if stone == "B":
-            return [self.playerOne]
+            return [self.playerOneName]
         else:
-            return [self.playerTwo]
+            return [self.playerTwoName]
 
     def decide_winner(self, board):
         score = GoRuleChecker().check_the_score(board)
@@ -97,8 +111,8 @@ class Referee:
         return self.boardHistory
         
     def handleMove(self, move, player_color):
-        results = []
-        self.boardHistory.append(copy.deepcopy(self.board))
+        # results = []
+        # self.boardHistory.append(copy.deepcopy(self.board))
         opponent = "B" if player_color == "W" else "W"
         if move == "pass":
             try:
@@ -106,23 +120,32 @@ class Referee:
                 GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color)
                 # self.is_valid_pass(self.boardHistory,move,i)
             except Exception:
-                results.append(self.decide_winner(self.boardHistory[0]))
-                return results
+                # results.append(self.decide_winner(self.boardHistory[0]))
+                # return results
+                return self.decide_winner(self.boardHistory[0])
             
         elif move != "pass":
+            #print('the move is',move)
             row, col = Go_Board().point_parser(move)
+            #print('row col after move',row,col)
             try:
                 rule_checker = GoRuleChecker(self.boardHistory)
                 rule_checker.sixth_resolve_history(player_color,row,col)
             except Exception:
-                results.append(self.get_player_name(opponent))
-                return results
+                return self.get_player_name(opponent)
+                # results.append(self.get_player_name(opponent))
+                # return results
             else:
-                new_board = Go_Board(self.boardHistory[0]).place(row, col)
-                new_board = rule_checker.board_after_remove_captured_stone(new_board,player_color,row,col)
-                self.updateHistory(copy.deepcopy(new_board))
+                new_board = Go_Board(self.boardHistory[0]).place(player_color,row, col)
+                if new_board == "This seat is taken!":
+                    return self.get_player_name(opponent)
+                else:
+                    new_board = rule_checker.board_after_remove_captured_stone(new_board,player_color,row,col)
+                    self.updateHistory(copy.deepcopy(new_board))
 
-            return results
+            # return results
+
+
 
     # def handleMoves(self, listOfMoves, player_color):
     #     results = []

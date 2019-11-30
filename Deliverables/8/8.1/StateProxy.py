@@ -3,6 +3,7 @@ import socket
 import json
 import random
 
+
 class StateProxy:
     def __init__(self, player):
         self.player = player
@@ -19,11 +20,13 @@ class StateProxy:
         if self.registered and not self.received:
             self.received = True
             return self.player.receive_stone(stone)
+        #print('2')
         raise ValueError
 
-    def make_move(self, boards):
+    def make_a_move(self, boards):
         if self.registered and self.received:
-            return self.player.make_move(boards)
+            #print('in make_move of StateProxy ')
+            return self.player.make_a_move(boards)
         raise ValueError
 
 

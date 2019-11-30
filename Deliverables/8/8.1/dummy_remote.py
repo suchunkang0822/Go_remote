@@ -28,36 +28,60 @@ class Proxy(GoRuleChecker):
     def receive_stone(self,stone):
         self.player_stone = stone
 
-    def make_move(self,boards):
+    def make_a_move(self,boards):
         ref = GoRuleChecker(boards)
         boards_correct = ref.sixth_resolve_history(self.player_stone)
         if boards_correct:
-            if random.random() < 0.4:
+            rand_num = random.random()
+            row, col = self.random_coord()
+            if rand_num < 0.4:
+                #print('passed')
                 return "pass"
+            elif 0.4 < rand_num:
+                #print('im in',row,col)
+                #print('the board is')
+                #print(boards[0])
+                while True:
+                    if boards[0][row][col] == " ":
+                        if ref.sixth_resolve_history(self.player_stone, row, col):
+                            #print('im inside wow')
+                            return str(col + 1) + "-" + str(row + 1)
+                    row, col = self.random_coord()
             else:
-                row, col = self.random_coord()
-                while boards[0][row][col] != " ":
-                    if ref.sixth_resolve_history(self.player_stone, row, col):
-                        return str(col + 1) + "-" + str(row + 1)
-                    else:
-                        row, col = self.random_coord()
-                        continue
+                for i,row in enumerate(boards[0]):
+                    for j,element in enumerate(row):
+                        if element != " ":
+                            row,col = i,j
+                    return str(col + 1) + "-" + str(row + 1)
+
         else:
             return "This history makes no sense!"
 
-    def receive_and_send(self):
+    def connect(self):
         self.s.connect((self.HOST, self.PORT))
-        json_obj = self.s.recv(6000).decode()
-        if json_obj[0][0] == "register":
-            self.s.send(self.register().encode())
-        elif json_obj[0][0] == "receive-stones":
-            self.receive_stone(json_obj[0][1])
-        elif json_obj[0][0] == "make-a-move":
-            self.s.send(self.make_move(json_obj[0][1]).encode())
+
+    def receive_and_send(self):
+        # self.s.connect((self.HOST, self.PORT))
+        json_obj = json.loads(self.s.recv(6000).decode())
+        # json_obj = json.loads(self.s.recv(6000))
+        #print('json received',json_obj)
+        if json_obj[0] == "register":
+            #print('inside register',self.register())
+            self.s.send(json.dumps(self.register()).encode())
+            # self.s.close()
+        elif json_obj[0] == "receive-stone":
+            #print('inside receive-stones')
+            self.receive_stone(json_obj[1])
+        elif json_obj[0] == "make-a-move":
+            #print('inside make-a-move')
+            #print(json_obj[1])
+            self.s.send(json.dumps(self.make_a_move(json_obj[1])).encode())
 
 
 
 
 if __name__ == "__main__":
-    # while True:
-    Proxy().receive_and_send()
+    proxy = Proxy()
+    proxy.connect()
+    while True:
+        proxy.receive_and_send()

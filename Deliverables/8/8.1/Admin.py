@@ -3,8 +3,8 @@ import socket
 import json
 from FrontEnd import FrontEnd
 from importlib.machinery import SourceFileLoader
-from RemoteProxy import RemoteProxy
-from StateProxy import StateProxy
+from RemoteProxy import *
+from StateProxy import *
 import sys
 
 class Admin:
@@ -40,21 +40,25 @@ class Admin:
         
 
     def game_start(self):
-        self.ref.play_game(self.remote_player, self.default_player)
+        winner = self.ref.play_game(self.default_player, self.remote_player)
+        if winner:
+            return json.dumps(winner)
+            # self.conn.send(json.dumps(a).encode())
+            # self.conn.close()
 
     # def send_and_receive(self):
     #     input = FrontEnd().input_receiver()
     #     json_data = FrontEnd().parser(input)
     #     if len(json_data) == 1 and json_data[0] == "register":
     #         name = self.player.register()
-    #         print(json.dumps(name).encode())
+    #         #print(json.dumps(name).encode())
     #     elif len(json_data) == 2 and json_data[0] == "receive-stones":
     #         stone = json_data[1]
     #         self.player.receive_stone(stone)
     #     elif len(json_data) == 2 and json_data[0]== "make-move":
     #         history = json_data[1]
     #         move = self.player.make_move(history)
-    #         print(json.dumps(move).encode())
+    #         #print(json.dumps(move).encode())
     #     else:
     #         return "GO has gone crazy!"
 
@@ -67,4 +71,7 @@ class Admin:
         # initialize connection
 
 if __name__ == "__main__":
-    Admin().game_start()
+    admin = Admin()
+    print(admin.game_start())
+    admin.s.close()
+
