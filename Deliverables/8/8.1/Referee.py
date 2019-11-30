@@ -45,6 +45,7 @@ class Referee:
                 #print('opponent',opponent)
                 return self.get_player_name(opponent)
             else:
+                print('The move is ',move)
                 winner = self.handleMove(move, self.turn)
                 #print('maybe here',winner)
                 if winner:
