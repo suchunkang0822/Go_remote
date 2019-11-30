@@ -13,7 +13,7 @@ class RemoteProxy:
 
     def register(self):
         self.conn.send(json.dumps(["register"]).encode())
-        name = json.loads(self.conn.recv(6000))
+        name = json.loads(self.conn.recv(6000).decode())
         self.name = name
         return name
     
@@ -26,7 +26,7 @@ class RemoteProxy:
         # #print('encoding',json.dumps(["make-move", boards]).encode())
         #print('sending',["make-a-move", boards])
         self.conn.send(json.dumps(["make-a-move", boards]).encode())
-        move = json.loads(self.conn.recv(6000))
+        move = json.loads(self.conn.recv(6000).decode())
         return move
 
     def fetch_config(self):
