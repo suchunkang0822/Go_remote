@@ -87,14 +87,18 @@ class Referee:
         else:
             row, col = Go_Board().point_parser(move)
             madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone, row, col)
+            opponentStone = self.playerTwoStone if self.currentStone == self.playerOneStone else self.playerOneStone
+            opponentName = self.get_player_name(opponentStone)
             if madeMove:
                 whatIfBoard = Go_Board(self.boardHistory[0]).place(self.currentStone,row,col)
-                self.updateHistory(copy.deepcopy(GoRuleChecker().board_after_remove_captured_stone
-                                                 (whatIfBoard,self.currentStone,row,col)))
+                try:
+                    self.updateHistory(copy.deepcopy(GoRuleChecker().board_after_remove_captured_stone
+                                                     (whatIfBoard,self.currentStone,row,col)))
+                except TypeError:
+                    return opponentName
                 self.switch_player()
             else:
-                opponentStone = self.playerTwoStone if self.currentStone == self.playerOneStone else self.playerOneStone
-                return self.get_player_name(opponentStone)
+                return opponentName
 
 
 
