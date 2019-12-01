@@ -10,19 +10,91 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Deliverables$testdriver.coverage" NAME="testdriver Coverage Results" MODIFIED="1575173262371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/6/6.2" />
     <SUITE FILE_PATH="coverage/Deliverables$GoRuleChecker.coverage" NAME="GoRuleChecker Coverage Results" MODIFIED="1573680035997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/5/5.1" />
     <SUITE FILE_PATH="coverage/Deliverables$Referee.coverage" NAME="Referee Coverage Results" MODIFIED="1574864292783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/8/8.1" />
+    <SUITE FILE_PATH="coverage/Deliverables$py_test_for_testdriver_TestDriver_testOnInputs.coverage" NAME="py.test for testdriver.TestDriver.testOnInputs Coverage Results" MODIFIED="1575173232001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/6/6.2" />
     <SUITE FILE_PATH="coverage/Deliverables$aaaaa.coverage" NAME="aaaaa Coverage Results" MODIFIED="1573808594855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/7/7.1" />
     <SUITE FILE_PATH="coverage/Deliverables$Admin.coverage" NAME="Admin Coverage Results" MODIFIED="1574864532475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/8/8.1" />
     <SUITE FILE_PATH="coverage/Deliverables$Remote_player.coverage" NAME="Remote_player Coverage Results" MODIFIED="1574125565613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/8/8.1" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/Admin.py">
+      <file leaf-file-name="testdriver.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/6/6.2/testdriver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="74" column="29" lean-forward="false" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+            <state relative-caret-position="611">
+              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="run" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/6/6.2/run">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StateProxy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/6/6.2/StateProxy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-42">
+              <caret line="17" column="41" lean-forward="true" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/6/6.2/Referee.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="84" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoRuleChecker.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/6/6.2/GoRuleChecker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="214" column="0" lean-forward="true" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Referee_2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/6/6.2/Referee_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="52">
+              <caret line="159" column="35" lean-forward="true" selection-start-line="159" selection-start-column="35" selection-end-line="159" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Default.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/6/6.2/Default.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -30,35 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
+      <file leaf-file-name="Admin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/8/8.1/Admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1935">
-              <caret line="129" column="18" lean-forward="false" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StateProxy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/StateProxy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RemoteProxy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/RemoteProxy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+            <state relative-caret-position="-405">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -66,55 +114,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dummy_remote.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/dummy_remote.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="76" column="18" lean-forward="false" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Go_Board.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/Go_Board.py">
+        <entry file="file://$PROJECT_DIR$/6/6.2/Go_Board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-25">
-              <caret line="202" column="60" lean-forward="true" selection-start-line="202" selection-start-column="60" selection-end-line="202" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="go.config" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/8/8.1/go.config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="55" lean-forward="false" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GoRuleChecker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="209" column="25" lean-forward="true" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Default.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/Default.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+            <state relative-caret-position="97">
+              <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
               <folding>
-                <element signature="e#0#27#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,15 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>chain</find>
-      <find>remove</find>
-      <find>#print</find>
-      <find>player oppon</find>
-      <find>Back</find>
-      <find>BackEnd</find>
-      <find>determine</find>
-      <find>liberties</find>
-      <find>libertie</find>
       <find>self.stone</find>
       <find>is_valid_pass</find>
       <find>over</find>
@@ -156,11 +153,20 @@
       <find>update</find>
       <find>im in</find>
       <find>place</find>
-      <find>opponent</find>
       <find>make_move</find>
       <find>make_a_move</find>
-      <find>taken</find>
+      <find>r</find>
       <find>print</find>
+      <find>taken</find>
+      <find>playerone</find>
+      <find>self.turn</find>
+      <find>self.current</find>
+      <find>switch</find>
+      <find>opponent</find>
+      <find>check_turn</find>
+      <find>Go_Board</find>
+      <find>remove</find>
+      <find>ref</find>
     </findStrings>
     <replaceStrings>
       <replace>print</replace>
@@ -171,9 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/4/4.1/run" />
-        <option value="$PROJECT_DIR$/4/4.1/FrontEnd.py" />
-        <option value="$PROJECT_DIR$/5/5.1/Board.py" />
         <option value="$PROJECT_DIR$/5/5.1/RuleChecker.py" />
         <option value="$PROJECT_DIR$/5/5.1/Dummy_one.py" />
         <option value="$PROJECT_DIR$/5/5.1/scratch" />
@@ -197,7 +200,6 @@
         <option value="$PROJECT_DIR$/7/7.1/server.py" />
         <option value="$PROJECT_DIR$/7/7.1/runs" />
         <option value="$PROJECT_DIR$/7/7.1/run" />
-        <option value="$PROJECT_DIR$/6/6.2/testdriver.py" />
         <option value="$PROJECT_DIR$/8/8.1/Administrator.py" />
         <option value="$PROJECT_DIR$/8/8.1/FrontEnd.py" />
         <option value="$PROJECT_DIR$/7/7.1/client.py" />
@@ -205,16 +207,27 @@
         <option value="$PROJECT_DIR$/7/7.1/Player_two.py" />
         <option value="$PROJECT_DIR$/8/8.1/PlayerProxy.py" />
         <option value="$PROJECT_DIR$/8/8.1/Remote.py" />
-        <option value="$PROJECT_DIR$/6/6.2/Referee.py" />
-        <option value="$PROJECT_DIR$/8/8.1/Default.py" />
         <option value="$PROJECT_DIR$/8/8.1/run" />
         <option value="$PROJECT_DIR$/8/8.1/Admin.py" />
-        <option value="$PROJECT_DIR$/8/8.1/Referee.py" />
         <option value="$PROJECT_DIR$/8/8.1/StateProxy.py" />
-        <option value="$PROJECT_DIR$/8/8.1/RemoteProxy.py" />
         <option value="$PROJECT_DIR$/8/8.1/dummy_remote.py" />
-        <option value="$PROJECT_DIR$/8/8.1/Go_Board.py" />
         <option value="$PROJECT_DIR$/8/8.1/go.config" />
+        <option value="$PROJECT_DIR$/8/8.1/RemoteProxy.py" />
+        <option value="$PROJECT_DIR$/8/8.1/Referee.py" />
+        <option value="$PROJECT_DIR$/6/6.2/makefile" />
+        <option value="$PROJECT_DIR$/6/6.2/FrontEnd.py" />
+        <option value="$PROJECT_DIR$/8/8.1/Default.py" />
+        <option value="$PROJECT_DIR$/6/6.2/Default.py" />
+        <option value="$PROJECT_DIR$/8/8.1/Go_Board.py" />
+        <option value="$PROJECT_DIR$/6/6.2/Referee_2.py" />
+        <option value="$PROJECT_DIR$/6/6.2/Go_Board.py" />
+        <option value="$PROJECT_DIR$/6/6.2/Referee_one.py" />
+        <option value="$PROJECT_DIR$/6/6.2/StateProxy.py" />
+        <option value="$PROJECT_DIR$/6/6.2/scratch" />
+        <option value="$PROJECT_DIR$/6/6.2/Referee.py" />
+        <option value="$PROJECT_DIR$/6/6.2/GoRuleChecker.py" />
+        <option value="$PROJECT_DIR$/6/6.2/testdriver.py" />
+        <option value="$PROJECT_DIR$/6/6.2/run" />
       </list>
     </option>
   </component>
@@ -225,8 +238,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="17" />
-    <option name="y" value="104" />
+    <option name="x" value="79" />
+    <option name="y" value="116" />
     <option name="width" value="1201" />
     <option name="height" value="687" />
   </component>
@@ -273,18 +286,23 @@
             <path>
               <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
               <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
-              <item name="5" type="462c0819:PsiDirectoryNode" />
+              <item name="4" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
               <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
               <item name="5" type="462c0819:PsiDirectoryNode" />
-              <item name="5.2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
               <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
               <item name="6" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
+              <item name="6" type="462c0819:PsiDirectoryNode" />
+              <item name="6.1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
@@ -300,19 +318,7 @@
             <path>
               <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
               <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
-              <item name="7" type="462c0819:PsiDirectoryNode" />
-              <item name="7.1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
               <item name="8" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
-              <item name="8" type="462c0819:PsiDirectoryNode" />
-              <item name="8.1" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -325,6 +331,7 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -338,7 +345,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Admin">
+  <component name="RunManager" selected="Python.testdriver">
     <configuration name="Admin" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -353,25 +360,6 @@
       <module name="Deliverables" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/8/8.1/Admin.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="GoRuleChecker" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/5/5.1" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Deliverables" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/5/5.1/GoRuleChecker.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -415,39 +403,55 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="aaaaa" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="testdriver" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/7/7.1" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/6/6.2" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Deliverables" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/7/7.1/aaaaa.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/6/6.2/testdriver.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="py.test for testdriver.TestDriver.testOnInputs" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/6/6.2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Deliverables" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;testdriver.TestDriver.testOnInputs&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.GoRuleChecker" />
-      <item index="1" class="java.lang.String" itemvalue="Python.aaaaa" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Remote_player" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Admin" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Referee" />
+      <item index="0" class="java.lang.String" itemvalue="Python.Remote_player" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Admin" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Referee" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.py.test for testdriver.TestDriver.testOnInputs" />
+      <item index="4" class="java.lang.String" itemvalue="Python.testdriver" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Admin" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Referee" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Remote_player" />
-        <item index="3" class="java.lang.String" itemvalue="Python.aaaaa" />
-        <item index="4" class="java.lang.String" itemvalue="Python.GoRuleChecker" />
+        <item index="0" class="java.lang.String" itemvalue="Python.testdriver" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test for testdriver.TestDriver.testOnInputs" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Admin" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Referee" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Remote_player" />
       </list>
     </recent_temporary>
   </component>
@@ -467,8 +471,28 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="py_test_for_testdriver_TestDriver_testOnInputs - 2019.11.30 at 22h 04m 41s.xml">
+      <configuration name="py.test for testdriver.TestDriver.testOnInputs" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_testdriver_TestDriver_testOnInputs - 2019.11.30 at 22h 05m 13s.xml">
+      <configuration name="py.test for testdriver.TestDriver.testOnInputs" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_testdriver_TestDriver_testOnInputs - 2019.11.30 at 22h 05m 48s.xml">
+      <configuration name="py.test for testdriver.TestDriver.testOnInputs" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_testdriver_TestDriver_testOnInputs - 2019.11.30 at 22h 06m 23s.xml">
+      <configuration name="py.test for testdriver.TestDriver.testOnInputs" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_testdriver_TestDriver_testOnInputs - 2019.11.30 at 22h 06m 47s.xml">
+      <configuration name="py.test for testdriver.TestDriver.testOnInputs" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_for_testdriver_TestDriver_testOnInputs - 2019.11.30 at 22h 07m 13s.xml">
+      <configuration name="py.test for testdriver.TestDriver.testOnInputs" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="17" y="104" width="1201" height="687" extended-state="0" />
+    <frame x="79" y="116" width="1201" height="687" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -482,6 +506,7 @@
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -491,7 +516,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -514,74 +538,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/4/4.1/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4/4.1/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.1/Dummy_one.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="22" lean-forward="false" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.2/Dummy_one.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="31" column="30" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="72" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4/4.1/Go_board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="220" column="0" lean-forward="true" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4/4.1/GoRuleChecker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4169">
-          <caret line="351" column="57" lean-forward="true" selection-start-line="351" selection-start-column="57" selection-end-line="351" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#22#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.2/scratch">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="64" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.2/Go_Board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1045">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/7/7.1/Dummy_one.py" />
-    <entry file="file://$PROJECT_DIR$/7/7.1/runc" />
-    <entry file="file://$PROJECT_DIR$/5/5.1/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/5/5.1/run">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -640,13 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/6/6.2/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/7/7.1/go.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -661,35 +610,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/6/6.2/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/FrontEnd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/Remote.py" />
     <entry file="file://$PROJECT_DIR$/7/7.1/GoRuleChecker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4551">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6/6.2/GameBoard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="141" column="14" lean-forward="false" selection-start-line="141" selection-start-column="14" selection-end-line="141" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -701,13 +626,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/PlayerProxy.py" />
-    <entry file="file://$PROJECT_DIR$/6/6.2/Referee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="48" column="24" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/6/6.2/Go.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -749,50 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-95">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6/6.2/testdriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/Default.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="209" column="25" lean-forward="true" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.2/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -805,43 +679,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/Admin.py">
+    <entry file="file://$PROJECT_DIR$/8/8.1/go.config">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="74" column="29" lean-forward="false" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="129" column="18" lean-forward="false" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/StateProxy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/RemoteProxy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="70" lean-forward="true" selection-start-line="0" selection-start-column="70" selection-end-line="0" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -850,23 +692,239 @@
         <state relative-caret-position="470">
           <caret line="76" column="18" lean-forward="false" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="209" column="25" lean-forward="true" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/GameBoard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1761">
+          <caret line="141" column="14" lean-forward="false" selection-start-line="141" selection-start-column="14" selection-end-line="141" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.2/makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.2/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/FrontEnd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4/4.1/FrontEnd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.2/FrontEnd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-301">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/RemoteProxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" column="68" lean-forward="false" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/FrontEnd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="47" column="41" lean-forward="false" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/Default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/StateProxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/Admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-405">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/Go_Board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="202" column="60" lean-forward="true" selection-start-line="202" selection-start-column="60" selection-end-line="202" selection-end-column="60" />
+        <state relative-caret-position="-289">
+          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/go.config">
+    <entry file="file://$PROJECT_DIR$/6/6.2/Referee_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="55" lean-forward="false" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="55" />
+        <state relative-caret-position="-898">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#167#189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/Go_Board.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/Referee_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="159" column="35" lean-forward="true" selection-start-line="159" selection-start-column="35" selection-end-line="159" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/StateProxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="17" column="41" lean-forward="true" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/scratch">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="1" lean-forward="false" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/Referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="84" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/GoRuleChecker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="214" column="0" lean-forward="true" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/Default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/testdriver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
           <folding />
         </state>
       </provider>

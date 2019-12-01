@@ -1,4 +1,4 @@
-from Referee import Referee
+from Referee_1 import Referee
 import socket
 import json
 from FrontEnd import FrontEnd
