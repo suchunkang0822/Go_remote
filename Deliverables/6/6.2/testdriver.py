@@ -39,13 +39,14 @@ class Driver:
             if winner:
                 # print('winner',winner)
                 output.append(winner)
+                break
         # print(GoRuleChecker(inputs[0]).sixth_resolve_history("B"))
 
 
 
-        # for i,n in enumerate(output):
-        #     print(n)
-        #     print('\n\n\n\n\n')
+        for i,n in enumerate(output):
+            print(n)
+            print('\n\n\n\n\n')
 
         # print(json.dumps(output))
         # for i,n in enumerate(output):
@@ -56,4 +57,5 @@ class Driver:
 
 
 if __name__ == "__main__":
-    print(Driver().testOnInputs())
+    Driver().testOnInputs()
+    # print(Driver().testOnInputs())
