@@ -36,9 +36,6 @@ class Client:
             json_data = json.loads(data.decode())
         except JSONDecodeError:
             return "end of input"
-        print('this is json_feed',json_data)
-        print('length',len(json_data))
-        print('content',json_data[0])
         # try:
         if len(json_data) == 1 and json_data[0] == "register":
             name = self.player.register()
