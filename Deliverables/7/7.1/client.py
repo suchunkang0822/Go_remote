@@ -46,7 +46,7 @@ class Client:
         elif len(json_data) == 2 and json_data[0]== "make-a-move":
             history = json_data[1]
             move = self.player.make_a_move(history)
-            print('im in make-move',move)
+            # print('im in make-move',move)
             self.s.sendall(json.dumps(move).encode())
         else:
             self.s.sendall("GO has gone crazy!".encode())
