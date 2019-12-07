@@ -68,11 +68,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Default.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Default.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/7/7.1/Default.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
               <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="run" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/7/7.1/run">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -148,7 +158,6 @@
         <option value="$PROJECT_DIR$/7/7.1/aaaaa.py" />
         <option value="$PROJECT_DIR$/7/7.1/server.py" />
         <option value="$PROJECT_DIR$/7/7.1/runs" />
-        <option value="$PROJECT_DIR$/7/7.1/run" />
         <option value="$PROJECT_DIR$/8/8.1/Administrator.py" />
         <option value="$PROJECT_DIR$/8/8.1/FrontEnd.py" />
         <option value="$PROJECT_DIR$/7/7.1/client.py" />
@@ -192,6 +201,7 @@
         <option value="$PROJECT_DIR$/7/7.2/RemoteProxy.py" />
         <option value="$PROJECT_DIR$/7/7.2/Admin.py" />
         <option value="$PROJECT_DIR$/7/7.2/client.py" />
+        <option value="$PROJECT_DIR$/7/7.1/run" />
       </list>
     </option>
   </component>
@@ -202,8 +212,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="149" />
-    <option name="y" value="73" />
+    <option name="x" value="52" />
+    <option name="y" value="23" />
     <option name="width" value="1160" />
     <option name="height" value="676" />
   </component>
@@ -441,7 +451,8 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="149" y="73" width="1160" height="676" extended-state="0" />
+    <frame x="52" y="23" width="1160" height="676" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18022329" sideWeight="0.5030621" order="0" side_tool="true" content_ui="tabs" />
@@ -449,7 +460,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3581081" sideWeight="0.49693787" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28264758" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28264758" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -486,7 +497,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/6/6.2/GoRules.py" />
     <entry file="file://$PROJECT_DIR$/7/7.1/server.py" />
     <entry file="file://$PROJECT_DIR$/7/7.1/client.py" />
     <entry file="file://$PROJECT_DIR$/6/6.2/handleInput.py" />
@@ -769,6 +779,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/7/7.1/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
           <folding />
         </state>
       </provider>
