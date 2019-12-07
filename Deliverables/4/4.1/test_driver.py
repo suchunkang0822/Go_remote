@@ -1,5 +1,5 @@
 from GoRuleChecker import *
-from Go_board import *
+from Go_Board import *
 from FrontEnd import *
 import json
 

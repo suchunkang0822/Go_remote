@@ -52,6 +52,7 @@ class GoRuleChecker(Go_Board, Interface):
 
     @staticmethod
     def validate_size_history(boards):
+
         if len(boards) > 3:
             raise Exception('size of board history is invalid')
         else:
@@ -323,6 +324,7 @@ class GoRuleChecker(Go_Board, Interface):
             if player != "B":
                 raise Exception
         elif len(self.board_history) == 2:
+
             if player != "W":
                 raise Exception
         else:

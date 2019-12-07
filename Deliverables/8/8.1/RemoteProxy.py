@@ -9,7 +9,6 @@ class RemoteProxy:
         self.player_stone = None
         self.name = None
         self.conn = conn
-        
 
     def register(self):
         self.conn.send(json.dumps(["register"]).encode())
@@ -22,9 +21,6 @@ class RemoteProxy:
         self.conn.send(json.dumps(["receive-stone", stone]).encode())
     
     def make_a_move(self, boards):
-        # #print('this is boards',boards)
-        # #print('encoding',json.dumps(["make-move", boards]).encode())
-        #print('sending',["make-a-move", boards])
         self.conn.send(json.dumps(["make-a-move", boards]).encode())
         move = json.loads(self.conn.recv(6000).decode())
         return move

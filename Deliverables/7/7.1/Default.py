@@ -21,7 +21,7 @@ class Default(GoRuleChecker,Interface):
         else:
             return "no name"
 
-    def receive_stone(self,stone):
+    def receive_stones(self,stone):
         self.player_stone = stone
 
     def make_a_move(self,boards):
@@ -79,24 +79,21 @@ class Default(GoRuleChecker,Interface):
 
 
 
-
-
-def driver():
-    result_list = []
-    dummy_one = Default()
-    j_list = abstract_front_end()
-    for i,read in enumerate(j_list):
-        if len(read) == 1 and read[0] == "register":
-            result_list.append(dummy_one.register(read[0]))
-        elif len(read) == 2:
-            if read[0] == "receive-stones":
-                dummy_one.receive_stone(read[1])
-            elif read[0] == "make-a-move":
-                result_list.append(dummy_one.make_a_move(read[1]))
-    return json.dumps(result_list)
+    def driver(self):
+        result_list = []
+        # dummy_one = Default()
+        j_list = abstract_front_end()
+        for i,read in enumerate(j_list):
+            if len(read) == 1 and read[0] == "register":
+                result_list.append(self.register())
+            elif len(read) == 2:
+                if read[0] == "receive-stones":
+                    self.receive_stone(read[1])
+                elif read[0] == "make-a-move":
+                    result_list.append(self.make_a_move(read[1]))
+        return json.dumps(result_list)
 
 
 if __name__ == '__main__':
 
-    a = driver()
-    print(a)
+    print(Default().driver())

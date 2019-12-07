@@ -10,13 +10,15 @@ class FrontEnd(ABC):
     def __init__(self):
         pass
 
-    def input_receiver(self):
+    def input_receiver(self,file_name=None):
         json_string = ""
-
-        for line in fileinput.input():
-            json_string += line
+        if file_name:
+            for line in fileinput.input(files=file_name):
+                json_string += line
+        else:
+            for line in fileinput.input():
+                json_string += line
         return json_string
-
     # inspired by
     # https://stackoverflow.com/questions/27907633/multiple-json-objects-in-one-file-extract-by-python
     # decoder for stacked json obj

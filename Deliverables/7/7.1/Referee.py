@@ -13,7 +13,7 @@ class Referee:
         self.boardSize = Go_Board().Board_Size
         self.boardHistory = [[[" " for col in range(self.boardSize)] for row in range(self.boardSize)]]
         self.currentStone = self.playerOneStone
-        self.currentObj = None
+        self.currentObj = self.playerOneObj
 
     def assignPlayerOne(self, string):
         self.playerOneName = string
@@ -54,26 +54,24 @@ class Referee:
 
     def registerPlayers(self, player1, player2):
         try:
+            # self.assignPlayerOne(player1.register())
             self.playerOneName = player1.register()
+            #print('end')
+            # self.assignPlayerTwo(player2.register())
             self.playerTwoName = player2.register()
             player1.receive_stone(self.playerOneStone)
             player2.receive_stone(self.playerTwoStone)
-            self.playerOne = player1
-            self.playerTwo = player2
-            self.current = player1
+            self.playerOneObj = player1
+            self.playerTwoObj = player2
+            self.currentObj = player1
         except ValueError:
             return "GO has gone crazy!"
-
-    def play(self,move):
-        pass
-        # opponent = "W" if self.currentStone == "B" else "B"
 
     def handleMove(self, move):
         if move == "pass":
             self.updateHistory(self.boardHistory[0])
             self.switch_player()
             is_valid = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone)
-
             if not is_valid:
                 return self.decide_winner(self.boardHistory[0])
         else:
@@ -94,5 +92,7 @@ class Referee:
 
 
 
+    def play(self,remote,local):
+        pass
 
 

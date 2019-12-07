@@ -25,7 +25,6 @@ class StateProxy:
 
     def make_a_move(self, boards):
         if self.registered and self.received:
-            #print('in make_move of StateProxy ')
             return self.player.make_a_move(boards)
         raise ValueError
 
