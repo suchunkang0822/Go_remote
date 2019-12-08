@@ -64,6 +64,7 @@ if __name__ == "__main__":
     a.connnect()
     while True:
         if a.receive_and_send() == "end of input":
+            a.s.close()
             break
 
 
