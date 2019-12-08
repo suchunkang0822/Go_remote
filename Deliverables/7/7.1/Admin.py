@@ -91,6 +91,7 @@ if __name__ == "__main__":
     admin = Admin()
     # print(admin.game_start())
     print(admin.driver())
+    admin.conn.close()
 
 
 
