@@ -1,6 +1,7 @@
 from GoRuleChecker import *
 from GoBoard import *
-import sys
+import copy
+
 
 
 class Referee:
@@ -11,7 +12,7 @@ class Referee:
         self.playerTwoObj = None
         self.playerTwoName = None
         self.playerTwoStone = "W"
-        self.boardSize = Go_Board().Board_Size
+        self.boardSize = GoBoard().Board_Size
         self.boardHistory = [[[" " for col in range(self.boardSize)] for row in range(self.boardSize)]]
         self.currentStone = self.playerOneStone
         self.currentObj = self.playerOneObj
@@ -74,12 +75,12 @@ class Referee:
             if not is_valid:
                 return self.decide_winner(self.boardHistory[0])
         else:
-            row, col = Go_Board().point_parser(move)
+            row, col = GoBoard().point_parser(move)
             madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone, row, col)
             opponentStone = self.playerTwoStone if self.currentStone == self.playerOneStone else self.playerOneStone
             opponentName = self.get_player_name(opponentStone)
             if madeMove:
-                whatIfBoard = Go_Board(self.boardHistory[0]).place(self.currentStone,row,col)
+                whatIfBoard = GoBoard(self.boardHistory[0]).place(self.currentStone,row,col)
                 try:
                     self.updateHistory(copy.deepcopy(GoRuleChecker().board_after_remove_captured_stone
                                                      (whatIfBoard,self.currentStone,row,col)))
