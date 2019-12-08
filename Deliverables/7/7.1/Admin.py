@@ -36,7 +36,7 @@ class Admin:
             # decoded_data = data.decode('utf-8')
             # json_list = list(FrontEnd().parser(decoded_data))
             # return json_list
-        
+
 
     # def game_start(self):
 
@@ -82,7 +82,9 @@ class Admin:
                 output_list.append(output)
             elif output == "GO has gone crazy!":
                 output_list.append(output)
+                self.conn.close()
                 return json.dumps(output_list)
+        self.conn.close()
         return json.dumps(output_list)
 
 
@@ -91,7 +93,7 @@ if __name__ == "__main__":
     admin = Admin()
     # print(admin.game_start())
     print(admin.driver())
-    admin.conn.close()
+    # admin.conn.close()
 
 
 
