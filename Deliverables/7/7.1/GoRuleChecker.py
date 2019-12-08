@@ -1,4 +1,4 @@
-from Go_Board import *
+from GoBoard import *
 import abc
 
 class Interface(abc.ABC):
@@ -70,7 +70,7 @@ class GoRuleChecker(Interface):
     #############
 
     def first_check_players(self,player):
-        Go_Board.stone_checker(player)
+        GoBoard.stone_checker(player)
 
     # second_check_board is automatically run when RuleChecker object is created
 
@@ -81,13 +81,13 @@ class GoRuleChecker(Interface):
     @staticmethod
     def check_liberties(board, stone, output=None):
         opponent = "W" if stone == "B" else "B"
-        go_board_obj = Go_Board(board)
-        list_of_stone_coord = go_board_obj.get_coord(board, stone)
+        GoBoard_obj = GoBoard(board)
+        list_of_stone_coord = GoBoard_obj.get_coord(board, stone)
         temp, result = [], []
         if output:
             while list_of_stone_coord:
                 coord = list_of_stone_coord.pop(0)
-                chain, reached, reached_coord = go_board_obj.chain_and_reached(coord[0], coord[1])
+                chain, reached, reached_coord = GoBoard_obj.chain_and_reached(coord[0], coord[1])
                 if " " in reached:
                     for i, reach in enumerate(reached):
                         if reach == " ":
@@ -99,7 +99,7 @@ class GoRuleChecker(Interface):
         else:
             while list_of_stone_coord:
                 coord = list_of_stone_coord.pop(0)
-                chain, reached, _ = go_board_obj.chain_and_reached(coord[0], coord[1])
+                chain, reached, _ = GoBoard_obj.chain_and_reached(coord[0], coord[1])
                 if " " not in reached and opponent in reached:
                         return False
                 else:
@@ -177,7 +177,7 @@ class GoRuleChecker(Interface):
                 else:
                     if w2 == 1 and b2 == 0:
                         if (w3 == 1 and b3 == 1) or w3 == 1:
-                            w2_coord, w3_coord = Go_Board.get_coord(self.board2, "W"), Go_Board.get_coord(self.board3, "W")
+                            w2_coord, w3_coord = GoBoard.get_coord(self.board2, "W"), GoBoard.get_coord(self.board3, "W")
                             if w2_coord == w3_coord:
                                 return True
                             else:
@@ -212,8 +212,8 @@ class GoRuleChecker(Interface):
             return True
 
     def check_suicide(self,stone,row,col):
-        what_if_board = Go_Board(self.board3).place(stone,row,col)
-        board_obj = Go_Board(what_if_board)
+        what_if_board = GoBoard(self.board3).place(stone,row,col)
+        board_obj = GoBoard(what_if_board)
         chain, reached, reached_coord = board_obj.chain_and_reached(row, col)
         if " " not in reached:
             while reached_coord:
@@ -240,7 +240,7 @@ class GoRuleChecker(Interface):
         if self.board1 == self.board3:
             raise Exception('Ko detected')
         elif isinstance(row,int) and isinstance(col,int):
-            what_if_board = Go_Board(self.board3).place(stone, row, col)
+            what_if_board = GoBoard(self.board3).place(stone, row, col)
             if what_if_board != 'This seat is taken!':
                 what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
                 if self.board2 == what_if_board:
@@ -255,7 +255,7 @@ class GoRuleChecker(Interface):
     @staticmethod
     def board_after_remove_captured_stone(what_if_board,player,row,col):
         opponent = "B" if player == "W" else "W"
-        board_obj = Go_Board(what_if_board)
+        board_obj = GoBoard(what_if_board)
         neighbor_list = board_obj.get_valid_neighbors([row,col])
         neighbor_list = sorted(neighbor_list, key=lambda x: x[1])
         while neighbor_list:
@@ -294,9 +294,9 @@ class GoRuleChecker(Interface):
                     empty_space_list = [coord for i, coord in enumerate(list_coord) if diffMStones2_1[i] == " "]
                     while empty_space_list:
                         current_coord = empty_space_list.pop(0)
-                        chain, reached, reach_coord = Go_Board(board1).chain_and_reached(current_coord[0],current_coord[1])
+                        chain, reached, reach_coord = GoBoard(board1).chain_and_reached(current_coord[0],current_coord[1])
                         if reached.count(" ") == 1:
-                            correct_board_2 = Go_Board(board1).place(player,player_row,player_col)
+                            correct_board_2 = GoBoard(board1).place(player,player_row,player_col)
                             correct_board_2 = self.board_after_remove_captured_stone(correct_board_2,player,player_row,player_col)
                             if board2 == correct_board_2:
                                 return True
@@ -356,11 +356,11 @@ class GoRuleChecker(Interface):
 
     def area_counter(self, board):
         black_area, white_area = [], []
-        go_board_obj = Go_Board(board)
-        empty_coord_list = Go_Board.get_coord(board, " ")
+        GoBoard_obj = GoBoard(board)
+        empty_coord_list = GoBoard.get_coord(board, " ")
         while empty_coord_list:
             current_empty_coord = empty_coord_list.pop(0)
-            chain, reached, _ = go_board_obj.chain_and_reached(current_empty_coord[0], current_empty_coord[1])
+            chain, reached, _ = GoBoard_obj.chain_and_reached(current_empty_coord[0], current_empty_coord[1])
             if "W" in reached and ("B" not in reached):
                 for i, coord in enumerate(chain):
                     white_area.append(coord)

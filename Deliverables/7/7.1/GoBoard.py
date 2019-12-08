@@ -27,7 +27,7 @@ class Interface(abc.ABC):
     #     pass
 
 
-class Go_Board(Interface):
+class GoBoard(Interface):
     Board_Size = 19
     Maybe_Stone = ["B", "W", " "]
     Stone = ["B", "W"]
