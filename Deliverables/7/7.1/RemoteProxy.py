@@ -22,8 +22,8 @@ class RemoteProxy:
         self.conn.send(json.dumps(["receive-stones", stone]).encode())
     
     def make_a_move(self, boards):
-        print('why am i not in')
-        print('this is make a move history',boards)
+        # print('why am i not in')
+        # print('this is make a move history',boards)
         self.conn.send(json.dumps(["make-a-move", boards]).encode())
         move = json.loads(self.conn.recv(6000).decode())
         return move

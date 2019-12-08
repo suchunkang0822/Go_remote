@@ -1,4 +1,4 @@
-from Go_Board import Go_Board
+from Go_Board import *
 import abc
 
 class Interface(abc.ABC):
