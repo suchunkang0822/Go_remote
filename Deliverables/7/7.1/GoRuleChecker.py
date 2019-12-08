@@ -1,6 +1,4 @@
 from Go_Board import *
-from FrontEnd import *
-import json
 import abc
 
 class Interface(abc.ABC):
@@ -39,7 +37,7 @@ class Interface(abc.ABC):
     #     pass
 
 
-class GoRuleChecker(Go_Board, Interface):
+class GoRuleChecker(Interface):
     def __init__(self,boards=None):
         super().__init__()
         # self.board_history = self.validate_size_history(boards)
@@ -72,7 +70,7 @@ class GoRuleChecker(Go_Board, Interface):
     #############
 
     def first_check_players(self,player):
-        self.stone_checker(player)
+        Go_Board.stone_checker(player)
 
     # second_check_board is automatically run when RuleChecker object is created
 
@@ -179,7 +177,7 @@ class GoRuleChecker(Go_Board, Interface):
                 else:
                     if w2 == 1 and b2 == 0:
                         if (w3 == 1 and b3 == 1) or w3 == 1:
-                            w2_coord, w3_coord = self.get_coord(self.board2, "W"), self.get_coord(self.board3, "W")
+                            w2_coord, w3_coord = Go_Board.get_coord(self.board2, "W"), Go_Board.get_coord(self.board3, "W")
                             if w2_coord == w3_coord:
                                 return True
                             else:
@@ -359,7 +357,7 @@ class GoRuleChecker(Go_Board, Interface):
     def area_counter(self, board):
         black_area, white_area = [], []
         go_board_obj = Go_Board(board)
-        empty_coord_list = self.get_coord(board, " ")
+        empty_coord_list = Go_Board.get_coord(board, " ")
         while empty_coord_list:
             current_empty_coord = empty_coord_list.pop(0)
             chain, reached, _ = go_board_obj.chain_and_reached(current_empty_coord[0], current_empty_coord[1])

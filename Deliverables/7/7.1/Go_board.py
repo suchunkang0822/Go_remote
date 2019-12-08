@@ -212,14 +212,14 @@ class BoardFrontEnd:
         return json.dumps(result)
 
 
-if __name__ == '__main__':
-    f = FrontEnd()
-    json_string = f.input_receiver()
-    json_list = list(f.parser(json_string))
-
-    go_board = Go_Board()
-
-    print(go_board.question(json_list))
+# if __name__ == '__main__':
+#     f = FrontEnd()
+#     json_string = f.input_receiver()
+#     json_list = list(f.parser(json_string))
+#
+#     go_board = Go_Board()
+#
+#     print(go_board.question(json_list))
 
 
 

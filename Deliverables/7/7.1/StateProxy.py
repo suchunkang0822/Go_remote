@@ -1,8 +1,3 @@
-from FrontEnd import *
-import socket
-import json
-import random
-
 
 class StateProxy:
     def __init__(self, player):

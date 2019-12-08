@@ -1,6 +1,7 @@
-from Go_Board import *
 from GoRuleChecker import *
-import copy
+from Go_Board import *
+import sys
+
 
 class Referee:
     def __init__(self):
@@ -20,7 +21,6 @@ class Referee:
 
     def assignPlayerTwo(self, string):
         self.playerTwoName = string
-
 
     def get_player_name(self, stone):
         if stone == "B":
@@ -50,7 +50,6 @@ class Referee:
         elif self.currentStone == self.playerTwoStone:
             self.currentStone = self.playerOneStone
             self.currentObj = self.playerOneObj
-
 
     def registerPlayers(self, player1, player2):
         try:
@@ -89,10 +88,5 @@ class Referee:
                 self.switch_player()
             else:
                 return opponentName
-
-
-
-    def play(self,remote,local):
-        pass
 
 
