@@ -82,19 +82,18 @@ class Admin:
                 output_list.append(output)
             elif output == "GO has gone crazy!":
                 output_list.append(output)
-                # self.conn.close()
+                self.conn.close()
                 return json.dumps(output_list)
-        # self.conn.close()
+        self.conn.close()
         return json.dumps(output_list)
 
 
 
 if __name__ == "__main__":
     admin = Admin()
-
     # print(admin.game_start())
     print(admin.driver())
-    admin.conn.close()
+
 
 
 

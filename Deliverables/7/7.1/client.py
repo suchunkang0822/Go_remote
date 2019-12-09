@@ -1,9 +1,12 @@
 from FrontEnd import *
 from Default import *
 import socket
+import time
 
 class Client:
     def __init__(self,player):
+        # self.HOST = '192.168.1.152'
+        # _, self.PORT, _ = self.fetch_config()
         self.HOST, self.PORT, _ = self.fetch_config()
         self.s = None
         self.player = player
@@ -24,9 +27,13 @@ class Client:
     #         response += res
     #     return response
 
-    def connnect(self):
+    def connect(self):
         self.s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.s.connect((self.HOST,self.PORT))
+        try:
+            self.s.connect((self.HOST,self.PORT))
+        except:
+            time.sleep(2)
+            self.connect()
 
 
 
@@ -61,7 +68,7 @@ class Client:
 if __name__ == "__main__":
     # Client(Default()).receive_and_send()
     a = Client(Default())
-    a.connnect()
+    a.connect()
     while True:
         if a.receive_and_send() == "end of input":
             a.s.close()
