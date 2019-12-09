@@ -3,6 +3,7 @@ from FrontEnd import *
 from importlib.machinery import SourceFileLoader
 from RemoteProxy import *
 from StateProxy import *
+from GoBoard import *
 import socket
 
 class Admin:
@@ -58,15 +59,18 @@ class Admin:
             if len(json_data) == 1 and json_data[0] == "register":
                 name = self.remote_player.register()
                 return name
-                # print(json.dumps(name).encode())
             elif len(json_data) == 2 and json_data[0] == "receive-stones":
                 stone = json_data[1]
                 self.remote_player.receive_stone(stone)
-            elif len(json_data) == 2 and json_data[0]== "make-a-move":
+            elif len(json_data) == 2 and json_data[0] == "make-a-move":
                 history = json_data[1]
+                try:
+                    for i,board in enumerate(history):
+                        GoBoard().board_checker(board)
+                except TypeError:
+                    return "GO has gone crazy!"
                 move = self.remote_player.make_a_move(history)
                 return move
-                # print(json.dumps(move).encode())
             else:
                 return "GO has gone crazy!"
         except ValueError:
