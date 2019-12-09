@@ -1,6 +1,5 @@
 from GoRuleChecker import *
-from FrontEnd import *
-from BackEnd import *
+from GoBoard import *
 import abc
 
 
@@ -33,7 +32,7 @@ class Default(GoRuleChecker,Interface):
             if capture:
                 return capture
             else:
-                empty_coord = ref.get_coord(recent_board, " ")
+                empty_coord = GoBoard.get_coord(recent_board, " ")
                 empty_coord = sorted(empty_coord, key=lambda x: x[1])
                 while empty_coord:
                     current_coord = empty_coord.pop(0)
@@ -88,7 +87,7 @@ class Default(GoRuleChecker,Interface):
                 result_list.append(self.register())
             elif len(read) == 2:
                 if read[0] == "receive-stones":
-                    self.receive_stone(read[1])
+                    self.receive_stones(read[1])
                 elif read[0] == "make-a-move":
                     result_list.append(self.make_a_move(read[1]))
         return json.dumps(result_list)
