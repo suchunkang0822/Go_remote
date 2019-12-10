@@ -1,11 +1,5 @@
 env:
-<<<<<<< HEAD
- - ASSIGN_MAJOR=8 ASSIGN_MINOR=1 TEAM_NAME=team42
-||||||| merged common ancestors
  - ASSIGN_MAJOR=9 ASSIGN_MINOR=1 TEAM_NAME=team42
-=======
- - ASSIGN_MAJOR=7 ASSIGN_MINOR=1 TEAM_NAME=team42
->>>>>>> 97f5baf73971b145db8a6d46e7aa3566e154ee27
 
 script:
  - pushd Deliverables/$ASSIGN_MAJOR/$ASSIGN_MAJOR.$ASSIGN_MINOR
