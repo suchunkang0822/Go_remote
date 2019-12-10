@@ -16,6 +16,7 @@ class Referee:
         self.boardHistory = [[[" " for col in range(self.boardSize)] for row in range(self.boardSize)]]
         self.currentStone = self.playerOneStone
         self.currentObj = self.playerOneObj
+        self.opponentName = self.playerTwoName
 
     def assignPlayerOne(self, string):
         self.playerOneName = string
@@ -48,9 +49,11 @@ class Referee:
         if self.currentStone == self.playerOneStone:
             self.currentStone = self.playerTwoStone
             self.currentObj = self.playerTwoObj
+            self.opponentName = self.playerTwoName
         elif self.currentStone == self.playerTwoStone:
             self.currentStone = self.playerOneStone
             self.currentObj = self.playerOneObj
+            self.opponentName = self.playerOneName
 
     def registerPlayers(self, player1, player2):
         try:
@@ -75,7 +78,6 @@ class Referee:
             if not is_valid:
                 return self.decide_winner(self.boardHistory[0])
         else:
-            print('this is move',move)
             row, col = GoBoard().point_parser(move)
             madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone, row, col)
             opponentStone = self.playerTwoStone if self.currentStone == self.playerOneStone else self.playerOneStone
@@ -95,6 +97,9 @@ class Referee:
         self.registerPlayers(player1,player2)
         while True:
             move = self.currentObj.make_a_move(self.boardHistory)
-            self.handleMove(move)
+            try:
+                self.handleMove(move)
+            except TypeError:
+                return self.opponentName
             self.switch_player()
 
