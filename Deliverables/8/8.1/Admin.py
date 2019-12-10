@@ -67,9 +67,7 @@ class Admin:
 
     def driver(self):
         output_list = []
-        # input = FrontEnd().input_receiver()
         input = FrontEnd().getJson()
-        # list_json_data = list(FrontEnd().parser(input))
         for i,json_data in enumerate(input):
             output = self.send_and_receive(json_data)
             if output and output != "GO has gone crazy!":

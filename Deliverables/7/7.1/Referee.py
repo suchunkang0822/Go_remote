@@ -16,6 +16,7 @@ class Referee:
         self.boardHistory = [[[" " for col in range(self.boardSize)] for row in range(self.boardSize)]]
         self.currentStone = self.playerOneStone
         self.currentObj = self.playerOneObj
+        self.opponentName = self.playerTwoName
 
     def assignPlayerOne(self, string):
         self.playerOneName = string
@@ -48,9 +49,11 @@ class Referee:
         if self.currentStone == self.playerOneStone:
             self.currentStone = self.playerTwoStone
             self.currentObj = self.playerTwoObj
+            self.opponentName = self.playerTwoName
         elif self.currentStone == self.playerTwoStone:
             self.currentStone = self.playerOneStone
             self.currentObj = self.playerOneObj
+            self.opponentName = self.playerOneName
 
     def registerPlayers(self, player1, player2):
         try:
@@ -59,8 +62,8 @@ class Referee:
             #print('end')
             # self.assignPlayerTwo(player2.register())
             self.playerTwoName = player2.register()
-            player1.receive_stone(self.playerOneStone)
-            player2.receive_stone(self.playerTwoStone)
+            player1.receive_stones(self.playerOneStone)
+            player2.receive_stones(self.playerTwoStone)
             self.playerOneObj = player1
             self.playerTwoObj = player2
             self.currentObj = player1
@@ -90,4 +93,13 @@ class Referee:
             else:
                 return opponentName
 
+    def play_game(self,player1,player2):
+        self.registerPlayers(player1,player2)
+        while True:
+            move = self.currentObj.make_a_move(self.boardHistory)
+            try:
+                self.handleMove(move)
+            except TypeError:
+                return self.opponentName
+            self.switch_player()
 
