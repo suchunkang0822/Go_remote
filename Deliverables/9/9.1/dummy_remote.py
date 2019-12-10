@@ -18,6 +18,7 @@ class Proxy(GoRuleChecker):
     def random_coord(self):
         row = random.randrange(1,self.Board_size)
         col = random.randrange(1,self.Board_size)
+        print(row,col)
         return row,col
 
     @staticmethod
@@ -26,6 +27,7 @@ class Proxy(GoRuleChecker):
         return "remote"
 
     def receive_stone(self,stone):
+        print("stone:",stone)
         self.player_stone = stone
 
     def make_move(self,boards):
@@ -46,21 +48,22 @@ class Proxy(GoRuleChecker):
             return "This history makes no sense!"
 
     def receive_and_send(self):
-        self.s.connect((self.HOST, self.PORT))
+        
         json_obj = json.loads(self.s.recv(6000).decode())
         print("WHAT? ",json_obj)
         if json_obj[0] == "register":
-            name = self.register()
             self.s.send(json.dumps(self.register()).encode())
         elif json_obj[0] == "receive-stones":
             print(json_obj[0][1])
             self.receive_stone(json_obj[0][1])
-        elif json_obj[0] == "make-move":
+        elif json_obj[0][1] == "make-a-move":
             self.s.send(self.make_move(json_obj[0][1]).encode())
 
 
 
 
 if __name__ == "__main__":
-    # while True:
-    Proxy().receive_and_send()
+    module = Proxy()
+    module.s.connect((module.HOST, module.PORT))
+    while True:
+        module.receive_and_send()

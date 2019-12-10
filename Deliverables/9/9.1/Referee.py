@@ -68,7 +68,7 @@ class Referee:
             self.playerOneObj = player1
             self.playerTwoObj = player2
             self.currentObj = player1
-            print("Setting up: ", self.playerOneObj)
+            
             return True
         except ValueError:
             return False

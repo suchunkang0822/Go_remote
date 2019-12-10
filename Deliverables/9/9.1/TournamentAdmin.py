@@ -54,9 +54,12 @@ class TournamentAdmin:
 
         for conn in self.remote_connections:
             remote = StateProxy(RemoteProxy(conn))
+            
             remote_name = remote.register()
+            print(remote.player.name)
 
             player_map[remote_name] = remote
+            print("registered", player_map)
         
         if n_default > 0:
             for i in range(n_default):
@@ -84,7 +87,7 @@ class TournamentAdmin:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.s.bind((self.HOST, self.PORT))
-        self.s.listen(n)
+        self.s.listen()
         for i in range(n):
             conn, _ = self.s.accept()
             connections.append(conn)

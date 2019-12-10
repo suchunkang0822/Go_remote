@@ -4,6 +4,7 @@ import json
 
 class RemoteProxy:
     def __init__(self, conn):
+        print("remote initiated")
         self.HOST, self.PORT, _ = self.fetch_config()
         self.player_stone = None
         self.name = None
@@ -20,7 +21,8 @@ class RemoteProxy:
         self.player_stone = stone
         self.conn.send(json.dumps(["receive-stones", stone]).encode())
 
-    def make_a_move(self, boards):
+    def make_move(self, boards):
+        
         # print('why am i not in')
         # print('this is make a move history',boards)
         self.conn.send(json.dumps(["make-a-move", boards]).encode())

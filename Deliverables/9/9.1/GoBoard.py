@@ -216,7 +216,7 @@ if __name__ == '__main__':
     json_string = f.input_receiver()
     json_list = list(f.parser(json_string))
 
-    go_board = Go_Board()
+    go_board = GoBoard()
 
     print(go_board.question(json_list))
 
