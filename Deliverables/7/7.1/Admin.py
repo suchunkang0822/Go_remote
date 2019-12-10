@@ -78,8 +78,8 @@ class Admin:
         output_list = []
         # input = FrontEnd().input_receiver()
         input = FrontEnd().getJson()
-        print('input')
-        print(input)
+        # print('input')
+        # print(input)
         # list_json_data = list(FrontEnd().parser(input))
         for i,json_data in enumerate(input):
             # print('json data',json_data,json_data[0])
@@ -87,7 +87,7 @@ class Admin:
             #     output_list.append("GO has gone crazy!")
             #     return json.dumps(output_list)
             output = self.send_and_receive(json_data)
-            print('this is output',output)
+            # print('this is output',output)
             if output and output != "GO has gone crazy!":
                 output_list.append(output)
             elif output == "GO has gone crazy!":
