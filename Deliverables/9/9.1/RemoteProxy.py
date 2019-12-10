@@ -12,9 +12,11 @@ class RemoteProxy():
         
 
     def register(self):
-        self.conn.send(json.dumps(["register"]).encode())
-        name = json.loads(self.conn.recv(6000).decode())
-        print('name',name)
+        json_data = json.dumps(["register"]).encode()
+        self.conn.send(json_data)
+        
+        data = self.conn.recv(6000).decode()
+        name = json.loads(data)
         self.name = name
         return name
     
@@ -23,7 +25,8 @@ class RemoteProxy():
         self.conn.send(json.dumps(["receive-stone", stone]).encode())
     
     def make_move(self, boards):
-        self.conn.send(json.dumps(["make-move", boards]))
+        json_data = json.dumps(["make-move", boards]).encode()
+        self.conn.send(json_data)
         move = json.loads(self.conn.recv(6000).decode())
         return move
 

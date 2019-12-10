@@ -1,6 +1,5 @@
 from GoRuleChecker import *
 from FrontEnd import *
-from BackEnd import *
 import abc
 
 
@@ -15,9 +14,9 @@ class Default(GoRuleChecker,Interface):
         self.player_stone = ""
 
     @staticmethod
-    def register(string):
-        if string == "register":
-            return "no name"
+    def register():
+        
+        return "default"
 
     def receive_stone(self,stone):
         self.player_stone = stone

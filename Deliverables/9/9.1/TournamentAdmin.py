@@ -14,10 +14,11 @@ class TournamentAdmin:
         self.HOST, self.PORT, self.DEFPATH = self.fetch_config()
         self.s = None
         self.t_style, self.n_remote = self.fetch_tournament_details()
+        
         self.remote_connections = self.create_connections(self.n_remote)
         self.player_map = self.setup_player_map()
         # TO START GAME
-        self.setup_game()
+        self.setup_game(self.t_style)
         # self.conn = self.create_connection()
         # self.default_player = StateProxy(self.setup_default_player())
         # self.remote_player = StateProxy(RemoteProxy(self.conn))
@@ -43,7 +44,7 @@ class TournamentAdmin:
         if style not in ["--league","--cup"] or not n.isnumeric():
             raise("Arguments are incorrect")
         
-        return style, n
+        return style, int(n)
     
 
     def setup_player_map(self):
@@ -146,7 +147,7 @@ class TournamentAdmin:
     def single_knockout(self):
         # i think i can just delete the losers from the array??
         player_names = self.player_map.keys()
-        scoreboard = player_names
+        scoreboard = list(player_names)
 
         while(len(scoreboard) > 1):
             pid1 = scoreboard[0]

@@ -1,5 +1,4 @@
 from FrontEnd import *
-import BackEnd
 from Go_Board import *
 from GoRuleChecker import *
 import copy
@@ -7,10 +6,8 @@ import copy
 class Referee:
     def __init__(self):
         self.playerOne = None
-        self.playerOneName = None
         self.playerOneStone = "B"
         self.playerTwo = None
-        self.playerTwoName = None
         self.playerTwoStone = "W"
         self.boardSize = Go_Board().Board_Size
         self.board = [[" " for col in range(self.boardSize)] for row in range(self.boardSize)]
@@ -64,12 +61,17 @@ class Referee:
     def decide_winner(self, board):
         score = GoRuleChecker().check_the_score(board)
         black_score, white_score = score["B"], score["W"]
+        results = {}
         if black_score > white_score:
-            return [self.playerOne]
+            results['winner'] = [self.playerOne]
+            results['loser'] = [self.playerTwo]
         elif white_score > black_score:
-            return [self.playerTwo]
+            results['winner'] = [self.playerTwo]
+            results['loser'] = [self.playerOne]
         else:
-            return sorted([self.playerOne, self.playerTwo])
+            results['winner'] = sorted([self.playerOne, self.playerTwo])
+        
+        return results
 
     def check_ko(self,color,row,col):
         if len(self.boardHistory) == 3:
