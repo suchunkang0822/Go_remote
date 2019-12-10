@@ -53,7 +53,7 @@ class Admin:
             elif len(json_data) == 2 and json_data[0] == "receive-stones":
                 stone = json_data[1]
                 GoBoard().stone_checker(stone)
-                self.remote_player.receive_stone(stone)
+                self.remote_player.receive_stones(stone)
             elif len(json_data) == 2 and json_data[0] == "make-a-move":
                 history = json_data[1]
                 for i,board in enumerate(history):

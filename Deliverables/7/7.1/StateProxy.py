@@ -12,10 +12,10 @@ class StateProxy:
         else:
             raise ValueError
 
-    def receive_stone(self,stone):
+    def receive_stones(self,stone):
         if self.registered and not self.received:
             self.received = True
-            return self.player.receive_stone(stone)
+            return self.player.receive_stones(stone)
         else:
             raise ValueError
 
