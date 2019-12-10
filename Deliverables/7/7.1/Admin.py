@@ -28,15 +28,6 @@ class Admin:
         self.s.listen()
         conn, _ = self.s.accept()
         return conn
-            # with conn:
-            #     while True:
-            #         data = conn.recv(6000)
-            #         if len(data) < 6000:
-            #             break
-            # data = conn.recv(6000)
-            # decoded_data = data.decode('utf-8')
-            # json_list = list(FrontEnd().parser(decoded_data))
-            # return json_list
 
 
     # def game_start(self):

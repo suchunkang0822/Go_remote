@@ -1,5 +1,5 @@
 from GoRuleChecker import *
-from GoBoard import *
+from FrontEnd import *
 import abc
 
 
@@ -14,13 +14,11 @@ class Default(GoRuleChecker,Interface):
         self.player_stone = ""
 
     @staticmethod
-    def register(name="Default"):
-        if isinstance(name, str):
-            return name
-        else:
-            return "no name"
+    def register():
+        
+        return "default"
 
-    def receive_stones(self,stone):
+    def receive_stone(self,stone):
         self.player_stone = stone
 
     def make_a_move(self,boards):
@@ -32,7 +30,7 @@ class Default(GoRuleChecker,Interface):
             if capture:
                 return capture
             else:
-                empty_coord = GoBoard.get_coord(recent_board, " ")
+                empty_coord = ref.get_coord(recent_board, " ")
                 empty_coord = sorted(empty_coord, key=lambda x: x[1])
                 while empty_coord:
                     current_coord = empty_coord.pop(0)
@@ -75,24 +73,19 @@ class Default(GoRuleChecker,Interface):
         #     while set_of_liberties:
         #         current_liberties = set_of_liberties.pop(0)
 
-
-
-
-    def driver(self):
+    def driver(self, json_list):
         result_list = []
-        # dummy_one = Default()
-        j_list = abstract_front_end()
-        for i,read in enumerate(j_list):
+        for i,read in enumerate(json_list):
             if len(read) == 1 and read[0] == "register":
-                result_list.append(self.register())
+                result_list.append(self.register(read[0]))
             elif len(read) == 2:
                 if read[0] == "receive-stones":
-                    self.receive_stones(read[1])
+                    self.receive_stone(read[1])
                 elif read[0] == "make-a-move":
                     result_list.append(self.make_a_move(read[1]))
         return json.dumps(result_list)
 
 
-if __name__ == '__main__':
-
-    print(Default().driver())
+# if __name__ == '__main__':
+#     j_list = abstract_front_end()
+#     print(Player_two().driver(j_list))
