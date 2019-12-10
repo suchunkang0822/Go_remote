@@ -1,4 +1,4 @@
-from Go_Board import *
+from GoBoard import *
 from FrontEnd import *
 import json
 import abc
@@ -39,7 +39,7 @@ class Interface(abc.ABC):
     #     pass
 
 
-class GoRuleChecker(Go_Board, Interface):
+class GoRuleChecker(GoBoard, Interface):
     def __init__(self,boards=None):
         super().__init__()
         # self.board_history = self.validate_size_history(boards)

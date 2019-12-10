@@ -48,15 +48,14 @@ class Proxy(GoRuleChecker):
     def receive_and_send(self):
         self.s.connect((self.HOST, self.PORT))
         json_obj = json.loads(self.s.recv(6000).decode())
-        print(json_obj[0])
+        print("WHAT? ",json_obj)
         if json_obj[0] == "register":
             name = self.register()
-            
             self.s.send(json.dumps(self.register()).encode())
-            
-        elif json_obj[0][0] == "receive-stones":
+        elif json_obj[0] == "receive-stones":
+            print(json_obj[0][1])
             self.receive_stone(json_obj[0][1])
-        elif json_obj[0][0] == "make-a-move":
+        elif json_obj[0] == "make-move":
             self.s.send(self.make_move(json_obj[0][1]).encode())
 
 

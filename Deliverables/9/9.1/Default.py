@@ -14,8 +14,7 @@ class Default(GoRuleChecker,Interface):
         self.player_stone = ""
 
     @staticmethod
-    def register():
-        
+    def register():        
         return "default"
 
     def receive_stone(self,stone):

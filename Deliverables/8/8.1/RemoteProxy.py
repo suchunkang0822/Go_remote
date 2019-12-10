@@ -10,6 +10,7 @@ class RemoteProxy:
         self.conn = conn
 
     def register(self):
+        print("Regsiter running")
         self.conn.send(json.dumps(["register"]).encode())
         name = json.loads(self.conn.recv(6000).decode())
         self.name = name

@@ -103,7 +103,8 @@ class TournamentAdmin:
         
 
     def game_start(self, player1, player2):
-        self.ref.play_game(player1, player2)
+        winner = self.ref.play_game(player1, player2)
+        print("game_ended: ", winner)
 
 
     def setup_default_player(self):

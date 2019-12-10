@@ -1,147 +1,110 @@
-from FrontEnd import *
-from Go_Board import *
 from GoRuleChecker import *
+from GoBoard import GoBoard
 import copy
+
+
 
 class Referee:
     def __init__(self):
-        self.playerOne = None
+        self.playerOneObj = None
+        self.playerOneName = "playerOne"
         self.playerOneStone = "B"
-        self.playerTwo = None
+        self.playerTwoObj = None
+        self.playerTwoName = "playerTwo"
         self.playerTwoStone = "W"
-        self.boardSize = Go_Board().Board_Size
-        self.board = [[" " for col in range(self.boardSize)] for row in range(self.boardSize)]
-        self.Go_Board = Go_Board(self.board)
-        self.boardHistory = []
-        self.current = None
-        self.turn = self.playerOneStone
-    
-    def play_game(self, player1, player2):
-        try:
-            player1.receive_stone(self.playerOneStone)
-            player2.receive_stone(self.playerTwoStone)
-            self.playerOne = player1
-            self.playerTwo = player2
-            self.current = player1
-        except ValueError:
-            return "GO has gone crazy!"
+        self.boardSize = GoBoard().Board_Size
+        self.boardHistory = [[[" " for col in range(self.boardSize)] for row in range(self.boardSize)]]
+        self.currentStone = self.playerOneStone
+        self.currentObj = self.playerOneObj
+        self.opponentName = self.playerTwoName
 
-        while True:
-            print('im in')
-            move = self.current.make_move(self.boardHistory)
-            self.handleMove(move, self.turn)
-            self.switch_player()
-            
-    
-    def switch_player(self):
-        if self.current == self.playerOne:
-            self.current = self.playerTwo
-            self.turn = self.playerTwoStone
-        elif self.current == self.playerTwo:
-            self.current = self.playerOne
-            self.turn = self.playerOneStone
-        
+    # def assignPlayerOne(self, string):
+    #     self.playerOneName = string
+
+    # def assignPlayerTwo(self, string):
+    #     self.playerTwoName = string
+
+    def get_player_name(self, stone):
+        if stone == "B":
+            return [self.playerOneName]
+        else:
+            return [self.playerTwoName]
+
+    def decide_winner(self, board):
+        score = GoRuleChecker().check_the_score(board)
+        black_score, white_score = score["B"], score["W"]
+        if black_score > white_score:
+            return [self.playerOneName]
+        elif white_score > black_score:
+            return [self.playerTwoName]
+        else:
+            return sorted([self.playerOneName, self.playerTwoName])
+
     def updateHistory(self, board):
         self.boardHistory.insert(0, board)
         if len(self.boardHistory) > 3:
             self.boardHistory.pop()
 
-    def whose_turn(self, number):
-        if number % 2 == 0:
-            return self.playerOneStone, self.playerTwoStone
-        else:
-            return self.playerTwoStone, self.playerOneStone
+    def switch_player(self):
+        if self.currentStone == self.playerOneStone:
+            self.currentStone = self.playerTwoStone
+            self.currentObj = self.playerTwoObj
+            self.opponentName = self.playerTwoName
+        elif self.currentStone == self.playerTwoStone:
+            self.currentStone = self.playerOneStone
+            self.currentObj = self.playerOneObj
+            self.opponentName = self.playerOneName
 
-    def get_player_name(self, stone):
-        if stone == "B":
-            return [self.playerOne]
-        else:
-            return [self.playerTwo]
-
-    def decide_winner(self, board):
-        score = GoRuleChecker().check_the_score(board)
-        black_score, white_score = score["B"], score["W"]
-        results = {}
-        if black_score > white_score:
-            results['winner'] = [self.playerOne]
-            results['loser'] = [self.playerTwo]
-        elif white_score > black_score:
-            results['winner'] = [self.playerTwo]
-            results['loser'] = [self.playerOne]
-        else:
-            results['winner'] = sorted([self.playerOne, self.playerTwo])
-        
-        return results
-
-    def check_ko(self,color,row,col):
-        if len(self.boardHistory) == 3:
-            try:
-                GoRuleChecker(self.boardHistory).check_ko(color,row,col)
-            except Exception:
-                return False
-            else:
-                return True
-
-    def is_valid_pass(self,boards,move,nth_turn):
-        if len(boards) >= 2 and nth_turn >= 2 or (move == "pass"):
-            GoRuleChecker(boards).check_consecutive_passes()
-
-
-    def get_history(self):
-        return self.boardHistory
-        
-    def handleMove(self, move, player_color):
-        results = []
-        self.boardHistory.append(copy.deepcopy(self.board))
-        opponent = "B" if player_color == "W" else "W"
-        if move == "pass":
-            try:
-                self.updateHistory(self.boardHistory[0])
-                GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color)
-                # self.is_valid_pass(self.boardHistory,move,i)
-            except Exception:
-                results.append(self.decide_winner(self.boardHistory[0]))
-                return results
+    def setupPlayers(self, player1, player2):
+        try:
+            # self.assignPlayerOne(player1.register())
+            # self.playerOneName = player1.register()
+            #print('end')
+            # self.assignPlayerTwo(player2.register())
+            # self.playerTwoName = player2.register()
             
-        elif move != "pass":
-            row, col = Go_Board().point_parser(move)
-            try:
-                rule_checker = GoRuleChecker(self.boardHistory)
-                rule_checker.sixth_resolve_history(player_color,row,col)
-            except Exception:
-                results.append(self.get_player_name(opponent))
-                return results
+            player1.receive_stone(self.playerOneStone)
+            player2.receive_stone(self.playerTwoStone)
+            self.playerOneObj = player1
+            self.playerTwoObj = player2
+            self.currentObj = player1
+            print("Setting up: ", self.playerOneObj)
+            return True
+        except ValueError:
+            return False
+            # "GO has gone crazy!"
+
+    def handleMove(self, move):
+        if move == "pass":
+            self.updateHistory(self.boardHistory[0])
+            self.switch_player()
+            is_valid = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone)
+            if not is_valid:
+                return self.decide_winner(self.boardHistory[0])
+        else:
+            row, col = GoBoard().point_parser(move)
+            madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone, row, col)
+            opponentStone = self.playerTwoStone if self.currentStone == self.playerOneStone else self.playerOneStone
+            opponentName = self.get_player_name(opponentStone)
+            if madeMove:
+                whatIfBoard = GoBoard(self.boardHistory[0]).place(self.currentStone,row,col)
+                try:
+                    self.updateHistory(copy.deepcopy(GoRuleChecker().board_after_remove_captured_stone
+                                                     (whatIfBoard,self.currentStone,row,col)))
+                except TypeError:
+                    return opponentName
+                self.switch_player()
             else:
-                new_board = Go_Board(self.boardHistory[0]).place(row, col)
-                new_board = rule_checker.board_after_remove_captured_stone(new_board,player_color,row,col)
-                self.updateHistory(copy.deepcopy(new_board))
+                return opponentName
 
-            return results
-
-    # def handleMoves(self, listOfMoves, player_color):
-    #     results = []
-    #     self.boardHistory.append(copy.deepcopy(self.board))
-    #     for i, move in enumerate(listOfMoves):
-    #         results.append(copy.deepcopy(self.boardHistory))
-    #         player_color, opponent_color = self.whose_turn(i)
-    #         if move == "pass":
-    #             try:
-    #                 self.updateHistory(self.boardHistory[0])
-    #                 self.is_valid_pass(self.boardHistory,move,i)
-    #             except Exception:
-    #                 results.append(self.decide_winner(self.boardHistory[0]))
-    #                 return results
-    #             continue
-    #         elif move != "pass":
-    #             row, col = Go_Board().point_parser(move)
-    #             madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(player_color,row,col)
-    #             is_ko = self.check_ko(player_color,row,col)
-    #             if madeMove and not is_ko:
-    #                 self.updateHistory(copy.deepcopy(self.Go.getBoard()))
-    #             else:
-    #                 results.append(self.get_player_name(opponent_color))
-    #                 return results
-    #     return results
-
-
+    def play_game(self,player1,player2):
+        if(self.setupPlayers(player1,player2)):
+            while True:
+                print("running")
+                move = self.currentObj.make_move(self.boardHistory)
+                try:
+                    self.handleMove(move)
+                except TypeError:
+                    return self.opponentName
+                self.switch_player()
 
