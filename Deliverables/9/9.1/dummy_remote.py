@@ -34,30 +34,36 @@ class Proxy(GoRuleChecker):
         ref = GoRuleChecker(boards)
         boards_correct = ref.sixth_resolve_history(self.player_stone)
         if boards_correct:
+            print("correct boards")
             if random.random() < 0.4:
                 return "pass"
             else:
                 row, col = self.random_coord()
                 while boards[0][row][col] != " ":
-                    if ref.sixth_resolve_history(self.player_stone, row, col):
+                    if ref.sixth_resolve_history(self.player_stone, row, col) :
                         return str(col + 1) + "-" + str(row + 1)
                     else:
                         row, col = self.random_coord()
                         continue
+                print("bleh bleh blej")
         else:
             return "This history makes no sense!"
 
     def receive_and_send(self):
-        
-        json_obj = json.loads(self.s.recv(6000).decode())
+        name = self.s.recv(6000)
+        print("name",name)
+        json_obj = json.loads(name.decode())
         print("WHAT? ",json_obj)
         if json_obj[0] == "register":
             self.s.send(json.dumps(self.register()).encode())
-        elif json_obj[0] == "receive-stones":
-            print(json_obj[0][1])
-            self.receive_stone(json_obj[0][1])
-        elif json_obj[0][1] == "make-a-move":
-            self.s.send(self.make_move(json_obj[0][1]).encode())
+        elif json_obj[0] == "receive-stone":
+            print(json_obj)
+            self.receive_stone(json_obj[1])
+        elif json_obj[0] == "make-a-move":
+            
+            temp = self.make_move(json_obj[1])
+            print("temp",temp)
+            self.s.send(json.dumps(temp).encode())
 
 
 

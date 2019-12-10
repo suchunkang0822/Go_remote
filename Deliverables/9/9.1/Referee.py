@@ -100,8 +100,9 @@ class Referee:
     def play_game(self,player1,player2):
         if(self.setupPlayers(player1,player2)):
             while True:
-                print("running")
+               
                 move = self.currentObj.make_move(self.boardHistory)
+                print("running: ",self.currentObj.registered, self.currentObj.received)
                 try:
                     self.handleMove(move)
                 except TypeError:

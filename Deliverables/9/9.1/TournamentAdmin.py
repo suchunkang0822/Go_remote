@@ -107,7 +107,7 @@ class TournamentAdmin:
 
     def game_start(self, player1, player2):
         winner = self.ref.play_game(player1, player2)
-        print("game_ended: ", winner)
+        return winner
 
 
     def setup_default_player(self):
@@ -156,7 +156,8 @@ class TournamentAdmin:
         while(len(scoreboard) > 1):
             pid1 = scoreboard[0]
             pid2 = scoreboard[-1]
-            self.game_start(self.player_map[pid1], self.player_map[pid2])
+            winner = self.game_start(self.player_map[pid1], self.player_map[pid2])
+            break
             # TODO: Need to find loser player and delete name from scorebord
             # remove first -> assign to new scorewboard, remove last -> assign to cheaters if needed
     
