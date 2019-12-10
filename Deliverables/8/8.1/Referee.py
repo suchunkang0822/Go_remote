@@ -75,6 +75,7 @@ class Referee:
             if not is_valid:
                 return self.decide_winner(self.boardHistory[0])
         else:
+            print('this is move',move)
             row, col = GoBoard().point_parser(move)
             madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone, row, col)
             opponentStone = self.playerTwoStone if self.currentStone == self.playerOneStone else self.playerOneStone

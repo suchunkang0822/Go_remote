@@ -43,7 +43,6 @@ class GoBoard(Interface):
     def point_parser(self,point):
         coordinate = re.findall(r'\d+',point)
         coordinate = list(map(lambda x: int(x)-1,coordinate))
-        # coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
         if len(coordinate) != 2 or not isinstance(point,str):
             raise TypeError("There should only be two numbers in the format of int-int")
         else:
