@@ -27,7 +27,7 @@ class Interface(abc.ABC):
     #     pass
 
 
-class Go_Board(Interface):
+class GoBoard(Interface):
     Board_Size = 9
     Maybe_Stone = ["B", "W", " "]
     Stone = ["B", "W"]
@@ -58,10 +58,8 @@ class Go_Board(Interface):
             raise TypeError("element other than maybe_stone detected")
 
     def board_checker(self,board):
-        #print('what is len(board)',len(board),len(board[0]))
-        #print(board)
         if not(len(board) == self.Board_Size and len(board[0]) == self.Board_Size):
-            raise TypeError("board must be list of {} by {} ".format(self.Board_Size,self.Board_Size))
+            raise TypeError("board must be list of 19 by 19 ")
         for i,row in enumerate(board):
             for j,element in enumerate(row):
                 self.maybe_stone_checker(element)
@@ -79,9 +77,9 @@ class Go_Board(Interface):
             return True
         else:
             return False
-
-    def is_on_board(self, coordinate):
-        return 0 <= coordinate[0] <= self.Board_Size -1 and 0 <= coordinate[1] <= self.Board_Size -1
+    @staticmethod
+    def is_on_board(coordinate):
+        return 0 <= coordinate[0] <= 18 and 0 <= coordinate[1] <= 18
 
     def get_valid_neighbors(self,coordinate):
         possible_neighbors = [[coordinate[0],coordinate[1] - 1],
@@ -98,7 +96,7 @@ class Go_Board(Interface):
             current = frontier.pop()
             if current not in chain:
                 chain.append(current)
-            for n in self.neighbors[current[0] * self.Board_Size + current[1]]:
+            for n in self.neighbors[current[0]*19+current[1]]:
                 if self.board[n[0]][n[1]] == coordinate_stone:
                     if n not in chain:
                         frontier.append(n)
@@ -179,7 +177,7 @@ class BoardFrontEnd:
         pass
 
     def extract_coordinate(self,board,command_or_query):
-        board_obj = Go_Board(board)
+        board_obj = GoBoard(board)
         if command_or_query[0] in ("occupied?","reachable?"):
             return board_obj.point_parser(command_or_query[1])
         elif command_or_query[0] in ("place","remove", "occupies?"):
@@ -188,7 +186,7 @@ class BoardFrontEnd:
             return None,None
 
     def answer_command_query(self, board, command_or_query, row, col):
-        board_obj = Go_Board(board)
+        board_obj = GoBoard(board)
         if command_or_query[0] == "occupied?":
             return board_obj.is_occupied(row, col)
         elif command_or_query[0] == "occupies?":
@@ -214,14 +212,14 @@ class BoardFrontEnd:
         return json.dumps(result)
 
 
-if __name__ == '__main__':
-    f = FrontEnd()
-    json_string = f.input_receiver()
-    json_list = list(f.parser(json_string))
-
-    go_board = Go_Board()
-
-    #print(go_board.question(json_list))
+# if __name__ == '__main__':
+#     f = FrontEnd()
+#     json_string = f.input_receiver()
+#     json_list = list(f.parser(json_string))
+#
+#     GoBoard = GoBoard()
+#
+#     print(GoBoard.question(json_list))
 
 
 

@@ -1,11 +1,10 @@
-from Referee_1 import Referee
-import socket
-import json
-from FrontEnd import FrontEnd
+from Referee import *
+from FrontEnd import *
 from importlib.machinery import SourceFileLoader
 from RemoteProxy import *
 from StateProxy import *
-import sys
+from GoBoard import *
+import socket
 
 class Admin:
     def __init__(self):
@@ -15,6 +14,7 @@ class Admin:
         self.conn = self.create_connection()
         self.default_player = StateProxy(self.setup_default_player())
         self.remote_player = StateProxy(RemoteProxy(self.conn))
+
 
     def fetch_config(self):
         json_string = FrontEnd().input_receiver('go.config')
@@ -28,50 +28,68 @@ class Admin:
         self.s.listen()
         conn, _ = self.s.accept()
         return conn
-            # with conn:
-            #     while True:
-            #         data = conn.recv(6000)
-            #         if len(data) < 6000:
-            #             break
-            # data = conn.recv(6000)
-            # decoded_data = data.decode('utf-8')
-            # json_list = list(FrontEnd().parser(decoded_data))
-            # return json_list
-        
+
 
     def game_start(self):
         winner = self.ref.play_game(self.default_player, self.remote_player)
         if winner:
             return json.dumps(winner)
+
+
             # self.conn.send(json.dumps(a).encode())
             # self.conn.close()
-
-    # def send_and_receive(self):
-    #     input = FrontEnd().input_receiver()
-    #     json_data = FrontEnd().parser(input)
-    #     if len(json_data) == 1 and json_data[0] == "register":
-    #         name = self.player.register()
-    #         #print(json.dumps(name).encode())
-    #     elif len(json_data) == 2 and json_data[0] == "receive-stones":
-    #         stone = json_data[1]
-    #         self.player.receive_stone(stone)
-    #     elif len(json_data) == 2 and json_data[0]== "make-move":
-    #         history = json_data[1]
-    #         move = self.player.make_move(history)
-    #         #print(json.dumps(move).encode())
-    #     else:
-    #         return "GO has gone crazy!"
 
     def setup_default_player(self):
         player_module = SourceFileLoader("Default", self.DEFPATH).load_module()
         default_player = player_module.Default()
         return default_player
 
+    def send_and_receive(self,json_data):
+        try:
+            if len(json_data) == 1 and json_data[0] == "register":
+                name = self.remote_player.register()
+                return name
+            elif len(json_data) == 2 and json_data[0] == "receive-stones":
+                stone = json_data[1]
+                GoBoard().stone_checker(stone)
+                self.remote_player.receive_stone(stone)
+            elif len(json_data) == 2 and json_data[0] == "make-a-move":
+                history = json_data[1]
+                for i,board in enumerate(history):
+                    GoBoard().board_checker(board)
+                move = self.remote_player.make_a_move(history)
+                return move
+            else:
+                return "GO has gone crazy!"
+        except (ValueError,TypeError):
+            return "GO has gone crazy!"
 
-        # initialize connection
+    def driver(self):
+        output_list = []
+        # input = FrontEnd().input_receiver()
+        input = FrontEnd().getJson()
+        # list_json_data = list(FrontEnd().parser(input))
+        for i,json_data in enumerate(input):
+            output = self.send_and_receive(json_data)
+            if output and output != "GO has gone crazy!":
+                output_list.append(output)
+            elif output == "GO has gone crazy!":
+                output_list.append(output)
+                self.conn.close()
+                return json.dumps(output_list)
+        self.conn.close()
+        return json.dumps(output_list)
+
+
 
 if __name__ == "__main__":
     admin = Admin()
+    # print(admin.game_start())
     print(admin.game_start())
-    admin.s.close()
+
+
+
+
+
+
 

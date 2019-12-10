@@ -1,6 +1,4 @@
-from Go_Board import *
-from FrontEnd import *
-import json
+from GoBoard import *
 import abc
 
 class Interface(abc.ABC):
@@ -39,7 +37,7 @@ class Interface(abc.ABC):
     #     pass
 
 
-class GoRuleChecker(Go_Board, Interface):
+class GoRuleChecker(Interface):
     def __init__(self,boards=None):
         super().__init__()
         # self.board_history = self.validate_size_history(boards)
@@ -52,6 +50,7 @@ class GoRuleChecker(Go_Board, Interface):
 
     @staticmethod
     def validate_size_history(boards):
+
         if len(boards) > 3:
             raise Exception('size of board history is invalid')
         else:
@@ -71,7 +70,7 @@ class GoRuleChecker(Go_Board, Interface):
     #############
 
     def first_check_players(self,player):
-        self.stone_checker(player)
+        GoBoard.stone_checker(player)
 
     # second_check_board is automatically run when RuleChecker object is created
 
@@ -82,13 +81,13 @@ class GoRuleChecker(Go_Board, Interface):
     @staticmethod
     def check_liberties(board, stone, output=None):
         opponent = "W" if stone == "B" else "B"
-        go_board_obj = Go_Board(board)
-        list_of_stone_coord = go_board_obj.get_coord(board, stone)
+        GoBoard_obj = GoBoard(board)
+        list_of_stone_coord = GoBoard_obj.get_coord(board, stone)
         temp, result = [], []
         if output:
             while list_of_stone_coord:
                 coord = list_of_stone_coord.pop(0)
-                chain, reached, reached_coord = go_board_obj.chain_and_reached(coord[0], coord[1])
+                chain, reached, reached_coord = GoBoard_obj.chain_and_reached(coord[0], coord[1])
                 if " " in reached:
                     for i, reach in enumerate(reached):
                         if reach == " ":
@@ -100,7 +99,7 @@ class GoRuleChecker(Go_Board, Interface):
         else:
             while list_of_stone_coord:
                 coord = list_of_stone_coord.pop(0)
-                chain, reached, _ = go_board_obj.chain_and_reached(coord[0], coord[1])
+                chain, reached, _ = GoBoard_obj.chain_and_reached(coord[0], coord[1])
                 if " " not in reached and opponent in reached:
                         return False
                 else:
@@ -178,7 +177,7 @@ class GoRuleChecker(Go_Board, Interface):
                 else:
                     if w2 == 1 and b2 == 0:
                         if (w3 == 1 and b3 == 1) or w3 == 1:
-                            w2_coord, w3_coord = self.get_coord(self.board2, "W"), self.get_coord(self.board3, "W")
+                            w2_coord, w3_coord = GoBoard.get_coord(self.board2, "W"), GoBoard.get_coord(self.board3, "W")
                             if w2_coord == w3_coord:
                                 return True
                             else:
@@ -213,8 +212,8 @@ class GoRuleChecker(Go_Board, Interface):
             return True
 
     def check_suicide(self,stone,row,col):
-        what_if_board = Go_Board(self.board3).place(stone,row,col)
-        board_obj = Go_Board(what_if_board)
+        what_if_board = GoBoard(self.board3).place(stone,row,col)
+        board_obj = GoBoard(what_if_board)
         chain, reached, reached_coord = board_obj.chain_and_reached(row, col)
         if " " not in reached:
             while reached_coord:
@@ -237,43 +236,26 @@ class GoRuleChecker(Go_Board, Interface):
             if not (self.check_liberties(board,"B") and self.check_liberties(board,"W")):
                 raise Exception('zero liberty stone present')
 
-    # def check_ko(self,stone,row=None,col=None):
-    #     if self.board1 == self.board3:
-    #         raise Exception('Ko detected')
-    #     elif isinstance(row,int) and isinstance(col,int):
-    #         what_if_board = Go_Board(self.board3).place(stone, row, col)
-    #         if what_if_board != 'This seat is taken!':
-    #             what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
-    #             if self.board2 == what_if_board:
-    #                 raise Exception('Ko detected')
-    #             else:
-    #                 return True
-    #         else:
-    #             raise Exception('coordinate occupied')
-    #     else:
-    #         return True
-
     def check_ko(self,stone,row=None,col=None):
-        if len(self.board_history) == 3 and not self.fifth_is_empty(self.board1):
-            if self.board1 == self.board3:
-                raise Exception('Ko detected')
-            elif isinstance(row,int) and isinstance(col,int):
-                what_if_board = Go_Board(self.board3).place(stone, row, col)
-                if what_if_board != 'This seat is taken!':
-                    what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
-                    if self.board2 == what_if_board:
-                        raise Exception('Ko detected')
-                    else:
-                        return True
+        if self.board1 == self.board3:
+            raise Exception('Ko detected')
+        elif isinstance(row,int) and isinstance(col,int):
+            what_if_board = GoBoard(self.board3).place(stone, row, col)
+            if what_if_board != 'This seat is taken!':
+                what_if_board = self.board_after_remove_captured_stone(what_if_board, stone, row, col)
+                if self.board2 == what_if_board:
+                    raise Exception('Ko detected')
                 else:
-                    raise Exception('coordinate occupied')
+                    return True
             else:
-                return True
+                raise Exception('coordinate occupied')
+        else:
+            return True
 
     @staticmethod
     def board_after_remove_captured_stone(what_if_board,player,row,col):
         opponent = "B" if player == "W" else "W"
-        board_obj = Go_Board(what_if_board)
+        board_obj = GoBoard(what_if_board)
         neighbor_list = board_obj.get_valid_neighbors([row,col])
         neighbor_list = sorted(neighbor_list, key=lambda x: x[1])
         while neighbor_list:
@@ -312,9 +294,9 @@ class GoRuleChecker(Go_Board, Interface):
                     empty_space_list = [coord for i, coord in enumerate(list_coord) if diffMStones2_1[i] == " "]
                     while empty_space_list:
                         current_coord = empty_space_list.pop(0)
-                        chain, reached, reach_coord = Go_Board(board1).chain_and_reached(current_coord[0],current_coord[1])
+                        chain, reached, reach_coord = GoBoard(board1).chain_and_reached(current_coord[0],current_coord[1])
                         if reached.count(" ") == 1:
-                            correct_board_2 = Go_Board(board1).place(player,player_row,player_col)
+                            correct_board_2 = GoBoard(board1).place(player,player_row,player_col)
                             correct_board_2 = self.board_after_remove_captured_stone(correct_board_2,player,player_row,player_col)
                             if board2 == correct_board_2:
                                 return True
@@ -340,6 +322,7 @@ class GoRuleChecker(Go_Board, Interface):
             if player != "B":
                 raise Exception
         elif len(self.board_history) == 2:
+
             if player != "W":
                 raise Exception
         else:
@@ -373,11 +356,11 @@ class GoRuleChecker(Go_Board, Interface):
 
     def area_counter(self, board):
         black_area, white_area = [], []
-        go_board_obj = Go_Board(board)
-        empty_coord_list = self.get_coord(board, " ")
+        GoBoard_obj = GoBoard(board)
+        empty_coord_list = GoBoard.get_coord(board, " ")
         while empty_coord_list:
             current_empty_coord = empty_coord_list.pop(0)
-            chain, reached, _ = go_board_obj.chain_and_reached(current_empty_coord[0], current_empty_coord[1])
+            chain, reached, _ = GoBoard_obj.chain_and_reached(current_empty_coord[0], current_empty_coord[1])
             if "W" in reached and ("B" not in reached):
                 for i, coord in enumerate(chain):
                     white_area.append(coord)

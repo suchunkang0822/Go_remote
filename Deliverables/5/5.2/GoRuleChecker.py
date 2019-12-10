@@ -1,4 +1,4 @@
-from Go_Board import *
+from GoBoard import *
 from FrontEnd import *
 import json
 import abc

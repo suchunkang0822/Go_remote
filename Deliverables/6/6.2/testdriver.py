@@ -1,5 +1,5 @@
 from FrontEnd import *
-from Go_Board import *
+from GoBoard import *
 from Referee import *
 from Default import *
 from StateProxy import *

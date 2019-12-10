@@ -3,12 +3,36 @@ import fileinput
 import re
 from json import JSONDecoder, JSONDecodeError
 from BackEnd import *
-# import json
+import sys
 
 
 class FrontEnd(ABC):
     def __init__(self):
         pass
+
+    def getJson(self):
+        jsonInputs = []
+        currentObj = ""
+        for line in sys.stdin:
+            currentObj += line
+            currentObj = currentObj.lstrip()
+            try:
+                currentDecodedMessage = json.JSONDecoder().raw_decode(currentObj)
+                jsonInputs.append(currentDecodedMessage[0])
+                while currentDecodedMessage[1] < len(currentObj):
+                    currentObj = currentObj[currentDecodedMessage[1] + 1:]
+                    try:
+                        currentDecodedMessage = json.JSONDecoder().raw_decode(currentObj)
+                        jsonInputs.append(currentDecodedMessage[0])
+                    except ValueError:
+                        pass
+                currentObj = ""
+            except ValueError:
+                pass
+
+        return jsonInputs
+
+
 
     def input_receiver(self,file_name=None):
         json_string = ""
@@ -19,9 +43,7 @@ class FrontEnd(ABC):
             for line in fileinput.input():
                 json_string += line
         return json_string
-    # inspired by
-    # https://stackoverflow.com/questions/27907633/multiple-json-objects-in-one-file-extract-by-python
-    # decoder for stacked json obj
+
 
     def parser(self,document, pos=0, decoder=JSONDecoder()):
         NOT_WHITESPACE = re.compile(r'[^\s]')
