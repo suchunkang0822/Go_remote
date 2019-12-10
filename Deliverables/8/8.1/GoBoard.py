@@ -77,9 +77,9 @@ class GoBoard(Interface):
             return True
         else:
             return False
-    @staticmethod
-    def is_on_board(coordinate):
-        return 0 <= coordinate[0] <= 18 and 0 <= coordinate[1] <= 18
+
+    def is_on_board(self,coordinate):
+        return 0 <= coordinate[0] < self.Board_Size and 0 <= coordinate[1] < self.Board_Size
 
     def get_valid_neighbors(self,coordinate):
         possible_neighbors = [[coordinate[0],coordinate[1] - 1],
@@ -96,9 +96,7 @@ class GoBoard(Interface):
             current = frontier.pop()
             if current not in chain:
                 chain.append(current)
-            print('this is current',current)
             for n in self.neighbors[current[0]*self.Board_Size+current[1]]:
-                print('this is n',n)
                 if self.board[n[0]][n[1]] == coordinate_stone:
                     if n not in chain:
                         frontier.append(n)
