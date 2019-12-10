@@ -17,7 +17,7 @@ class RemoteProxy:
         return name
 
     
-    def receive_stone(self, stone):
+    def receive_stones(self, stone):
         self.player_stone = stone
         self.conn.send(json.dumps(["receive-stones", stone]).encode())
     
