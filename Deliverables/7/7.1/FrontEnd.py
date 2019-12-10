@@ -13,7 +13,6 @@ class FrontEnd(ABC):
     def getJson(self):
         jsonInputs = []
         currentObj = ""
-
         for line in sys.stdin:
             currentObj += line
             currentObj = currentObj.lstrip()
@@ -27,7 +26,6 @@ class FrontEnd(ABC):
                         jsonInputs.append(currentDecodedMessage[0])
                     except ValueError:
                         pass
-
                 currentObj = ""
             except ValueError:
                 pass

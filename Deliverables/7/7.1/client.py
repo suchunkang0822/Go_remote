@@ -17,16 +17,6 @@ class Client:
         python_obj = json.loads(json_string)
         return python_obj["IP"], python_obj["port"], python_obj["default-player"]
 
-    # @staticmethod
-    # def receive_all(s):
-    #     response = b""
-    #     while True:
-    #         res = s.recv(1024)
-    #         if not res:
-    #             break
-    #         response += res
-    #     return response
-
     def connect(self):
         self.s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         try:
@@ -42,8 +32,8 @@ class Client:
         try:
             json_data = json.loads(data.decode())
         except JSONDecodeError:
+            self.s.sendall("GO has gone crazy!".encode())
             return "end of input"
-        # try:
         if len(json_data) == 1 and json_data[0] == "register":
             name = self.player.register()
             self.s.sendall(json.dumps(name).encode())
@@ -53,51 +43,19 @@ class Client:
         elif len(json_data) == 2 and json_data[0]== "make-a-move":
             history = json_data[1]
             move = self.player.make_a_move(history)
+            print('this is move',move)
             self.s.sendall(json.dumps(move).encode())
         else:
             self.s.sendall("GO has gone crazy!".encode())
             self.s.close()
-        # except ValueError:
-        #     self.s.sendall("GO has gone crazy!".encode())
-        #     self.s.close()
 
 
 
 
 if __name__ == "__main__":
-    # Client(Default()).receive_and_send()
     a = Client(Default())
     a.connect()
     while True:
         if a.receive_and_send() == "end of input":
             a.s.close()
             break
-
-
-
-
-
-# class Client:
-#     def __init__(self):
-#         self.HOST = "localhost"
-#         self.PORT = 8888
-#
-#     @staticmethod
-#     def receive_all(s):
-#         response = b""
-#         while True:
-#             res = s.recv(1024)
-#             if not res:
-#                 break
-#             response += res
-#         return response
-#
-#     def connnect(self):
-#         with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as s:
-#             s.connect((self.HOST,self.PORT))
-#             s.sendall(FrontEnd().input_receiver().encode())
-#             # data = self.receive_all(s)
-#             # return data.decode()
-#
-# if __name__ == "__main__":
-#     Client().connnect()

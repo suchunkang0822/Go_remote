@@ -177,7 +177,7 @@ class BoardFrontEnd:
         pass
 
     def extract_coordinate(self,board,command_or_query):
-        board_obj = Go_Board(board)
+        board_obj = GoBoard(board)
         if command_or_query[0] in ("occupied?","reachable?"):
             return board_obj.point_parser(command_or_query[1])
         elif command_or_query[0] in ("place","remove", "occupies?"):
@@ -186,7 +186,7 @@ class BoardFrontEnd:
             return None,None
 
     def answer_command_query(self, board, command_or_query, row, col):
-        board_obj = Go_Board(board)
+        board_obj = GoBoard(board)
         if command_or_query[0] == "occupied?":
             return board_obj.is_occupied(row, col)
         elif command_or_query[0] == "occupies?":
@@ -217,9 +217,9 @@ class BoardFrontEnd:
 #     json_string = f.input_receiver()
 #     json_list = list(f.parser(json_string))
 #
-#     go_board = Go_Board()
+#     GoBoard = GoBoard()
 #
-#     print(go_board.question(json_list))
+#     print(GoBoard.question(json_list))
 
 
 
