@@ -15,13 +15,11 @@ class Default(GoRuleChecker,Interface):
         self.player_stone = ""
 
     @staticmethod
-    def register(name="Default"):
-        if isinstance(name, str):
-            return name
-        else:
+    def register(string):
+        if string == "register":
             return "no name"
 
-    def receive_stones(self,stone):
+    def receive_stone(self,stone):
         self.player_stone = stone
 
     def make_a_move(self,boards):
@@ -76,16 +74,11 @@ class Default(GoRuleChecker,Interface):
         #     while set_of_liberties:
         #         current_liberties = set_of_liberties.pop(0)
 
-
-
-
-    def driver(self):
+    def driver(self, json_list):
         result_list = []
-        # dummy_one = Default()
-        j_list = abstract_front_end()
-        for i,read in enumerate(j_list):
+        for i,read in enumerate(json_list):
             if len(read) == 1 and read[0] == "register":
-                result_list.append(self.register())
+                result_list.append(self.register(read[0]))
             elif len(read) == 2:
                 if read[0] == "receive-stones":
                     self.receive_stone(read[1])
@@ -94,6 +87,6 @@ class Default(GoRuleChecker,Interface):
         return json.dumps(result_list)
 
 
-if __name__ == '__main__':
-
-    print(Default().driver())
+# if __name__ == '__main__':
+#     j_list = abstract_front_end()
+#     print(Player_two().driver(j_list))

@@ -23,6 +23,7 @@ class Admin:
     def create_connection(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.s.setblocking(False)
         self.s.bind((self.HOST, self.PORT))
         self.s.listen()
         conn, _ = self.s.accept()
@@ -74,6 +75,7 @@ class Admin:
 
     def driver(self):
         output_list = []
+        print("ready to start")
         input = FrontEnd().input_receiver()
         list_json_data = list(FrontEnd().parser(input))
         for i,json_data in enumerate(list_json_data):
@@ -93,7 +95,7 @@ if __name__ == "__main__":
     admin = Admin()
 
     # print(admin.game_start())
-    print(admin.driver())
+    print(admin.driver()) 
     admin.conn.close()
 
 

@@ -18,7 +18,6 @@ class FrontEnd(ABC):
         else:
             for line in fileinput.input():
                 json_string += line
-                break
         return json_string
     # inspired by
     # https://stackoverflow.com/questions/27907633/multiple-json-objects-in-one-file-extract-by-python
