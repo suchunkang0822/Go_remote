@@ -59,8 +59,8 @@ class Referee:
             #print('end')
             # self.assignPlayerTwo(player2.register())
             self.playerTwoName = player2.register()
-            player1.receive_stone(self.playerOneStone)
-            player2.receive_stone(self.playerTwoStone)
+            player1.receive_stones(self.playerOneStone)
+            player2.receive_stones(self.playerTwoStone)
             self.playerOneObj = player1
             self.playerTwoObj = player2
             self.currentObj = player1

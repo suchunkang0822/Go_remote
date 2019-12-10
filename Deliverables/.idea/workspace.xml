@@ -21,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Admin.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/8/8.1/Admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="481">
@@ -63,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
-              <caret line="92" column="17" lean-forward="false" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
+            <state relative-caret-position="339">
+              <caret line="62" column="34" lean-forward="false" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -185,11 +185,11 @@
         <option value="$PROJECT_DIR$/8/8.1/FrontEnd.py" />
         <option value="$PROJECT_DIR$/8/8.1/Default.py" />
         <option value="$PROJECT_DIR$/8/8.1/GoBoard.py" />
-        <option value="$PROJECT_DIR$/8/8.1/Referee.py" />
         <option value="$PROJECT_DIR$/8/8.1/StateProxy.py" />
         <option value="$PROJECT_DIR$/7/7.1/Admin.py" />
         <option value="$PROJECT_DIR$/7/7.1/StateProxy.py" />
         <option value="$PROJECT_DIR$/8/8.1/Admin.py" />
+        <option value="$PROJECT_DIR$/8/8.1/Referee.py" />
       </list>
     </option>
   </component>
@@ -685,16 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/9/9.1/Referee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-283">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/run">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -735,16 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="92" column="17" lean-forward="false" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/StateProxy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -759,6 +739,26 @@
           <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/9/9.1/Referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-283">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="62" column="34" lean-forward="false" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
