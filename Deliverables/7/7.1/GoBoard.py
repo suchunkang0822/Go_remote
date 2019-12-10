@@ -96,7 +96,7 @@ class GoBoard(Interface):
             current = frontier.pop()
             if current not in chain:
                 chain.append(current)
-            for n in self.neighbors[current[0]*19+current[1]]:
+            for n in self.neighbors[current[0]*self.Board_Size+current[1]]:
                 if self.board[n[0]][n[1]] == coordinate_stone:
                     if n not in chain:
                         frontier.append(n)

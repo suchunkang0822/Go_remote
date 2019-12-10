@@ -21,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Admin.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/8/8.1/Admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="197">
@@ -29,6 +29,16 @@
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoBoard.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/8/8.1/GoBoard.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,7 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>make_a_move</find>
       <find>r</find>
       <find>taken</find>
       <find>playerone</find>
@@ -117,6 +126,7 @@
       <find>Go_Board</find>
       <find>receive</find>
       <find>receive_stones</find>
+      <find>19</find>
       <find>receive_stone</find>
     </findStrings>
     <replaceStrings>
@@ -169,10 +179,8 @@
         <option value="$PROJECT_DIR$/7/7.1/input1" />
         <option value="$PROJECT_DIR$/7/7.1/FrontEnd.py" />
         <option value="$PROJECT_DIR$/7/7.1/client.py" />
-        <option value="$PROJECT_DIR$/7/7.1/GoBoard.py" />
         <option value="$PROJECT_DIR$/8/8.1/FrontEnd.py" />
         <option value="$PROJECT_DIR$/8/8.1/Default.py" />
-        <option value="$PROJECT_DIR$/8/8.1/GoBoard.py" />
         <option value="$PROJECT_DIR$/8/8.1/StateProxy.py" />
         <option value="$PROJECT_DIR$/7/7.1/Admin.py" />
         <option value="$PROJECT_DIR$/7/7.1/StateProxy.py" />
@@ -180,6 +188,8 @@
         <option value="$PROJECT_DIR$/8/8.1/Referee.py" />
         <option value="$PROJECT_DIR$/8/8.1/RemoteProxy.py" />
         <option value="$PROJECT_DIR$/7/7.1/RemoteProxy.py" />
+        <option value="$PROJECT_DIR$/8/8.1/GoBoard.py" />
+        <option value="$PROJECT_DIR$/7/7.1/GoBoard.py" />
       </list>
     </option>
   </component>
@@ -549,16 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="389" column="0" lean-forward="true" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#21#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/7/7.1/go.config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -583,16 +583,6 @@
           <caret line="65" column="37" lean-forward="true" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
           <folding>
             <element signature="e#0#27#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/GoBoard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -633,14 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/7/7.1/GoBoard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2125">
-          <caret line="221" column="40" lean-forward="true" selection-start-line="221" selection-start-column="40" selection-end-line="221" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -744,6 +726,30 @@
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/7/7.1/GoBoard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="43" column="21" lean-forward="false" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/GoBoard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
