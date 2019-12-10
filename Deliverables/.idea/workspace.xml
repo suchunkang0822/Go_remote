@@ -33,21 +33,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoBoard.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/8/8.1/GoBoard.py">
+      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="-106">
+              <caret line="58" column="25" lean-forward="true" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GoRuleChecker.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="263" column="53" lean-forward="true" selection-start-line="263" selection-start-column="11" selection-end-line="263" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="run" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/run">
+      <file leaf-file-name="GoBoard.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/8/8.1/GoBoard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="391">
+              <caret line="100" column="35" lean-forward="false" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Go_Board.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/6/6.2/Go_Board.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -59,18 +81,6 @@
             <state relative-caret-position="60">
               <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Referee.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="62" column="27" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -124,8 +134,8 @@
       <find>GoBoard</find>
       <find>parser</find>
       <find>Go_Board</find>
-      <find>receive</find>
       <find>receive_stones</find>
+      <find>receive</find>
       <find>19</find>
       <find>receive_stone</find>
     </findStrings>
@@ -188,8 +198,8 @@
         <option value="$PROJECT_DIR$/8/8.1/Referee.py" />
         <option value="$PROJECT_DIR$/8/8.1/RemoteProxy.py" />
         <option value="$PROJECT_DIR$/7/7.1/RemoteProxy.py" />
-        <option value="$PROJECT_DIR$/8/8.1/GoBoard.py" />
         <option value="$PROJECT_DIR$/7/7.1/GoBoard.py" />
+        <option value="$PROJECT_DIR$/8/8.1/GoBoard.py" />
       </list>
     </option>
   </component>
@@ -243,6 +253,22 @@
             <path>
               <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
               <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
+              <item name="4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
+              <item name="4" type="462c0819:PsiDirectoryNode" />
+              <item name="4.1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
+              <item name="6" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Deliverables" type="b2602c69:ProjectViewProjectNode" />
@@ -407,27 +433,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/5/5.2/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4/4.1/FrontEnd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-58">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/5/5.2/FrontEnd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-301">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/6/6.2/FrontEnd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-324">
@@ -467,16 +472,6 @@
           <caret line="258" column="48" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
           <folding>
             <element signature="e#0#21#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6/6.2/Go_Board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="187" column="37" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -693,16 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="62" column="27" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/Default.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -719,6 +704,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/7/7.1/GoBoard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8/8.1/Referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-106">
+          <caret line="58" column="25" lean-forward="true" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/Admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -729,26 +732,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/7/7.1/GoBoard.py">
+    <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="30" column="18" lean-forward="false" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state relative-caret-position="362">
+          <caret line="263" column="53" lean-forward="true" selection-start-line="263" selection-start-column="11" selection-end-line="263" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8/8.1/GoRuleChecker.py">
+    <entry file="file://$PROJECT_DIR$/4/4.1/Go_board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="43" column="21" lean-forward="false" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+        <state relative-caret-position="-290">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.1/Go_Board.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-268">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/5/5.2/Go_Board.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-349">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/6/6.2/Go_Board.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/8/8.1/GoBoard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        <state relative-caret-position="391">
+          <caret line="100" column="35" lean-forward="false" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
           <folding />
         </state>
       </provider>
