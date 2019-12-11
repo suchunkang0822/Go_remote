@@ -18,7 +18,7 @@ class Proxy(GoRuleChecker):
     def random_coord(self):
         row = random.randrange(1,self.Board_size)
         col = random.randrange(1,self.Board_size)
-        print(row,col)
+        
         return row,col
 
     @staticmethod
@@ -33,14 +33,18 @@ class Proxy(GoRuleChecker):
     def make_move(self,boards):
         ref = GoRuleChecker(boards)
         boards_correct = ref.sixth_resolve_history(self.player_stone)
-        if boards_correct:
+        if True:
             print("correct boards")
-            if random.random() < 0.4:
+            if random.random() <= 0.2:
                 return "pass"
             else:
                 row, col = self.random_coord()
+                if boards[0][row][col] == " ":
+                    print("sending",row,col)
+                    return str(col + 1) + "-" + str(row + 1)
                 while boards[0][row][col] != " ":
-                    if ref.sixth_resolve_history(self.player_stone, row, col) :
+                    if ref.sixth_resolve_history(self.player_stone, row, col) or True :
+                        print("sending",row,col)
                         return str(col + 1) + "-" + str(row + 1)
                     else:
                         row, col = self.random_coord()

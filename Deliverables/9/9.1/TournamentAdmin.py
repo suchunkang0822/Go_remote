@@ -80,35 +80,22 @@ class TournamentAdmin:
             temp = 2**i
         
         return temp
-
+        
 
     def create_connections(self, n):
         connections = []
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.s.bind((self.HOST, self.PORT))
-        self.s.listen()
+        self.s.listen(self.n_remote)
         for i in range(n):
             conn, _ = self.s.accept()
             connections.append(conn)
-
         return connections
-
-            # with conn:
-            #     while True:
-            #         data = conn.recv(6000)
-            #         if len(data) < 6000:
-            #             break
-            # data = conn.recv(6000)
-            # decoded_data = data.decode('utf-8')
-            # json_list = list(FrontEnd().parser(decoded_data))
-            # return json_list
-        
 
     def game_start(self, player1, player2):
         winner = self.ref.play_game(player1, player2)
         return winner
-
 
     def setup_default_player(self):
         player_module = SourceFileLoader("Default", self.DEFPATH).load_module()
