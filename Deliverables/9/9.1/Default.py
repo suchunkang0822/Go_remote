@@ -35,22 +35,22 @@ class Default(GoRuleChecker,Interface):
         ref = GoRuleChecker(boards)
         # boards_correct = ref.sixth_resolve_history(self.player_stone)
         if True:
-            print("correct boards")
+            # print("correct boards")
             if random.random() <= 0.2:
                 return "pass"
             else:
                 row, col = self.random_coord()
                 if boards[0][row][col] == " ":
-                    print("sending",row,col)
+                    # print("sending",row,col)
                     return str(col + 1) + "-" + str(row + 1)
                 while boards[0][row][col] != " ":
                     if ref.sixth_resolve_history(self.player_stone, row, col) or True :
-                        print("sending",row,col)
+                        # print("sending",row,col)
                         return str(col + 1) + "-" + str(row + 1)
                     else:
                         row, col = self.random_coord()
                         continue
-                print("bleh bleh blej")
+                # print("bleh bleh blej")
         else:
             return "This history makes no sense!"
 

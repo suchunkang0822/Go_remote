@@ -47,7 +47,7 @@ class TournamentAdmin:
             raise Exception("Arguments are incorrect")
         
         return style, int(n)
-    
+    #print
 
     def setup_player_map(self):
         player_map = dict()
@@ -124,7 +124,7 @@ class TournamentAdmin:
         for key in player_names:
             scoreboard[key] = []
         
-        print("player names:",player_names)
+        #print("player names:",player_names)
         for i1 in range(len(player_names)-1):
             for i2 in range(i1+1, len(player_names)):
                 if i2 >= len(player_names) or i1 >= len(player_names)-1:
@@ -179,7 +179,7 @@ class TournamentAdmin:
                         player_names.append(default_name)
                         self.player_map[default_name] = default
                         scoreboard[default_name] = []
-                print(scoreboard)
+                #print(scoreboard)
         print(self.calculate_rr(scoreboard, cheaters))
         return self.calculate_rr(scoreboard, cheaters)
 
@@ -200,7 +200,7 @@ class TournamentAdmin:
                 pid2 = scoreboard[-1]
                 
                 results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2]))
-                print("results:",results)
+                #print("results:",results)
                 winner = results['winner']
                 loser = results['loser']
                 cheater = results['cheater'] 
@@ -222,7 +222,7 @@ class TournamentAdmin:
                     scoreboard.remove(winner[0])
                     
             
-            print("new sb:",new_scoreboard)
+            #print("new sb:",new_scoreboard)
             scoreboard = copy.deepcopy(new_scoreboard)
             rounds.append(new_scoreboard)
         rankings = self.calculate_sk(rounds, cheaters)
@@ -276,12 +276,12 @@ class TournamentAdmin:
                 for w in winner:
                     if w in arr:   
                         arr.remove(w)
-                print("rounds",rounds, cheaters, rankings)
+                #print("rounds",rounds, cheaters, rankings)
         
         
         
         rankings[len(rounds)+1] = cheaters
-        print(rankings)
+        #print(rankings)
         return rankings
            
 
