@@ -153,26 +153,36 @@ class TournamentAdmin:
         # i think i can just delete the losers from the array??
         player_names = self.player_map.keys()
         scoreboard = list(player_names)
+        rankings = {}
 
         while(len(scoreboard) > 1):
-            pid1 = scoreboard[0]
-            pid2 = scoreboard[-1]
-            results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2]))
-            winner = results['winner']
-            loser = results['loser']
-            cheater = results['cheater'] 
-            if len(winner) == 2:
-                winner, loser = self.coin_flip(winner)
-                
+            for i in range(int(len(scoreboard)/2)):
+                new_scoreboard = []
+                pid1 = scoreboard[0]
+                pid2 = scoreboard[-1]
+                results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2]))
+                winner = results['winner']
+                loser = results['loser']
+                cheater = results['cheater'] 
+                if len(winner) == 2:
+                    winner, loser = self.coin_flip(winner)
+                    new_scoreboard.append(winner)
+                    scoreboard.remove(winner)
+                    scoreboard.remove(loser)
+                    
+                    # condition for draw
+                elif len(winner) == 1:
+                    if loser != []:
+                        new_scoreboard.append(winner[0])
+                        scoreboard.remove(loser[0])
 
-                # condition for draw
-            else:
-                if loser != []:
-                    scoreboard[winner[0]].append(loser[0])
-                elif cheater != []:
-                    for player in scoreboard[cheater[0]]:
-                        scoreboard[player].append(cheater[0])
-                    scoreboard[winner[0]].append(cheater[0])
+                    elif cheater != []:
+                        new_scoreboard.append(winner[0])
+                        scoreboard.remove(cheater[0])
+                    scoreboard.remove(winner[0])
+                    
+                
+            scoreboard = new_scoreboard
             # TODO: Need to find loser player and delete name from scorebord
             # remove first -> assign to new scorewboard, remove last -> assign to cheaters if needed
     
