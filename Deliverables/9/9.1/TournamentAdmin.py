@@ -15,7 +15,7 @@ class TournamentAdmin:
         self.HOST, self.PORT, self.DEFPATH = self.fetch_config()
         self.s = None
         self.t_style, self.n_remote = self.fetch_tournament_details()
-        
+        self.n_default = 0
         self.remote_connections = self.create_connections(self.n_remote)
         self.player_map = self.setup_player_map()
         self.cheaters = []
@@ -52,19 +52,19 @@ class TournamentAdmin:
     def setup_player_map(self):
         player_map = dict()
         n_total = self.total_player_count(self.n_remote)
-        n_default = n_total - self.n_remote
+        self.n_default = n_total - self.n_remote
 
         for c, conn in enumerate(self.remote_connections):
             remote = StateProxy(RemoteProxy(conn))
             
             remote_name = remote.register()+str(c)
-            print(remote.player.name)
-
+            if not remote_name:
+                self.n_default += 1
+                self.n_remote -= 1
             player_map[remote_name] = remote
-            print("registered", player_map)
         
-        if n_default > 0:
-            for i in range(n_default):
+        if self.n_default > 0:
+            for i in range(self.n_default):
                 default = StateProxy(self.setup_default_player())
                 default_name = default.register()+str(i) #TODO: name for local players must be unique
 
@@ -153,6 +153,14 @@ class TournamentAdmin:
                         del scoreboard[cheater[0]]
                         cheaters.append(cheater[0])
 
+                        # adding default player
+                        default = StateProxy(self.setup_default_player())
+                        default_name = default.register()+str(self.n_default)
+                        self.n_default += 1
+                        player_names.append(default_name)
+                        self.player_map[default_name] = default
+                        scoreboard[default_name] = []
+
                     else:
                         pass
                 print(scoreboard)
@@ -175,7 +183,6 @@ class TournamentAdmin:
                 
                 pid1 = scoreboard[0]
                 pid2 = scoreboard[-1]
-                print("players playing:",pid1, pid2)
                 
                 results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2]))
                 print("results:",results)
@@ -204,6 +211,7 @@ class TournamentAdmin:
             scoreboard = copy.deepcopy(new_scoreboard)
             rounds.append(new_scoreboard)
         rankings = self.calculate_sk(rounds, cheaters)
+        print(rankings)
         return rankings
             # TODO: Need to find loser player and delete name from scorebord
             # remove first -> assign to new scorewboard, remove last -> assign to cheaters if needed
@@ -241,6 +249,11 @@ class TournamentAdmin:
     def calculate_sk(self, rounds, cheaters):
         rankings = {}
 
+        for arr in rounds:
+            for el in arr:
+                if el in cheaters:
+                    arr.remove(el)
+
         for i in range( len(rounds)):
             winner = rounds[len(rounds)-1-i]
             rankings[i+1] = copy.deepcopy(winner)
@@ -248,14 +261,11 @@ class TournamentAdmin:
                 for w in winner:
                     if w in arr:   
                         arr.remove(w)
-                print("rounds",rounds, winner, rankings)
+                print("rounds",rounds, cheaters, rankings)
         
-        for c in cheaters:
-            for i in range(len(rounds)):
-                if c in rankings[i+1]:
-                    rankings[i+1].remove(c)
-            # adding cheaters to last place
-            rankings[len(rounds)].append(c)
+        
+        
+        rankings[len(rounds)+1] = cheaters
         print(rankings)
         return rankings
            
