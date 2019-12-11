@@ -6,6 +6,7 @@ import copy
 
 class Referee:
     def __init__(self):
+        self.playerMap = {}
         self.playerOneObj = None
         self.playerOneName = None
         self.playerOneStone = "B"
@@ -73,6 +74,8 @@ class Referee:
             player2.receive_stone(self.playerTwoStone)
             self.playerOneObj = player1
             self.playerTwoObj = player2
+            self.playerMap[p1name] = player1
+            self.playerMap[p2name] = player2
             self.currentObj = player1
             
             return True
@@ -116,16 +119,28 @@ class Referee:
                 print(self.boardHistory[0])
                 print("running: ",move, self.get_player_name(self.currentStone))
                 try:
-                    winner = self.handleMove(move)
-                    print("winner", winner)
-                    if winner:
+                    results = self.handleMove(move)
+                    print("results", results)
+                    if results:
                         # self.switch_player()
-                        response = self.playerOneObj.end_game()
-                        response2 = self.playerTwoObj.end_game()
+                        for winner in results['winner']:
+                            response = self.playerMap[winner].end_game()
+                            if response != "OK":
+                                results['cheater'].append(winner)
+                                results['winner'].remove(winner)
+
+                            print("response:",response)
+                        for loser in results['loser']:
+                            response = self.playerMap[loser].end_game()
+                            if response != "OK":
+                                results['cheater'].append(loser)
+                                results['loser'].remove(loser)
+
+                            print("response2:",response)
                         # if response1 == "OK":
                         #     if repsonse2 == "OK":
 
-                        return winner 
+                        return results 
                 except TypeError:
-                    return self.opponentName
+                    raise Exception("Game could not be played")
               

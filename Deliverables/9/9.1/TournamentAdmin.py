@@ -40,11 +40,11 @@ class TournamentAdmin:
 
     def fetch_tournament_details(self):
         if len(sys.argv) != 3:
-            raise("Incorrect number of arguments")
+            raise Exception("Incorrect number of arguments")
         
         _, style, n = sys.argv
         if style not in ["--league","--cup"] or not n.isnumeric():
-            raise("Arguments are incorrect")
+            raise Exception("Arguments are incorrect")
         
         return style, int(n)
     
@@ -141,10 +141,12 @@ class TournamentAdmin:
                     scoreboard[pid1].append(copy.deepcopy(pid2))
                     scoreboard[pid2].append(copy.deepcopy(pid1))
                     # condition for draw
+                # else len(winner) == 1:
                 elif len(winner) == 1:
                     if loser != []:
                         scoreboard[winner[0]].append(loser[0])
-                    elif cheater != []:
+                    if cheater != []:
+                        # handling point give-back 
                         for player in scoreboard[cheater[0]]:
                             if player in scoreboard:
                                 scoreboard[player].append(cheater[0])
@@ -153,7 +155,7 @@ class TournamentAdmin:
                         del scoreboard[cheater[0]]
                         cheaters.append(cheater[0])
 
-                        # adding default player
+                        # adding default player\
                         default = StateProxy(self.setup_default_player())
                         default_name = default.register()+str(self.n_default)
                         self.n_default += 1
@@ -161,12 +163,25 @@ class TournamentAdmin:
                         self.player_map[default_name] = default
                         scoreboard[default_name] = []
 
-                    else:
-                        pass
+                else:
+                    for c in cheater:
+                        for player in scoreboard[c]:
+                            if player in scoreboard:
+                                scoreboard[player].append(c)
+                        player_names.remove(c)
+                        del scoreboard[c]
+                        cheaters.append(c)
+
+                        # adding default player
+                        default = StateProxy(self.setup_default_player())
+                        default_name = default.register()+str(self.n_default)
+                        self.n_default += 1
+                        player_names.append(default_name)
+                        self.player_map[default_name] = default
+                        scoreboard[default_name] = []
                 print(scoreboard)
         print(self.calculate_rr(scoreboard, cheaters))
         return self.calculate_rr(scoreboard, cheaters)
-                # TODO: HANDLE MULTIPLE CHEATERS
 
                 
 
