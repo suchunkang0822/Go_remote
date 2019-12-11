@@ -87,3 +87,4 @@ if __name__ == "__main__":
     while True:
         if module.receive_and_send() == "OK":
             break
+    module.s.close()

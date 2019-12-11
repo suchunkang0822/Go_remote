@@ -12,10 +12,12 @@ import sys
 class TournamentAdmin:
     
     def __init__(self):
+        self.s = None
+        self.HOST, self.PORT, self.DEFPATH = self.fetch_config()
         self.t_style, self.n_remote = self.fetch_tournament_details()
         self.remote_connections = self.create_connections(self.n_remote)
-        self.HOST, self.PORT, self.DEFPATH = self.fetch_config()
-        self.s = None
+        
+       
         
         self.n_default = 0
         

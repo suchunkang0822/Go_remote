@@ -136,6 +136,10 @@ class Referee:
                                 results['cheater'].append(loser)
                                 results['loser'].remove(loser)
 
+                        for cheater in results['cheater']:
+                            response = self.playerMap[cheater].end_game()
+                            if response != "OK":
+                                pass
                             #print("response2:",response)
                         # if response1 == "OK":
                         #     if repsonse2 == "OK":
