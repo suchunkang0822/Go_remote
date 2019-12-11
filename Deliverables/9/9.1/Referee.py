@@ -113,12 +113,19 @@ class Referee:
             while True:
                
                 move = self.currentObj.make_move(self.boardHistory)
+                print(self.boardHistory[0])
                 print("running: ",move, self.get_player_name(self.currentStone))
                 try:
                     winner = self.handleMove(move)
                     print("winner", winner)
                     if winner:
-                        return winner
+                        # self.switch_player()
+                        response = self.playerOneObj.end_game()
+                        response2 = self.playerTwoObj.end_game()
+                        # if response1 == "OK":
+                        #     if repsonse2 == "OK":
+
+                        return winner 
                 except TypeError:
                     return self.opponentName
               

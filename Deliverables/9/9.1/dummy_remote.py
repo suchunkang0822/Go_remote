@@ -53,6 +53,7 @@ class Proxy(GoRuleChecker):
         else:
             return "This history makes no sense!"
 
+
     def receive_and_send(self):
         name = self.s.recv(6000)
         print("name",name)
@@ -64,10 +65,13 @@ class Proxy(GoRuleChecker):
             print(json_obj)
             self.receive_stone(json_obj[1])
         elif json_obj[0] == "make-a-move":
-            
             temp = self.make_move(json_obj[1])
             print("temp",temp)
             self.s.send(json.dumps(temp).encode())
+        elif json_obj[0] == "end-game":
+            self.s.send(json.dumps("OK").encode())
+        else:
+            raise("Incorrect command")
 
 
 

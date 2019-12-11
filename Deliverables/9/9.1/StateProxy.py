@@ -26,6 +26,12 @@ class StateProxy:
             return self.player.make_move(boards)
         raise ValueError
 
+    def end_game(self):
+        if self.registered and self.received:
+            response = self.player.end_game()
+            self.received = False
+            return response
+
 
 
 # if __name__ == "__main__":

@@ -30,6 +30,11 @@ class RemoteProxy():
         move = json.loads(self.conn.recv(6000).decode())
         return move
 
+    def end_game(self):
+        self.conn.send(json.dumps(["end-game"]).encode())
+        response = json.loads(self.conn.recv(6000).decode())
+        return response
+
     def fetch_config(self):
         json_string = FrontEnd().input_receiver('go.config')
         python_obj = json.loads(json_string)

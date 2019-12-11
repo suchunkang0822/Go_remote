@@ -1,6 +1,7 @@
 from GoRuleChecker import *
 from GoBoard import *
 import abc
+import random
 
 
 class Interface(abc.ABC):
@@ -9,6 +10,7 @@ class Interface(abc.ABC):
 
 
 class Default(GoRuleChecker,Interface):
+    Board_size = 9
     def __init__(self):
         super().__init__()
         self.player_stone = ""
@@ -23,30 +25,62 @@ class Default(GoRuleChecker,Interface):
     def receive_stone(self,stone):
         self.player_stone = stone
 
+    def random_coord(self):
+        row = random.randrange(1,self.Board_size)
+        col = random.randrange(1,self.Board_size)
+        
+        return row,col
+
     def make_move(self,boards):
         ref = GoRuleChecker(boards)
-        recent_board = self.determine_latest_board(ref)
-        boards_correct = ref.sixth_resolve_history(self.player_stone)
-        if boards_correct:
-            capture = self.n_depth_capture(boards,1)
-            if capture:
-                return capture
-            else:
-                empty_coord = GoBoard.get_coord(recent_board, " ")
-                empty_coord = sorted(empty_coord, key=lambda x: x[1])
-                while empty_coord:
-                    current_coord = empty_coord.pop(0)
-                    row, col = current_coord[0], current_coord[1]
-                    if ref.sixth_resolve_history(self.player_stone, row, col):
-                        return str(col+1)+"-"+str(row+1)
-                    try:
-                        ref.check_suicide(self.player_stone,row,col)
-                        ref.check_ko(self.player_stone,row,col)
-                    except Exception:
-                        continue
+        # boards_correct = ref.sixth_resolve_history(self.player_stone)
+        if True:
+            print("correct boards")
+            if random.random() <= 0.2:
                 return "pass"
+            else:
+                row, col = self.random_coord()
+                if boards[0][row][col] == " ":
+                    print("sending",row,col)
+                    return str(col + 1) + "-" + str(row + 1)
+                while boards[0][row][col] != " ":
+                    if ref.sixth_resolve_history(self.player_stone, row, col) or True :
+                        print("sending",row,col)
+                        return str(col + 1) + "-" + str(row + 1)
+                    else:
+                        row, col = self.random_coord()
+                        continue
+                print("bleh bleh blej")
         else:
             return "This history makes no sense!"
+
+    # def make_move(self,boards):
+    #     ref = GoRuleChecker(boards)
+    #     recent_board = self.determine_latest_board(ref)
+    #     boards_correct = ref.sixth_resolve_history(self.player_stone)
+    #     if boards_correct:
+    #         capture = self.n_depth_capture(boards,1)
+    #         if capture:
+    #             return capture
+    #         else:
+    #             empty_coord = GoBoard.get_coord(recent_board, " ")
+    #             empty_coord = sorted(empty_coord, key=lambda x: x[1])
+    #             while empty_coord:
+    #                 current_coord = empty_coord.pop(0)
+    #                 row, col = current_coord[0], current_coord[1]
+    #                 if ref.sixth_resolve_history(self.player_stone, row, col):
+    #                     return str(col+1)+"-"+str(row+1)
+    #                 try:
+    #                     ref.check_suicide(self.player_stone,row,col)
+    #                     ref.check_ko(self.player_stone,row,col)
+    #                 except Exception:
+    #                     continue
+    #             return "pass"
+    #     else:
+    #         return "This history makes no sense!"
+    
+    def end_game(self):
+        return "OK"
 
     @staticmethod
     def determine_latest_board(GoRuleChecker_obj):

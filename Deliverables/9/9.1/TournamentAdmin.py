@@ -1,6 +1,7 @@
 from Referee import Referee
 import socket
 import json
+import copy
 import random
 from FrontEnd import FrontEnd
 from importlib.machinery import SourceFileLoader
@@ -53,10 +54,10 @@ class TournamentAdmin:
         n_total = self.total_player_count(self.n_remote)
         n_default = n_total - self.n_remote
 
-        for conn in self.remote_connections:
+        for c, conn in enumerate(self.remote_connections):
             remote = StateProxy(RemoteProxy(conn))
             
-            remote_name = remote.register()
+            remote_name = remote.register()+str(c)
             print(remote.player.name)
 
             player_map[remote_name] = remote
@@ -95,7 +96,7 @@ class TournamentAdmin:
         return connections
 
     def game_start(self, p1tup, p2tup):
-        ref = Referee()
+        ref = Referee() 
         results = ref.play_game(p1tup, p2tup)
         return results
 
@@ -118,33 +119,45 @@ class TournamentAdmin:
     def round_robin(self):
         #scoring will happen using a map of player name and players defeated
         scoreboard = {}
-        player_names = self.player_map.keys()
+        cheaters = []
+        player_names = list(self.player_map.keys())
         for key in player_names:
             scoreboard[key] = []
         
-
-        for i1 in range(len(player_names)):
-            for i2 in range(i1, len(player_names)):
+        print("player names:",player_names)
+        for i1 in range(len(player_names)-1):
+            for i2 in range(i1+1, len(player_names)):
+                if i2 >= len(player_names) or i1 >= len(player_names)-1:
+                    continue
                 pid1 = player_names[i1]
                 pid2 = player_names[i2]
-
+                
                 # Game being played
                 results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2])) 
                 winner = results['winner']
                 loser = results['loser']
                 cheater = results['cheater'] 
                 if len(winner) == 2:
-                    scoreboard[pid1].append(pid2)
-                    scoreboard[pid2].append(pid1)
+                    scoreboard[pid1].append(copy.deepcopy(pid2))
+                    scoreboard[pid2].append(copy.deepcopy(pid1))
                     # condition for draw
-                else:
+                elif len(winner) == 1:
                     if loser != []:
                         scoreboard[winner[0]].append(loser[0])
                     elif cheater != []:
                         for player in scoreboard[cheater[0]]:
-                            scoreboard[player].append(cheater[0])
+                            if player in scoreboard:
+                                scoreboard[player].append(cheater[0])
                         scoreboard[winner[0]].append(cheater[0])
+                        player_names.remove(cheater[0])
+                        del scoreboard[cheater[0]]
+                        cheaters.append(cheater[0])
 
+                    else:
+                        pass
+                print(scoreboard)
+        print(self.calculate_rr(scoreboard, cheaters))
+        return self.calculate_rr(scoreboard, cheaters)
                 # TODO: HANDLE MULTIPLE CHEATERS
 
                 
@@ -153,23 +166,27 @@ class TournamentAdmin:
         # i think i can just delete the losers from the array??
         player_names = self.player_map.keys()
         scoreboard = list(player_names)
-        rankings = {}
-
+        cheaters = []
+        rounds = []
+        rounds.append(copy.deepcopy(scoreboard))
         while(len(scoreboard) > 1):
+            new_scoreboard = []
             for i in range(int(len(scoreboard)/2)):
-                new_scoreboard = []
+                
                 pid1 = scoreboard[0]
                 pid2 = scoreboard[-1]
+                print("players playing:",pid1, pid2)
+                
                 results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2]))
+                print("results:",results)
                 winner = results['winner']
                 loser = results['loser']
                 cheater = results['cheater'] 
                 if len(winner) == 2:
-                    winner, loser = self.coin_flip(winner)
-                    new_scoreboard.append(winner)
-                    scoreboard.remove(winner)
-                    scoreboard.remove(loser)
-                    
+                    rand_winner, rand_loser = self.coin_flip(winner)
+                    new_scoreboard.append(rand_winner)
+                    scoreboard.remove(rand_winner)
+                    scoreboard.remove(rand_loser)
                     # condition for draw
                 elif len(winner) == 1:
                     if loser != []:
@@ -179,17 +196,73 @@ class TournamentAdmin:
                     elif cheater != []:
                         new_scoreboard.append(winner[0])
                         scoreboard.remove(cheater[0])
+                        cheaters.append(cheater[0])
                     scoreboard.remove(winner[0])
                     
-                
-            scoreboard = new_scoreboard
+            
+            print("new sb:",new_scoreboard)
+            scoreboard = copy.deepcopy(new_scoreboard)
+            rounds.append(new_scoreboard)
+        rankings = self.calculate_sk(rounds, cheaters)
+        return rankings
             # TODO: Need to find loser player and delete name from scorebord
             # remove first -> assign to new scorewboard, remove last -> assign to cheaters if needed
     
+
     def coin_flip(self, player_arr):
         flip = random.choice(player_arr)
-        not_flip = player_arr.remove(flip)[0]        
+        player_arr.remove(flip)
+        not_flip = player_arr[0]      
         return flip, not_flip
+
+    def calculate_rr(self, map, cheaters):
+        score_map = {}
+        for key in map:
+            score_map[key] = len(map[key])
+        
+        rank_map = {}
+        for key in score_map:
+            score = score_map[key]
+            if score in rank_map:
+                rank_map[score].append(key)
+            else:
+                rank_map[score] = [key]
+
+        rank_map[-1] = cheaters
+        rankings = {}
+        i = 1
+        for ind in sorted(rank_map)[::-1]:
+            rankings[i] = rank_map[ind]
+            i+=1
+
+
+        return rankings
+
+    def calculate_sk(self, rounds, cheaters):
+        rankings = {}
+
+        for i in range( len(rounds)):
+            winner = rounds[len(rounds)-1-i]
+            rankings[i+1] = copy.deepcopy(winner)
+            for arr in rounds:
+                for w in winner:
+                    if w in arr:   
+                        arr.remove(w)
+                print("rounds",rounds, winner, rankings)
+        
+        for c in cheaters:
+            for i in range(len(rounds)):
+                if c in rankings[i+1]:
+                    rankings[i+1].remove(c)
+            # adding cheaters to last place
+            rankings[len(rounds)].append(c)
+        print(rankings)
+        return rankings
+           
+
+
+
+        
 
 
 
