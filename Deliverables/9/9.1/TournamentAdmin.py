@@ -21,6 +21,7 @@ class TournamentAdmin:
         self.cheaters = []
         # TO START GAME
         self.setup_game(self.t_style)
+        
         # self.conn = self.create_connection()
         # self.default_player = StateProxy(self.setup_default_player())
         # self.remote_player = StateProxy(RemoteProxy(self.conn))
@@ -36,6 +37,11 @@ class TournamentAdmin:
         json_string = FrontEnd().input_receiver('go.config')
         python_obj = json.loads(json_string)
         return python_obj["IP"], python_obj["port"], python_obj["default-player"]
+
+    def shutdown(self):
+        for c in self.remote_connections:
+            c.close()
+        self.s.close()
 
 
     def fetch_tournament_details(self):
@@ -57,11 +63,12 @@ class TournamentAdmin:
         for c, conn in enumerate(self.remote_connections):
             remote = StateProxy(RemoteProxy(conn))
             
-            remote_name = remote.register()+str(c)
+            remote_name = remote.register()
             if not remote_name:
                 self.n_default += 1
                 self.n_remote -= 1
-            player_map[remote_name] = remote
+            else:
+                player_map[remote_name] = remote
         
         if self.n_default > 0:
             for i in range(self.n_default):
@@ -114,6 +121,8 @@ class TournamentAdmin:
             self.round_robin()
         elif t_style == "--cup":
             self.single_knockout()
+        
+        self.shutdown()
     
 
     def round_robin(self):
@@ -220,7 +229,25 @@ class TournamentAdmin:
                         scoreboard.remove(cheater[0])
                         cheaters.append(cheater[0])
                     scoreboard.remove(winner[0])
+                else:
+                    defaults = []
+                    for c in cheater:
+
+                        # adding default player
+                        default = StateProxy(self.setup_default_player())
+                        default_name = default.register()+str(self.n_default)
+                        self.n_default += 1
+                        defaults.append(default_name)
+                        self.player_map[default_name] = default
+                        scoreboard.remove(c)
                     
+                    if len(defaults) == 2:
+                        rand_winner, rand_loser = self.coin_flip(defaults)
+                        new_scoreboard.append(rand_winner)
+                        scoreboard.remove(rand_winner)
+                        scoreboard.remove(rand_loser)
+                    if len(defaults) == 1:
+                        new_scoreboard.append(defaults[0])                    
             
             #print("new sb:",new_scoreboard)
             scoreboard = copy.deepcopy(new_scoreboard)
