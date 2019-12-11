@@ -11,7 +11,6 @@ import sys
 
 class TournamentAdmin:
     def __init__(self):
-        
         self.HOST, self.PORT, self.DEFPATH = self.fetch_config()
         self.s = None
         self.t_style, self.n_remote = self.fetch_tournament_details()
@@ -283,13 +282,6 @@ class TournamentAdmin:
         rankings[len(rounds)+1] = cheaters
         print(rankings)
         return rankings
-           
-
-
-
-        
-
-
 
 
 if __name__ == "__main__":

@@ -40,8 +40,6 @@ class Interface(abc.ABC):
 class GoRuleChecker(Interface):
     def __init__(self,boards=None):
         super().__init__()
-        # self.board_history = self.validate_size_history(boards)
-        # self.board1, self.board2, self.board3 = self.assign_boards(boards)
         if boards:
             self.board_history = self.validate_size_history(boards)
             self.board1, self.board2, self.board3 = self.assign_boards(boards)

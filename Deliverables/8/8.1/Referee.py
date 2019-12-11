@@ -98,8 +98,10 @@ class Referee:
         while True:
             move = self.currentObj.make_a_move(self.boardHistory)
             try:
-                self.handleMove(move)
+                winner = self.handleMove(move)
+                if winner:
+                    return winner
+                self.switch_player()
             except TypeError:
                 return self.opponentName
-            self.switch_player()
 
