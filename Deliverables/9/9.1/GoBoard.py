@@ -42,7 +42,6 @@ class GoBoard(Interface):
     def point_parser(self,point):
         coordinate = re.findall(r'\d+',point)
         coordinate = list(map(lambda x: int(x)-1,coordinate))
-        # coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
         if len(coordinate) != 2 or not isinstance(point,str):
             raise TypeError("There should only be two numbers in the format of int-int")
         else:
@@ -76,9 +75,9 @@ class GoBoard(Interface):
             return True
         else:
             return False
-    @staticmethod
-    def is_on_board(coordinate):
-        return 0 <= coordinate[0] <= 18 and 0 <= coordinate[1] <= 18
+
+    def is_on_board(self,coordinate):
+        return 0 <= coordinate[0] < self.Board_Size and 0 <= coordinate[1] < self.Board_Size
 
     def get_valid_neighbors(self,coordinate):
         possible_neighbors = [[coordinate[0],coordinate[1] - 1],
@@ -176,7 +175,7 @@ class BoardFrontEnd:
         pass
 
     def extract_coordinate(self,board,command_or_query):
-        board_obj = Go_Board(board)
+        board_obj = GoBoard(board)
         if command_or_query[0] in ("occupied?","reachable?"):
             return board_obj.point_parser(command_or_query[1])
         elif command_or_query[0] in ("place","remove", "occupies?"):
@@ -185,7 +184,7 @@ class BoardFrontEnd:
             return None,None
 
     def answer_command_query(self, board, command_or_query, row, col):
-        board_obj = Go_Board(board)
+        board_obj = GoBoard(board)
         if command_or_query[0] == "occupied?":
             return board_obj.is_occupied(row, col)
         elif command_or_query[0] == "occupies?":
@@ -211,14 +210,14 @@ class BoardFrontEnd:
         return json.dumps(result)
 
 
-if __name__ == '__main__':
-    f = FrontEnd()
-    json_string = f.input_receiver()
-    json_list = list(f.parser(json_string))
-
-    go_board = GoBoard()
-
-    print(go_board.question(json_list))
+# if __name__ == '__main__':
+#     f = FrontEnd()
+#     json_string = f.input_receiver()
+#     json_list = list(f.parser(json_string))
+#
+#     GoBoard = GoBoard()
+#
+#     print(GoBoard.question(json_list))
 
 
 

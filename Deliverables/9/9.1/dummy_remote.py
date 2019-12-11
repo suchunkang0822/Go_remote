@@ -32,7 +32,7 @@ class Proxy(GoRuleChecker):
 
     def make_move(self,boards):
         ref = GoRuleChecker(boards)
-        boards_correct = ref.sixth_resolve_history(self.player_stone)
+        # boards_correct = ref.sixth_resolve_history(self.player_stone)
         if True:
             print("correct boards")
             if random.random() <= 0.2:

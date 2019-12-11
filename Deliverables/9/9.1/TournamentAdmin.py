@@ -10,13 +10,14 @@ import sys
 
 class TournamentAdmin:
     def __init__(self):
-        self.ref = Referee()
+        
         self.HOST, self.PORT, self.DEFPATH = self.fetch_config()
         self.s = None
         self.t_style, self.n_remote = self.fetch_tournament_details()
         
         self.remote_connections = self.create_connections(self.n_remote)
         self.player_map = self.setup_player_map()
+        self.cheaters = []
         # TO START GAME
         self.setup_game(self.t_style)
         # self.conn = self.create_connection()
@@ -80,7 +81,7 @@ class TournamentAdmin:
             temp = 2**i
         
         return temp
-        
+
 
     def create_connections(self, n):
         connections = []
@@ -93,9 +94,10 @@ class TournamentAdmin:
             connections.append(conn)
         return connections
 
-    def game_start(self, player1, player2):
-        winner = self.ref.play_game(player1, player2)
-        return winner
+    def game_start(self, p1tup, p2tup):
+        ref = Referee()
+        results = ref.play_game(p1tup, p2tup)
+        return results
 
     def setup_default_player(self):
         player_module = SourceFileLoader("Default", self.DEFPATH).load_module()
@@ -125,14 +127,26 @@ class TournamentAdmin:
             for i2 in range(i1, len(player_names)):
                 pid1 = player_names[i1]
                 pid2 = player_names[i2]
-                self.game_start(self.player_map[pid1], self.player_map[pid2]) 
 
-                # TODO: This must return name of the winner and loser so that it can be added to the map
-                #       Maybe can be abstracted to a new function that can be shared with single_knockout
+                # Game being played
+                results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2])) 
+                winner = results['winner']
+                loser = results['loser']
+                cheater = results['cheater'] 
+                if len(winner) == 2:
+                    scoreboard[pid1].append(pid2)
+                    scoreboard[pid2].append(pid1)
+                    # condition for draw
+                else:
+                    if loser != []:
+                        scoreboard[winner[0]].append(loser[0])
+                    elif cheater != []:
+                        for player in scoreboard[cheater[0]]:
+                            scoreboard[player].append(cheater[0])
+                        scoreboard[winner[0]].append(cheater[0])
 
-                # if cheater:
-                # 
-                # scoreboard[winner].append(loser)
+                # TODO: HANDLE MULTIPLE CHEATERS
+
                 
 
     def single_knockout(self):
@@ -143,14 +157,29 @@ class TournamentAdmin:
         while(len(scoreboard) > 1):
             pid1 = scoreboard[0]
             pid2 = scoreboard[-1]
-            winner = self.game_start(self.player_map[pid1], self.player_map[pid2])
-            break
+            results = self.game_start((pid1, self.player_map[pid1]), (pid2, self.player_map[pid2]))
+            winner = results['winner']
+            loser = results['loser']
+            cheater = results['cheater'] 
+            if len(winner) == 2:
+                winner, loser = self.coin_flip(winner)
+                
+
+                # condition for draw
+            else:
+                if loser != []:
+                    scoreboard[winner[0]].append(loser[0])
+                elif cheater != []:
+                    for player in scoreboard[cheater[0]]:
+                        scoreboard[player].append(cheater[0])
+                    scoreboard[winner[0]].append(cheater[0])
             # TODO: Need to find loser player and delete name from scorebord
             # remove first -> assign to new scorewboard, remove last -> assign to cheaters if needed
     
-    def coin_flip(self, p1name, p2name):
-        flip = random.choice([p1name, p2name])
-        return flip
+    def coin_flip(self, player_arr):
+        flip = random.choice(player_arr)
+        not_flip = player_arr.remove(flip)[0]        
+        return flip, not_flip
 
 
 

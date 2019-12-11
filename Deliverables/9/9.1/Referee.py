@@ -7,38 +7,43 @@ import copy
 class Referee:
     def __init__(self):
         self.playerOneObj = None
-        self.playerOneName = "playerOne"
+        self.playerOneName = None
         self.playerOneStone = "B"
         self.playerTwoObj = None
-        self.playerTwoName = "playerTwo"
+        self.playerTwoName = None
         self.playerTwoStone = "W"
         self.boardSize = GoBoard().Board_Size
         self.boardHistory = [[[" " for col in range(self.boardSize)] for row in range(self.boardSize)]]
         self.currentStone = self.playerOneStone
         self.currentObj = self.playerOneObj
         self.opponentName = self.playerTwoName
+        self.results = {'winner':[], 'loser':[], 'cheater':[]}
 
-    # def assignPlayerOne(self, string):
-    #     self.playerOneName = string
+    def assignPlayerOne(self, string):
+        self.playerOneName = string
 
-    # def assignPlayerTwo(self, string):
-    #     self.playerTwoName = string
+    def assignPlayerTwo(self, string):
+        self.playerTwoName = string
 
     def get_player_name(self, stone):
         if stone == "B":
-            return [self.playerOneName]
+            return self.playerOneName
         else:
-            return [self.playerTwoName]
+            return self.playerTwoName
 
     def decide_winner(self, board):
         score = GoRuleChecker().check_the_score(board)
         black_score, white_score = score["B"], score["W"]
         if black_score > white_score:
-            return [self.playerOneName]
+            self.results['winner'].append(self.playerOneName)
+            self.results['loser'].append(self.playerTwoName)
         elif white_score > black_score:
-            return [self.playerTwoName]
+            self.results['winner'].append(self.playerTwoName)
+            self.results['loser'].append(self.playerOneName)
         else:
-            return sorted([self.playerOneName, self.playerTwoName])
+            self.results['winner'].append(self.playerOneName)
+            self.results['winner'].append(self.playerTwoName)
+        return self.results
 
     def updateHistory(self, board):
         self.boardHistory.insert(0, board)
@@ -54,13 +59,14 @@ class Referee:
             self.currentStone = self.playerOneStone
             self.currentObj = self.playerOneObj
             self.opponentName = self.playerOneName
+        print("switched")
 
-    def setupPlayers(self, player1, player2):
+    def setupPlayers(self, p1tup, p2tup):
         try:
-            # self.assignPlayerOne(player1.register())
-            # self.playerOneName = player1.register()
-            #print('end')
-            # self.assignPlayerTwo(player2.register())
+            p1name, player1 = p1tup
+            p2name, player2 = p2tup
+            self.assignPlayerOne(p1name)
+            self.assignPlayerTwo(p2name)
             # self.playerTwoName = player2.register()
             
             player1.receive_stone(self.playerOneStone)
@@ -86,26 +92,33 @@ class Referee:
             madeMove = GoRuleChecker(self.boardHistory).sixth_resolve_history(self.currentStone, row, col)
             opponentStone = self.playerTwoStone if self.currentStone == self.playerOneStone else self.playerOneStone
             opponentName = self.get_player_name(opponentStone)
+            # TODO: Delete above two lines
             if madeMove:
                 whatIfBoard = GoBoard(self.boardHistory[0]).place(self.currentStone,row,col)
                 try:
                     self.updateHistory(copy.deepcopy(GoRuleChecker().board_after_remove_captured_stone
                                                      (whatIfBoard,self.currentStone,row,col)))
                 except TypeError:
-                    return opponentName
+                    self.results['winner'].append(opponentName)
+                    self.results['cheater'].append(self.get_player_name(self.currentStone))
+                    return self.results
                 self.switch_player()
             else:
-                return opponentName
+                self.results['winner'].append(opponentName)
+                self.results['cheater'].append(self.get_player_name(self.currentStone))
+                return self.results
 
-    def play_game(self,player1,player2):
-        if(self.setupPlayers(player1,player2)):
+    def play_game(self,p1tup,p2tup):
+        if(self.setupPlayers(p1tup,p2tup)):
             while True:
                
                 move = self.currentObj.make_move(self.boardHistory)
-                print("running: ",self.currentObj.registered, self.currentObj.received)
+                print("running: ",move, self.get_player_name(self.currentStone))
                 try:
-                    self.handleMove(move)
+                    winner = self.handleMove(move)
+                    print("winner", winner)
+                    if winner:
+                        return winner
                 except TypeError:
                     return self.opponentName
-                self.switch_player()
-
+              
