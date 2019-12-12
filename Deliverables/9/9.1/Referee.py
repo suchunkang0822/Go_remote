@@ -60,7 +60,7 @@ class Referee:
             self.currentStone = self.playerOneStone
             self.currentObj = self.playerOneObj
             self.opponentName = self.playerOneName
-        print("switched")
+        #print("switched")
 
     def setupPlayers(self, p1tup, p2tup):
         try:
@@ -116,11 +116,11 @@ class Referee:
             while True:
                
                 move = self.currentObj.make_move(self.boardHistory)
-                print(self.boardHistory[0])
-                print("running: ",move, self.get_player_name(self.currentStone))
+                #print(self.boardHistory[0])
+                #print("running: ",move, self.get_player_name(self.currentStone))
                 try:
                     results = self.handleMove(move)
-                    print("results", results)
+                    #print("results", results)
                     if results:
                         # self.switch_player()
                         for winner in results['winner']:
@@ -129,14 +129,18 @@ class Referee:
                                 results['cheater'].append(winner)
                                 results['winner'].remove(winner)
 
-                            print("response:",response)
+                            #print("response:",response)
                         for loser in results['loser']:
                             response = self.playerMap[loser].end_game()
                             if response != "OK":
                                 results['cheater'].append(loser)
                                 results['loser'].remove(loser)
 
-                            print("response2:",response)
+                        for cheater in results['cheater']:
+                            response = self.playerMap[cheater].end_game()
+                            if response != "OK":
+                                pass
+                            #print("response2:",response)
                         # if response1 == "OK":
                         #     if repsonse2 == "OK":
 

@@ -11,7 +11,7 @@ class Proxy(GoRuleChecker):
     def __init__(self):
         super().__init__()
         self.player_stone = ""
-        self.HOST = '127.0.0.1'
+        self.HOST = '98.213.55.152'
         self.PORT = 8888
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -53,6 +53,9 @@ class Proxy(GoRuleChecker):
         else:
             return "This history makes no sense!"
 
+    def end_game(self):
+        return "OK"
+
 
     def receive_and_send(self):
         name = self.s.recv(6000)
@@ -69,9 +72,11 @@ class Proxy(GoRuleChecker):
             print("temp",temp)
             self.s.send(json.dumps(temp).encode())
         elif json_obj[0] == "end-game":
-            self.s.send(json.dumps("OK").encode())
+            response = self.end_game()
+            self.s.send(json.dumps(response).encode())
+            return response
         else:
-            raise("Incorrect command")
+            raise Exception("Incorrect command")
 
 
 
@@ -80,4 +85,6 @@ if __name__ == "__main__":
     module = Proxy()
     module.s.connect((module.HOST, module.PORT))
     while True:
-        module.receive_and_send()
+        if module.receive_and_send() == "OK":
+            break
+    module.s.close()

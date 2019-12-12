@@ -1,7 +1,4 @@
-from FrontEnd import *
-import socket
-import json
-import random
+from CustomExceptions import *
 
 class StateProxy:
     def __init__(self, player):
@@ -13,26 +10,23 @@ class StateProxy:
         if not self.registered and not self.received:
             self.registered = True
             return self.player.register()
-        raise ValueError
+        raise RegisterError('You can not register this player. The player has already been registered')
 
     def receive_stone(self, stone):
         if self.registered and not self.received:
             self.received = True
             return self.player.receive_stone(stone)
-        raise ValueError
+        raise ReceiveStonesError('The player can not receive a stone. The player has already received a stone')
 
     def make_move(self, boards):
         if self.registered and self.received:
             return self.player.make_move(boards)
-        raise ValueError
+        raise MakeAMoveError('The player can not make a move. The player has not been registered and given a stone')
 
     def end_game(self):
         if self.registered and self.received:
             response = self.player.end_game()
             self.received = False
             return response
+        raise EndGameError('Can not end the game. The player has not been registered nor received a stone')
 
-
-
-# if __name__ == "__main__":
-#     pass
