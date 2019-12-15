@@ -21,7 +21,6 @@ class Default(GoRuleChecker,Interface):
             return "no name"
 
     def receive_stones(self,stone):
-        print('this is the stone assgined',stone)
         self.player_stone = stone
 
     def make_a_move(self,boards):

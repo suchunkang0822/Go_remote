@@ -120,7 +120,6 @@ class GoRuleChecker(Interface):
 
     def sixth_resolve_history(self, player, row=None, col=None):
         try:
-            print('this is board history length',len(self.board_history))
             self.check_turn(player)
             if len(self.board_history) == 1:
                 if self.if_history_one():
