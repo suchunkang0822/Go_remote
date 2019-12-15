@@ -14,7 +14,7 @@ class Default(GoRuleChecker,Interface):
         self.player_stone = ""
 
     @staticmethod
-    def register(name=None):
+    def register(name="Default"):
         if isinstance(name, str):
             return name
         else:

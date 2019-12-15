@@ -28,7 +28,7 @@ class Interface(abc.ABC):
 
 
 class GoBoard(Interface):
-    Board_Size = 19
+    Board_Size = 9
     Maybe_Stone = ["B", "W", " "]
     Stone = ["B", "W"]
 

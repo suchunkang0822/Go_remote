@@ -65,13 +65,15 @@ class TournamentAdmin:
         self.n_default = n_total - self.n_remote
 
         for c, conn in enumerate(self.remote_connections):
-            remote = StateProxy(RemoteProxy(conn))
-            
-            remote_name = remote.register()
-            if not remote_name:
+
+
+            # if not remote_name:
+            if not conn:
                 self.n_default += 1
                 self.n_remote -= 1
             else:
+                remote = StateProxy(RemoteProxy(conn))
+                remote_name = remote.register() + str(c)
                 player_map[remote_name] = remote
         
         if self.n_default > 0:
@@ -80,7 +82,7 @@ class TournamentAdmin:
                 default_name = default.register()+str(i) #TODO: name for local players must be unique
 
                 player_map[default_name] = default
-
+        print('this is player mpa', player_map)
         return player_map      
 
 
@@ -312,7 +314,7 @@ class TournamentAdmin:
         
         
         rankings[len(rounds)+1] = cheaters
-        #print(rankings)
+        print(rankings)
         return rankings
 
 

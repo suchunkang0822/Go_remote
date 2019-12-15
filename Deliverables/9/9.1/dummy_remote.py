@@ -3,6 +3,7 @@ from GoRuleChecker import *
 import json
 import random
 import socket
+import time
 
 
 class Proxy(GoRuleChecker):
@@ -11,9 +12,17 @@ class Proxy(GoRuleChecker):
     def __init__(self):
         super().__init__()
         self.player_stone = ""
-        self.HOST = '98.213.55.152'
+        self.HOST = 'localhost'
         self.PORT = 8888
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s = None
+
+    def connect(self):
+        self.s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        try:
+            self.s.connect((self.HOST,self.PORT))
+        except:
+            time.sleep(2)
+            self.connect()
 
     def random_coord(self):
         row = random.randrange(1,self.Board_size)
@@ -21,19 +30,20 @@ class Proxy(GoRuleChecker):
         
         return row,col
 
+
     @staticmethod
     def register():
         # if string == "register":
         return "remote"
 
-    def receive_stone(self,stone):
+    def receive_stones(self,stone):
         print("stone:",stone)
         self.player_stone = stone
 
     def make_move(self,boards):
         ref = GoRuleChecker(boards)
-        # boards_correct = ref.sixth_resolve_history(self.player_stone)
-        if True:
+        boards_correct = ref.sixth_resolve_history(self.player_stone)
+        if boards_correct:
             print("correct boards")
             if random.random() <= 0.2:
                 return "pass"
@@ -51,7 +61,7 @@ class Proxy(GoRuleChecker):
                         continue
                 print("bleh bleh blej")
         else:
-            return "This history makes no sense!"
+            raise Exception("boards history not valid")
 
     def end_game(self):
         return "OK"
@@ -64,9 +74,9 @@ class Proxy(GoRuleChecker):
         print("WHAT? ",json_obj)
         if json_obj[0] == "register":
             self.s.send(json.dumps(self.register()).encode())
-        elif json_obj[0] == "receive-stone":
+        elif json_obj[0] == "receive-stones":
             print(json_obj)
-            self.receive_stone(json_obj[1])
+            self.receive_stones(json_obj[1])
         elif json_obj[0] == "make-a-move":
             temp = self.make_move(json_obj[1])
             print("temp",temp)
@@ -83,7 +93,8 @@ class Proxy(GoRuleChecker):
 
 if __name__ == "__main__":
     module = Proxy()
-    module.s.connect((module.HOST, module.PORT))
+    module.connect()
+    # module.s.connect((module.HOST, module.PORT))
     while True:
         if module.receive_and_send() == "OK":
             break

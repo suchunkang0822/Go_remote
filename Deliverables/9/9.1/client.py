@@ -4,7 +4,6 @@ import socket
 import time
 import json
 
-
 class Client:
     def __init__(self,player):
         # self.HOST = '192.168.1.152'
@@ -40,13 +39,14 @@ class Client:
         if len(json_data) == 1 and json_data[0] == "register":
             name = self.player.register()
             self.s.sendall(json.dumps(name).encode())
+            print('im in',name)
         elif len(json_data) == 2 and json_data[0] == "receive-stones":
             stone = json_data[1]
             self.player.receive_stones(stone)
         elif len(json_data) == 2 and json_data[0]== "make-a-move":
             history = json_data[1]
             print('this is history',history)
-            move = self.player.make_a_move(history)
+            move = self.player.make_move(history)
             print('this is move',move)
             self.s.sendall(json.dumps(move).encode())
         elif json_data[0] == "end-game":
