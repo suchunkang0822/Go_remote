@@ -31,12 +31,12 @@ class Client:
 
     def receive_and_send(self):
         data = self.s.recv(6000)
-        print('data',data)
+        # print('data',data)
         try:
             json_data = json.loads(data.decode())
         except JSONDecodeError:
             self.s.sendall("GO has gone crazy!".encode())
-            return
+            return "end"
         if len(json_data) == 1 and json_data[0] == "register":
             name = self.player.register()
             self.s.sendall(json.dumps(name).encode())
@@ -45,9 +45,9 @@ class Client:
             self.player.receive_stones(stone)
         elif len(json_data) == 2 and json_data[0]== "make-a-move":
             history = json_data[1]
-            print('this is history',history)
+            # print('this is history',history)
             move = self.player.make_a_move(history)
-            print('this is move',move)
+            # print('this is move',move)
             self.s.sendall(json.dumps(move).encode())
         elif json_data[0] == "end-game":
             self.s.send(json.dumps('OK').encode())
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     a = Client(Default())
     a.connect()
     while True:
-        if a.receive_and_send() == "OK":
+        if a.receive_and_send() == "end":
             a.s.close()
             break
 
